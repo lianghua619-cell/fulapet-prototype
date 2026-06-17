@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>福拉呼啦宠物-服务介绍</title>
+  <link rel="stylesheet" href="assets/gallery-preview.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -54,10 +55,11 @@
     .service-head h2 { margin-top:9px; font-size:21px; font-weight:950; color:var(--brochure-blue-deep); letter-spacing:.5px; }
     .service-head p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
     .service-tag { flex:0 0 auto; min-width:76px; padding:9px 10px; border-radius:18px 14px 18px 16px; background:var(--blue-soft); color:var(--brochure-blue-deep); border:3px solid var(--green); text-align:center; font-size:12px; font-weight:950; }
-    .photo-row { display:flex; gap:9px; overflow-x:auto; margin:16px -16px 0; padding:0 16px 2px; scrollbar-width:none; }
+    .photo-row { display:flex; gap:9px; overflow-x:auto; margin:16px 0 0; padding:0 2px 2px; scrollbar-width:none; overscroll-behavior-x:contain; }
     .photo-row::-webkit-scrollbar { display:none; }
-    .photo { position:relative; flex:0 0 108px; height:84px; display:grid; place-items:center; padding-top:16px; border-radius:18px 14px 18px 16px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:900; text-align:center; }
-    .photo::before { content:""; position:absolute; top:9px; width:14px; height:11px; border-radius:50% 50% 45% 45%; background:rgba(90,145,183,.36); box-shadow:-9px -5px 0 -4px rgba(90,145,183,.36),0 -8px 0 -5px rgba(90,145,183,.36),9px -5px 0 -4px rgba(90,145,183,.36); }
+    .photo { position:relative; overflow:hidden; flex:0 0 96px; height:84px; display:grid; place-items:center; border-radius:18px 14px 18px 16px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:900; text-align:center; }
+    .photo img { width:100%; height:100%; display:block; object-fit:cover; }
+    .photo::before { content:""; position:absolute; top:8px; left:50%; width:32px; height:9px; border-radius:999px; background:rgba(255,251,234,.78); transform:translateX(-50%) rotate(-5deg); z-index:1; }
     .detail-block { margin-top:18px; }
     .detail-block h3 { display:inline-flex; margin-bottom:10px; padding:5px 10px; border-radius:16px 20px 16px 18px; background:var(--green); color:var(--ink); font-size:15px; font-weight:950; }
     .list { display:grid; gap:8px; }
@@ -140,21 +142,21 @@
         <div class="service-list">
           <article class="service-card" id="escort">
             <div class="service-head"><div><span class="service-label">宠物医疗陪护</span><h2>医疗陪护与就诊协助</h2><p>主人不方便到院时，协助完成就医陪护、流程沟通和诊后反馈。</p></div><div class="service-tag">流程陪护</div></div>
-            <div class="photo-row"><div class="photo">医院陪护照片</div><div class="photo">接送沟通记录</div><div class="photo">诊后反馈截图</div></div>
+            <div class="photo-row"><div class="photo"><img src="assets/images/service-medical/escort-1.jpg" alt="宠物医疗陪护现场"></div><div class="photo"><img src="assets/images/service-medical/car-1.jpg" alt="宠物专车接送"></div><div class="photo"><img src="assets/images/service-medical/escort-2.jpg" alt="陪护过程反馈记录"></div></div>
             <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">协助挂号、排队、问诊沟通与理疗陪伴</div><div class="list-item">记录检查项目、医嘱和用药注意事项</div><div class="list-item">服务过程通过照片、文字或视频反馈</div><div class="list-item">可沟通宠物专车接送需求</div></div></div>
             <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">医疗诊断与治疗方案由医院医生提供，重大治疗决策需主人或授权人确认。急诊、夜间或特殊护理建议先联系客服说明情况。</div></div>
           </article>
 
           <article class="service-card" id="home">
             <div class="service-head"><div><span class="service-label">宠物上门服务</span><h2>上门照护与状态反馈</h2><p>短期外出、出差或加班期间，上门完成基础照护与状态反馈。</p></div><div class="service-tag">到家照护</div></div>
-            <div class="photo-row"><div class="photo">喂食换水照片</div><div class="photo">清洁整理记录</div><div class="photo">互动反馈视频</div></div>
+            <div class="photo-row"><div class="photo"><img src="assets/images/service-home/cat-visit-1.jpg" alt="上门喂食换水"></div><div class="photo"><img src="assets/images/service-home/cat-visit-2.jpg" alt="上门清洁整理"></div><div class="photo"><img src="assets/images/service-home/dog-walk-1.jpg" alt="上门遛狗互动"></div></div>
             <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">喂食换水，清洗餐盆与水碗</div><div class="list-item">清理猫砂或基础环境整理，根据需求开窗通风</div><div class="list-item">简单陪伴互动，观察精神与食欲</div><div class="list-item">照片、视频或文字反馈服务情况</div></div></div>
             <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">钥匙、门禁与入户方式需提前确认。喂药、护理、多宠或异宠家庭建议提前说明，便于判断服务安排。</div></div>
           </article>
 
           <article class="service-card" id="boarding">
             <div class="service-head"><div><span class="service-label">宠物寄养服务</span><h2>寄养照护与每日反馈</h2><p>假期、短期外出或过渡照护时，为宠物提供日常喂养与状态反馈。</p></div><div class="service-tag">安心寄养</div></div>
-            <div class="photo-row"><div class="photo">寄养环境展示</div><div class="photo">日常喂养记录</div><div class="photo">户外活动照片</div></div>
+            <div class="photo-row"><div class="photo"><img src="assets/images/service-boarding/boarding-1.jpg" alt="寄养环境展示"></div><div class="photo"><img src="assets/images/service-boarding/boarding-2.jpg" alt="寄养日常喂养"></div><div class="photo"><img src="assets/images/service-boarding/boarding-3.jpg" alt="寄养户外活动"></div></div>
             <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">每日喂养、清洁消毒与状态观察</div><div class="list-item">记录精神状态、食欲、排便排尿情况</div><div class="list-item">照片或视频反馈，便于主人了解状态</div><div class="list-item">可沟通门到门接送和营养餐需求</div></div></div>
             <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">寄养前需了解疫苗、健康状态与性格情况。攻击性、传染病或特殊护理需求需提前评估。</div></div>
           </article>
@@ -190,5 +192,6 @@
       <a href="contact.html"><span class="tab-icon">联</span><span>咨询</span></a>
     </nav>
   </main>
+  <script src="assets/gallery-preview.js"></script>
 </body>
 </html>

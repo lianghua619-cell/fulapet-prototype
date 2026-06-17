@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>福拉呼啦宠物-品牌动态</title>
+  <link rel="stylesheet" href="assets/gallery-preview.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --brochure-blue:#5A91B7; --brochure-blue-dark:#3F789F; --brochure-blue-deep:#27618A; --blue-soft:#E7F3FA; --green:#B6DC62; --green-dark:#6E9D28; --green-soft:#EDF7D2; --paper:#F6F3DF; --paper-light:#FFFBEA; --ink:#1F2430; --text-sub:#4F6370; --text-light:#7A8B93; --line-green:rgba(139,187,58,.76); --shadow-paper:0 10px 0 rgba(39,97,138,.16),0 12px 26px rgba(31,36,48,.12); }
@@ -30,8 +31,9 @@
     .section-title h2::after { content:""; position:absolute; right:-8px; bottom:6px; width:14px; height:14px; border-radius:999px; background:var(--green); }
     .section-title a { color:var(--paper-light); text-decoration:none; font-size:12px; font-weight:900; border-bottom:2px solid rgba(246,243,223,.45); }
     .featured-card { overflow:hidden; border-radius:30px 22px 32px 24px; background:var(--paper); border:5px solid var(--green); box-shadow:var(--shadow-paper); }
-    .featured-photo { position:relative; height:166px; display:grid; place-items:center; background:#EAF4F7; color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
-    .featured-photo::before { content:""; position:absolute; top:18px; left:50%; width:24px; height:18px; border-radius:50% 50% 45% 45%; background:rgba(90,145,183,.34); box-shadow:-14px -8px 0 -6px rgba(90,145,183,.34),0 -13px 0 -8px rgba(90,145,183,.34),14px -8px 0 -6px rgba(90,145,183,.34); transform:translateX(-50%); }
+    .featured-photo { position:relative; overflow:hidden; height:166px; display:grid; place-items:center; background:#EAF4F7; color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .featured-photo img { width:100%; height:100%; display:block; object-fit:cover; }
+    .featured-photo::before { content:""; position:absolute; top:14px; left:50%; width:58px; height:14px; border-radius:999px; background:rgba(255,251,234,.78); transform:translateX(-50%) rotate(-5deg); z-index:2; }
     .featured-body { padding:14px; }
     .tag { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:11px; font-weight:950; }
     .featured-body h2 { margin-top:10px; font-size:17px; font-weight:950; color:var(--ink); }
@@ -39,7 +41,8 @@
     .activity-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
     .activity-card { position:relative; overflow:hidden; border-radius:22px 16px 24px 18px; background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); cursor:pointer; }
     .activity-card::before { content:""; position:absolute; top:8px; left:38%; width:34px; height:10px; border-radius:999px; background:rgba(255,251,234,.74); transform:rotate(-5deg); z-index:2; }
-    .activity-photo { height:112px; display:grid; place-items:center; padding-top:14px; background:#EAF4F7; border-bottom:3px solid var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:900; text-align:center; }
+    .activity-photo { height:112px; overflow:hidden; display:grid; place-items:center; background:#EAF4F7; border-bottom:3px solid var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:900; text-align:center; }
+    .activity-photo img { width:100%; height:100%; display:block; object-fit:cover; }
     .activity-info { padding:10px; }
     .activity-info span { display:inline-flex; padding:4px 7px; border-radius:14px 18px 14px 16px; background:var(--green-soft); color:var(--green-dark); border:1px solid rgba(110,157,40,.2); font-size:10px; font-weight:950; }
     .activity-info h3 { margin-top:8px; font-size:13px; font-weight:950; line-height:1.35; }
@@ -52,7 +55,8 @@
     .modal { position:fixed; inset:0; z-index:8; display:none; align-items:center; justify-content:center; background:rgba(17,24,39,.68); }
     .modal.show { display:flex; }
     .modal-card { width:300px; padding:16px; border-radius:26px 20px 28px 22px; background:var(--paper); border:4px solid var(--green); box-shadow:var(--shadow-paper); }
-    .modal-photo { height:220px; display:grid; place-items:center; border-radius:20px 16px 22px 18px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .modal-photo { height:220px; overflow:hidden; display:grid; place-items:center; border-radius:20px 16px 22px 18px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .modal-photo img { width:100%; height:100%; display:block; object-fit:cover; }
     .modal-card h3 { margin-top:12px; font-size:17px; font-weight:950; }
     .modal-card p { margin-top:6px; color:var(--text-sub); font-size:13px; font-weight:650; }
     .modal-card button { margin-top:14px; width:100%; height:40px; border:0; border-radius:16px 22px 16px 20px; background:var(--brochure-blue); color:#fff; font-size:14px; font-weight:950; }
@@ -86,7 +90,7 @@
 
       <section class="section">
         <div class="featured-card">
-          <div class="featured-photo">公益行动照片墙</div>
+          <div class="featured-photo"><img src="assets/images/welfare/team-welfare-2.jpg" alt="福拉呼啦公益行动记录"></div>
           <div class="featured-body">
             <span class="tag">8年公益救助背景</span>
             <h2>救助，从来不是口号</h2>
@@ -98,12 +102,12 @@
       <section class="section">
         <div class="section-title"><h2>动态相册</h2><a href="contact.html">咨询合作</a></div>
         <div class="activity-grid" id="grid">
-          <article class="activity-card" data-kind="welfare" data-title="公益救助记录"><div class="activity-photo">公益救助照片</div><div class="activity-info"><span>公益救助</span><h3>公益救助记录</h3><p>记录救助、安置与回访过程。</p></div></article>
-          <article class="activity-card" data-kind="service" data-title="医疗陪护现场"><div class="activity-photo">医疗陪护照片</div><div class="activity-info"><span>服务现场</span><h3>医疗陪护现场</h3><p>陪同就医与诊后反馈记录。</p></div></article>
-          <article class="activity-card" data-kind="service" data-title="上门照护反馈"><div class="activity-photo">上门照护照片</div><div class="activity-info"><span>服务现场</span><h3>上门照护反馈</h3><p>喂食、清洁、陪伴与状态观察。</p></div></article>
-          <article class="activity-card" data-kind="service" data-title="寄养环境展示"><div class="activity-photo">寄养环境照片</div><div class="activity-info"><span>服务现场</span><h3>寄养环境展示</h3><p>寄养场地与日常照护展示。</p></div></article>
-          <article class="activity-card" data-kind="cooperation" data-title="合作交流记录"><div class="activity-photo">合作交流照片</div><div class="activity-info"><span>合作交流</span><h3>合作交流记录</h3><p>宠物医院、门店与组织合作。</p></div></article>
-          <article class="activity-card" data-kind="welfare" data-title="领养回访记录"><div class="activity-photo">领养回访照片</div><div class="activity-info"><span>公益救助</span><h3>领养回访记录</h3><p>关注领养后的生活状态。</p></div></article>
+          <article class="activity-card" data-kind="welfare" data-title="公益救助记录" data-preview-title="公益救助记录" data-preview-items="assets/images/welfare/rescue-1.jpg|assets/images/welfare/rescue-2.jpg|assets/images/welfare/volunteer-1.jpg|assets/images/welfare/volunteer-2.jpg|assets/images/welfare/team-welfare-1.jpg|assets/images/welfare/team-welfare-2.jpg|assets/images/welfare/event-1.jpg|assets/images/welfare/event-2.jpg"><div class="activity-photo"><img src="assets/images/welfare/rescue-1.jpg" alt="公益救助记录"></div><div class="activity-info"><span>公益救助</span><h3>公益救助记录</h3><p>记录救助、安置与回访过程。</p></div></article>
+          <article class="activity-card" data-kind="service" data-title="医疗陪护现场" data-preview-title="医疗陪护现场" data-preview-items="assets/images/service-medical/escort-1.jpg|assets/images/service-medical/escort-2.jpg|assets/images/service-medical/escort-3.jpg|assets/images/service-medical/car-1.jpg|assets/images/service-medical/car-2.jpg"><div class="activity-photo"><img src="assets/images/service-medical/escort-3.jpg" alt="医疗陪护现场"></div><div class="activity-info"><span>服务现场</span><h3>医疗陪护现场</h3><p>陪同就医与诊后反馈记录。</p></div></article>
+          <article class="activity-card" data-kind="service" data-title="上门照护反馈" data-preview-title="上门照护反馈" data-preview-items="assets/images/service-home/cat-visit-1.jpg|assets/images/service-home/cat-visit-2.jpg|assets/images/service-home/cat-visit-3.jpg|assets/images/service-home/dog-walk-1.jpg|assets/images/service-home/dog-walk-2.jpg"><div class="activity-photo"><img src="assets/images/service-home/cat-visit-3.jpg" alt="上门照护反馈"></div><div class="activity-info"><span>服务现场</span><h3>上门照护反馈</h3><p>喂食、清洁、陪伴与状态观察。</p></div></article>
+          <article class="activity-card" data-kind="service" data-title="寄养环境展示" data-preview-title="寄养环境展示" data-preview-items="assets/images/service-boarding/boarding-1.jpg|assets/images/service-boarding/boarding-2.jpg|assets/images/service-boarding/boarding-3.jpg"><div class="activity-photo"><img src="assets/images/service-boarding/boarding-2.jpg" alt="寄养环境展示"></div><div class="activity-info"><span>服务现场</span><h3>寄养环境展示</h3><p>寄养场地与日常照护展示。</p></div></article>
+          <article class="activity-card" data-kind="cooperation" data-title="合作交流记录" data-preview-title="合作交流记录" data-preview-items="assets/images/brand/team-partner.jpg|assets/images/brand/team-1.jpg|assets/images/brand/team-2.jpg"><div class="activity-photo"><img src="assets/images/brand/team-partner.jpg" alt="合作交流记录"></div><div class="activity-info"><span>合作交流</span><h3>合作交流记录</h3><p>宠物医院、门店与组织合作。</p></div></article>
+          <article class="activity-card" data-kind="welfare" data-title="领养回访记录" data-preview-title="领养回访记录" data-preview-items="assets/images/welfare/event-1.jpg|assets/images/welfare/event-2.jpg|assets/images/welfare/rescue-1.jpg|assets/images/welfare/rescue-2.jpg"><div class="activity-photo"><img src="assets/images/welfare/event-1.jpg" alt="领养回访记录"></div><div class="activity-info"><span>公益救助</span><h3>领养回访记录</h3><p>关注领养后的生活状态。</p></div></article>
         </div>
       </section>
 
@@ -114,15 +118,6 @@
       <section class="section">
         <div class="cta-row"><a class="btn btn-primary" href="service.html">查看服务项目</a><a class="btn btn-secondary" href="contact.html">咨询合作</a></div>
       </section>
-    </div>
-
-    <div class="modal" id="modal" aria-hidden="true">
-      <div class="modal-card">
-        <div class="modal-photo" id="modalPhoto">活动照片</div>
-        <h3 id="modalTitle">活动照片预览</h3>
-        <p>点击关闭预览。</p>
-        <button id="closeModal">关闭</button>
-      </div>
     </div>
 
     <nav class="tabbar">
@@ -137,9 +132,6 @@
   <script>
     const tabs = document.querySelectorAll('.filter-tab');
     const cards = document.querySelectorAll('.activity-card');
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalPhoto = document.getElementById('modalPhoto');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(item => item.classList.remove('active'));
@@ -150,15 +142,7 @@
         });
       });
     });
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        modalTitle.textContent = card.dataset.title || '活动照片预览';
-        modalPhoto.textContent = card.querySelector('.activity-photo').textContent.trim();
-        modal.classList.add('show');
-      });
-    });
-    document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('show'));
-    modal.addEventListener('click', event => { if (event.target === modal) modal.classList.remove('show'); });
   </script>
+  <script src="assets/gallery-preview.js"></script>
 </body>
 </html>

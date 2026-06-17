@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>福拉呼啦宠物-品牌故事</title>
+  <link rel="stylesheet" href="assets/gallery-preview.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --brochure-blue:#5A91B7; --brochure-blue-dark:#3F789F; --brochure-blue-deep:#27618A; --blue-soft:#E7F3FA; --green:#B6DC62; --green-dark:#6E9D28; --green-soft:#EDF7D2; --paper:#F6F3DF; --paper-light:#FFFBEA; --ink:#1F2430; --text-sub:#4F6370; --text-light:#7A8B93; --line-green:rgba(139,187,58,.76); --shadow-paper:0 10px 0 rgba(39,97,138,.16),0 12px 26px rgba(31,36,48,.12); }
@@ -26,8 +27,9 @@
     .section-title h2::after { content:""; position:absolute; right:-8px; bottom:6px; width:14px; height:14px; border-radius:999px; background:var(--green); }
     .section-title span { color:rgba(255,255,255,.84); font-size:12px; font-weight:800; }
     .brand-hero { margin:14px 16px 0; }
-    .brand-photo { height:174px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-radius:30px 22px 30px 24px; background:#EAF4F7; border:5px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; box-shadow:0 7px 0 rgba(39,97,138,.13); }
-    .brand-photo img { width:150px; height:auto; display:block; }
+    .brand-photo { height:174px; position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-radius:30px 22px 30px 24px; background:#EAF4F7; border:5px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; box-shadow:0 7px 0 rgba(39,97,138,.13); }
+    .brand-photo img { width:100%; height:100%; display:block; object-fit:cover; }
+    .brand-photo span { position:absolute; left:14px; bottom:12px; padding:6px 10px; border-radius:16px 20px 16px 18px; background:rgba(255,251,234,.9); color:var(--brochure-blue-deep); border:2px solid var(--green); font-size:12px; font-weight:950; }
     .brand-card { position:relative; margin:-32px 14px 0; padding:17px; border-radius:24px 18px 26px 20px; background:var(--paper); border:4px solid var(--green); box-shadow:var(--shadow-paper); }
     .brand-card::after { content:""; position:absolute; right:22px; top:18px; width:26px; height:20px; border-radius:50% 50% 45% 45%; background:rgba(182,220,98,.55); box-shadow:-13px -7px 0 -6px rgba(182,220,98,.55),0 -12px 0 -7px rgba(182,220,98,.55),13px -7px 0 -6px rgba(182,220,98,.55); }
     .brand-card span { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:11px; font-weight:950; }
@@ -56,7 +58,8 @@
     .standard h3:before { content:""; width:10px; height:10px; border-radius:999px; background:var(--green); box-shadow:0 0 0 3px rgba(182,220,98,.25); }
     .standard p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
     .team-card { padding:16px; border-radius:24px 18px 26px 20px; }
-    .team-photo { height:132px; display:grid; place-items:center; border-radius:22px 16px 22px 18px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .team-photo { height:132px; overflow:hidden; display:grid; place-items:center; border-radius:22px 16px 22px 18px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .team-photo img { width:100%; height:100%; display:block; object-fit:cover; }
     .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px; }
     .role { padding:12px; border-radius:18px 14px 18px 16px; background:var(--paper-light); }
     .role h3 { font-size:13px; font-weight:950; }
@@ -87,7 +90,7 @@
       </section>
 
       <section class="brand-hero">
-        <div class="brand-photo"><img src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"><span>团队服务现场 / 公益行动记录</span></div>
+        <div class="brand-photo"><img src="assets/images/brand/team-1.jpg" alt="福拉呼啦服务团队合影"><span>福拉呼啦服务团队</span></div>
         <div class="brand-card">
           <span>FulaFla Pets</span>
           <h2>对生命的温柔守护</h2>
@@ -137,7 +140,7 @@
       <section class="section">
         <div class="section-title"><h2>团队与标准</h2></div>
         <div class="team-card">
-          <div class="team-photo">服务团队与照护标准</div>
+          <div class="team-photo"><img src="assets/images/brand/team-2.jpg" alt="福拉呼啦团队现场记录"></div>
           <div class="team-grid">
             <div class="role"><h3>服务沟通</h3><p>确认需求、服务范围与照护建议。</p></div>
             <div class="role"><h3>照护执行</h3><p>按约定流程进行陪护、上门或寄养照护。</p></div>
@@ -162,5 +165,6 @@
       <a href="contact.html"><span class="tab-icon">联</span><span>咨询</span></a>
     </nav>
   </main>
+  <script src="assets/gallery-preview.js"></script>
 </body>
 </html>
