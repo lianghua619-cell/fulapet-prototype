@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>福啦呼啦宠物-咨询服务</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --blue:#2F5FB8; --blue-dark:#244EA2; --blue-soft:#EFF6FF; --brochure-blue:#244EA2; --brochure-blue-dark:#1D3F86; --green:#84CC16; --green-dark:#65A30D; --green-soft:#F0F9E8; --cream:#F5F5F0; --card:#FFFFFF; --text-main:#1F2937; --text-sub:#6B7280; --text-light:#9CA3AF; --line:#E5E7EB; --shadow:0 4px 14px rgba(31,41,55,.06); }
+    body { min-height:100vh; background:#D7DFEF; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; color:var(--text-main); }
+    .phone { position:relative; width:375px; min-height:812px; margin:0 auto; background:var(--brochure-blue); overflow:hidden; }
+    .page { padding-bottom:156px; }
+    .topbar { height:58px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; background:var(--brochure-blue-dark); border-bottom:1px solid rgba(255,255,255,.14); }
+    .brand-name { font-size:18px; font-weight:800; line-height:1; color:#fff; }
+    .brand-sub { margin-top:5px; color:rgba(255,255,255,.78); font-size:12px; }
+    .topbar-pill { height:30px; padding:0 12px; display:inline-flex; align-items:center; border-radius:999px; background:var(--blue-soft); color:var(--blue-dark); text-decoration:none; font-size:12px; font-weight:700; }
+    .page-header { padding:18px 16px 6px; }
+    .page-header h1 { font-size:22px; font-weight:850; line-height:1.25; color:#fff; }
+    .page-header p { margin-top:6px; color:rgba(255,255,255,.78); font-size:13px; line-height:1.55; }
+    .section { padding:18px 16px 0; }
+    .section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+    .section-title h2 { font-size:17px; font-weight:800; color:#fff; }
+    .section-title span { color:rgba(255,255,255,.72); font-size:12px; }
+    .consult-hero { margin:14px 16px 0; padding:18px; border-radius:18px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
+    .consult-hero span { display:inline-flex; padding:6px 10px; border-radius:999px; background:var(--green-soft); color:var(--green-dark); font-size:12px; font-weight:850; }
+    .consult-hero h2 { margin-top:12px; font-size:22px; line-height:1.28; font-weight:850; }
+    .consult-hero p { margin-top:9px; color:var(--text-sub); font-size:13px; line-height:1.6; }
+    .hero-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+    .btn { height:42px; display:flex; align-items:center; justify-content:center; border-radius:12px; border:0; text-decoration:none; font-size:14px; font-weight:850; }
+    .btn-primary { background:var(--blue); color:#fff; }
+    .btn-secondary { background:#fff; color:var(--blue-dark); border:1px solid rgba(59,130,246,.28); }
+    .wechat-card { padding:16px; border-radius:18px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); text-align:center; }
+    .qr-box { width:154px; height:154px; margin:0 auto; display:grid; place-items:center; border-radius:16px; background:linear-gradient(135deg, rgba(59,130,246,.08), rgba(132,204,22,.14)); border:1px solid rgba(31,41,55,.08); color:var(--text-light); font-size:13px; line-height:1.45; }
+    .wechat-card h3 { margin-top:14px; font-size:17px; font-weight:850; }
+    .wechat-card p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; }
+    .wechat-card button { margin-top:14px; width:100%; }
+    .checklist { display:grid; gap:9px; }
+    .check-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); }
+    .check-item strong { font-size:14px; }
+    .check-item span { color:var(--text-sub); font-size:12px; text-align:right; }
+    .process { display:grid; gap:9px; }
+    .step { display:flex; gap:12px; align-items:flex-start; padding:13px 14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); }
+    .step b { flex:0 0 26px; height:26px; display:grid; place-items:center; border-radius:999px; background:var(--blue); color:#fff; font-size:12px; }
+    .step h3 { font-size:14px; font-weight:850; }
+    .step p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; }
+    .contact-list { display:grid; gap:10px; }
+    .contact-card { display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
+    .contact-icon { flex:0 0 38px; height:38px; display:grid; place-items:center; border-radius:12px; background:var(--blue-soft); color:var(--blue-dark); font-size:13px; font-weight:900; }
+    .contact-card__body { flex:1; min-width:0; }
+    .contact-card h3 { font-size:14px; font-weight:850; }
+    .contact-card p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; }
+    .small-btn { flex:0 0 auto; height:34px; padding:0 12px; border:0; border-radius:10px; background:#F3F4F6; color:var(--text-light); font-size:12px; font-weight:800; }
+    .partner-card { padding:16px; border-radius:16px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
+    .partner-card h3 { font-size:17px; font-weight:850; }
+    .partner-card p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.6; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .chip { padding:7px 10px; border-radius:999px; background:var(--green-soft); color:var(--green-dark); font-size:12px; font-weight:800; }
+    .toast { position:fixed; left:50%; bottom:146px; transform:translateX(-50%); display:none; max-width:300px; padding:10px 14px; border-radius:999px; background:rgba(31,41,55,.9); color:#fff; font-size:13px; z-index:6; }
+    .toast.show { display:block; }
+    .bottom-cta { position:fixed; left:50%; bottom:82px; transform:translateX(-50%); width:343px; padding:11px 12px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:rgba(255,255,255,.96); border:1px solid rgba(255,255,255,.62); border-radius:18px; box-shadow:0 10px 28px rgba(17,24,39,.16); backdrop-filter:blur(14px); }
+    .bottom-cta strong { display:block; font-size:14px; }
+    .bottom-cta span { display:block; margin-top:3px; color:var(--text-sub); font-size:11px; }
+    .bottom-cta button { flex:0 0 104px; height:38px; border:0; border-radius:999px; background:var(--green); color:var(--brochure-blue-dark); font-size:14px; font-weight:900; }
+    .tabbar { position:fixed; left:50%; bottom:0; transform:translateX(-50%); width:375px; height:72px; padding:7px 14px 8px; display:grid; grid-template-columns:repeat(5,1fr); background:linear-gradient(180deg,var(--brochure-blue-dark),#183A7C); border-top:1px solid rgba(255,255,255,.16); box-shadow:0 -8px 24px rgba(17,24,39,.2); }
+    .tabbar a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:rgba(255,255,255,.66); text-decoration:none; font-size:10px; font-weight:700; border-radius:14px; }
+    .tabbar a.active { color:var(--green); font-weight:900; }
+    .tab-icon { width:24px; height:24px; display:grid; place-items:center; border-radius:999px; font-size:11px; font-weight:900; color:rgba(255,255,255,.68); background:rgba(255,255,255,.1); }
+    .tabbar a.active .tab-icon { background:var(--green); color:var(--brochure-blue-dark); box-shadow:0 5px 12px rgba(132,204,22,.32); }
+    @media (max-width:375px){ .phone,.tabbar{ width:100vw; } .bottom-cta{ width:calc(100vw - 32px); } }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <div class="page">
+      <header class="topbar">
+        <div><div class="brand-name">福啦呼啦宠物</div><div class="brand-sub">先说需求，再确认方案</div></div>
+        <a class="topbar-pill" href="service.html">看服务</a>
+      </header>
+
+      <section class="page-header">
+        <h1>咨询服务</h1>
+        <p>告诉我们宠物类型、服务时间、所在区域和具体需求，客服会协助判断合适的照护方式。</p>
+      </section>
+
+      <section class="consult-hero">
+        <span>微信咨询</span>
+        <h2>把宠物情况说清楚，服务安排更准确</h2>
+        <p>适合咨询陪诊、上门照护、寄养、机构合作等需求。</p>
+        <div class="hero-actions"><button class="btn btn-primary action">添加客服微信</button><a class="btn btn-secondary" href="#process">查看流程</a></div>
+      </section>
+
+      <section class="section">
+        <div class="wechat-card">
+          <div class="qr-box">客服微信咨询</div>
+          <h3>添加客服微信</h3>
+          <p>用于沟通服务时间、宠物情况、照护建议与服务前准备。</p>
+          <button class="btn btn-primary action">打开微信咨询</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title"><h2>咨询时请提供</h2><span>便于了解需求</span></div>
+        <div class="checklist">
+          <div class="check-item"><strong>宠物类型</strong><span>猫 / 狗 / 其他</span></div>
+          <div class="check-item"><strong>服务类型</strong><span>陪诊 / 上门 / 寄养</span></div>
+          <div class="check-item"><strong>服务时间</strong><span>日期、时段、预计时长</span></div>
+          <div class="check-item"><strong>所在区域</strong><span>成都具体地址或片区</span></div>
+          <div class="check-item"><strong>宠物情况</strong><span>年龄、体重、性格、健康状态</span></div>
+          <div class="check-item"><strong>特殊需求</strong><span>喂药、接送、多宠、护理等</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="process">
+        <div class="section-title"><h2>服务流程</h2><span>先咨询，再安排</span></div>
+        <div class="process">
+          <div class="step"><b>1</b><div><h3>添加客服</h3><p>通过微信说明基本需求。</p></div></div>
+          <div class="step"><b>2</b><div><h3>说明宠物情况</h3><p>提供服务时间、地点、宠物性格与健康状态。</p></div></div>
+          <div class="step"><b>3</b><div><h3>沟通照护方式</h3><p>客服根据宠物情况、服务时间与所在区域协助判断。</p></div></div>
+          <div class="step"><b>4</b><div><h3>确认服务安排</h3><p>服务前建立沟通群，同步注意事项与准备内容。</p></div></div>
+          <div class="step"><b>5</b><div><h3>服务反馈</h3><p>服务中与服务后同步照片、视频或文字反馈。</p></div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title"><h2>联系方式</h2><span>客服确认</span></div>
+        <div class="contact-list">
+          <div class="contact-card"><span class="contact-icon">电</span><div class="contact-card__body"><h3>联系电话</h3><p>请通过客服微信确认最新联系方式</p></div><button class="small-btn action">拨打</button></div>
+          <div class="contact-card"><span class="contact-icon">微</span><div class="contact-card__body"><h3>微信咨询</h3><p>优先通过微信沟通服务时间与宠物情况</p></div><button class="small-btn action">查看</button></div>
+          <div class="contact-card"><span class="contact-icon">址</span><div class="contact-card__body"><h3>服务地址</h3><p>具体服务范围与到店信息以客服确认为准</p></div><button class="small-btn action">地图</button></div>
+          <div class="contact-card"><span class="contact-icon">区</span><div class="contact-card__body"><h3>服务区域</h3><p>成都，具体可服务范围以客服沟通为准</p></div><button class="small-btn action">咨询</button></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="partner-card">
+          <h3>机构合作</h3>
+          <p>面向宠物医院、宠物门店、宠物咖啡、救助组织与社区合作伙伴，提供陪诊、上门照护、寄养等服务合作沟通。</p>
+          <div class="chips"><span class="chip">宠物医院</span><span class="chip">宠物门店</span><span class="chip">宠物咖啡</span><span class="chip">救助组织</span><span class="chip">社区服务</span></div>
+          <button class="btn btn-primary action" style="width:100%;margin-top:16px;">咨询合作方式</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast">请通过客服微信确认最新信息</div>
+    <div class="bottom-cta"><div><strong>准备咨询服务？</strong><span>客服将协助确认方案</span></div><button class="action">立即咨询</button></div>
+    <nav class="tabbar">
+      <a href="index.html"><span class="tab-icon">首</span><span>首页</span></a>
+      <a href="brand.html"><span class="tab-icon">品</span><span>品牌</span></a>
+      <a href="service.html"><span class="tab-icon">服</span><span>服务</span></a>
+      <a href="activity.html"><span class="tab-icon">动</span><span>动态</span></a>
+      <a class="active" href="contact.html"><span class="tab-icon">联</span><span>咨询</span></a>
+    </nav>
+  </main>
+
+  <script>
+    const toast = document.getElementById('toast');
+    let timer;
+    document.querySelectorAll('.action').forEach(button => {
+      button.addEventListener('click', () => {
+        clearTimeout(timer);
+        toast.classList.add('show');
+        timer = setTimeout(() => toast.classList.remove('show'), 1600);
+      });
+    });
+  </script>
+</body>
+</html>
