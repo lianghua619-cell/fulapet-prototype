@@ -3,69 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>福啦呼啦宠物-咨询服务</title>
+  <title>福拉呼啦宠物-咨询服务</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --blue:#2F5FB8; --blue-dark:#244EA2; --blue-soft:#EFF6FF; --brochure-blue:#244EA2; --brochure-blue-dark:#1D3F86; --green:#84CC16; --green-dark:#65A30D; --green-soft:#F0F9E8; --cream:#F5F5F0; --card:#FFFFFF; --text-main:#1F2937; --text-sub:#6B7280; --text-light:#9CA3AF; --line:#E5E7EB; --shadow:0 4px 14px rgba(31,41,55,.06); }
-    body { min-height:100vh; background:#D7DFEF; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; color:var(--text-main); }
+    :root { --brochure-blue:#5A91B7; --brochure-blue-dark:#3F789F; --brochure-blue-deep:#27618A; --blue-soft:#E7F3FA; --green:#B6DC62; --green-dark:#6E9D28; --green-soft:#EDF7D2; --paper:#F6F3DF; --paper-light:#FFFBEA; --ink:#1F2430; --text-sub:#4F6370; --text-light:#7A8B93; --line-green:rgba(139,187,58,.76); --shadow-paper:0 10px 0 rgba(39,97,138,.16),0 12px 26px rgba(31,36,48,.12); }
+    body { min-height:100vh; background:#D7DFEF; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; color:var(--ink); }
     .phone { position:relative; width:375px; min-height:812px; margin:0 auto; background:var(--brochure-blue); overflow:hidden; }
-    .page { padding-bottom:156px; }
-    .topbar { height:58px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; background:var(--brochure-blue-dark); border-bottom:1px solid rgba(255,255,255,.14); }
-    .brand-name { font-size:18px; font-weight:800; line-height:1; color:#fff; }
-    .brand-sub { margin-top:5px; color:rgba(255,255,255,.78); font-size:12px; }
-    .topbar-pill { height:30px; padding:0 12px; display:inline-flex; align-items:center; border-radius:999px; background:var(--blue-soft); color:var(--blue-dark); text-decoration:none; font-size:12px; font-weight:700; }
-    .page-header { padding:18px 16px 6px; }
-    .page-header h1 { font-size:22px; font-weight:850; line-height:1.25; color:#fff; }
-    .page-header p { margin-top:6px; color:rgba(255,255,255,.78); font-size:13px; line-height:1.55; }
-    .section { padding:18px 16px 0; }
-    .section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-    .section-title h2 { font-size:17px; font-weight:800; color:#fff; }
-    .section-title span { color:rgba(255,255,255,.72); font-size:12px; }
-    .consult-hero { margin:14px 16px 0; padding:18px; border-radius:18px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
-    .consult-hero span { display:inline-flex; padding:6px 10px; border-radius:999px; background:var(--green-soft); color:var(--green-dark); font-size:12px; font-weight:850; }
-    .consult-hero h2 { margin-top:12px; font-size:22px; line-height:1.28; font-weight:850; }
-    .consult-hero p { margin-top:9px; color:var(--text-sub); font-size:13px; line-height:1.6; }
+    .phone::before { content:""; position:absolute; inset:0; opacity:.16; pointer-events:none; background:radial-gradient(circle at 34px 120px,rgba(246,243,223,.52) 0 3px,transparent 4px),radial-gradient(circle at 54px 132px,rgba(182,220,98,.38) 0 2px,transparent 3px),radial-gradient(circle at 324px 210px,rgba(246,243,223,.42) 0 3px,transparent 4px),radial-gradient(circle at 308px 236px,rgba(182,220,98,.35) 0 2px,transparent 3px); background-size:180px 230px; }
+    .page { position:relative; z-index:1; padding-bottom:156px; }
+    .topbar { height:62px; padding:9px 16px; display:flex; align-items:center; justify-content:space-between; background:var(--brochure-blue-dark); border-bottom:2px solid rgba(246,243,223,.35); }
+    .brand-lockup { display:inline-flex; align-items:center; height:44px; text-decoration:none; }
+    .top-logo { display:block; width:128px; height:auto; }
+    .brand-name { font-size:18px; font-weight:950; line-height:1; color:#fff; letter-spacing:.5px; text-shadow:0 2px 0 rgba(39,97,138,.35); }
+    .brand-sub { margin-top:5px; color:rgba(255,255,255,.84); font-size:11px; font-weight:700; }
+    .topbar-pill { height:31px; padding:0 12px; display:inline-flex; align-items:center; border-radius:18px 24px 18px 22px; background:var(--paper-light); color:var(--brochure-blue-deep); border:2px solid var(--green); text-decoration:none; font-size:12px; font-weight:950; box-shadow:0 3px 0 rgba(39,97,138,.18); }
+    .page-header { padding:20px 16px 8px; }
+    .page-header h1 { font-size:25px; font-weight:950; line-height:1.22; color:#fff; letter-spacing:.5px; }
+    .page-header p { margin-top:8px; color:rgba(255,255,255,.84); font-size:13px; line-height:1.62; font-weight:650; }
+    .section { padding:19px 16px 0; }
+    .section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .section-title h2 { position:relative; display:inline-flex; align-items:center; padding:7px 16px 8px; min-height:36px; border-radius:22px 28px 20px 26px; background:var(--green); color:var(--brochure-blue-deep); font-size:17px; font-weight:950; letter-spacing:1px; box-shadow:0 4px 0 rgba(39,97,138,.14); }
+    .section-title h2::after { content:""; position:absolute; right:-8px; bottom:6px; width:14px; height:14px; border-radius:999px; background:var(--green); }
+    .section-title span { color:rgba(255,255,255,.84); font-size:12px; font-weight:800; }
+    .consult-hero, .wechat-card, .check-item, .step, .contact-card, .partner-card, .bottom-cta { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .consult-hero { position:relative; margin:14px 16px 0; padding:18px; border-radius:28px 22px 30px 24px; box-shadow:var(--shadow-paper); overflow:hidden; }
+    .consult-hero::after { content:""; position:absolute; right:22px; top:18px; width:26px; height:20px; border-radius:50% 50% 45% 45%; background:rgba(182,220,98,.55); box-shadow:-13px -7px 0 -6px rgba(182,220,98,.55),0 -12px 0 -7px rgba(182,220,98,.55),13px -7px 0 -6px rgba(182,220,98,.55); }
+    .consult-hero span { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:12px; font-weight:950; }
+    .consult-hero h2 { margin-top:12px; font-size:22px; line-height:1.3; font-weight:950; color:var(--ink); }
+    .consult-hero p { margin-top:9px; color:var(--text-sub); font-size:13px; line-height:1.6; font-weight:650; }
     .hero-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
-    .btn { height:42px; display:flex; align-items:center; justify-content:center; border-radius:12px; border:0; text-decoration:none; font-size:14px; font-weight:850; }
-    .btn-primary { background:var(--blue); color:#fff; }
-    .btn-secondary { background:#fff; color:var(--blue-dark); border:1px solid rgba(59,130,246,.28); }
-    .wechat-card { padding:16px; border-radius:18px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); text-align:center; }
-    .qr-box { width:154px; height:154px; margin:0 auto; display:grid; place-items:center; border-radius:16px; background:linear-gradient(135deg, rgba(59,130,246,.08), rgba(132,204,22,.14)); border:1px solid rgba(31,41,55,.08); color:var(--text-light); font-size:13px; line-height:1.45; }
-    .wechat-card h3 { margin-top:14px; font-size:17px; font-weight:850; }
-    .wechat-card p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; }
+    .btn { height:42px; display:flex; align-items:center; justify-content:center; border-radius:16px 22px 16px 20px; border:0; text-decoration:none; font-size:14px; font-weight:950; box-shadow:0 4px 0 rgba(39,97,138,.12); }
+    .btn-primary { background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(110,157,40,.3); }
+    .btn-secondary { background:var(--paper-light); color:var(--brochure-blue-deep); border:2px solid rgba(90,145,183,.34); }
+    .wechat-card { padding:16px; border-radius:28px 22px 30px 24px; text-align:center; box-shadow:var(--shadow-paper); }
+    .wechat-logo { width:146px; height:auto; display:block; margin:0 auto 12px; filter:drop-shadow(0 2px 0 rgba(39,97,138,.16)); }
+    .qr-box { position:relative; width:158px; height:158px; margin:0 auto; display:grid; place-items:center; border-radius:24px 18px 24px 20px; background:#EAF4F7; border:5px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; line-height:1.45; }
+    .qr-box::before { content:""; position:absolute; inset:18px; border:2px dashed rgba(39,97,138,.25); border-radius:14px; }
+    .qr-box::after { content:"扫码咨询"; position:absolute; bottom:-14px; left:50%; transform:translateX(-50%); padding:4px 9px; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); font-size:11px; white-space:nowrap; }
+    .wechat-card h3 { margin-top:22px; font-size:17px; font-weight:950; }
+    .wechat-card p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
     .wechat-card button { margin-top:14px; width:100%; }
     .checklist { display:grid; gap:9px; }
-    .check-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); }
-    .check-item strong { font-size:14px; }
-    .check-item span { color:var(--text-sub); font-size:12px; text-align:right; }
+    .check-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 14px; border-radius:18px 14px 18px 16px; }
+    .check-item strong { font-size:14px; font-weight:950; }
+    .check-item span { color:var(--text-sub); font-size:12px; font-weight:700; text-align:right; }
     .process { display:grid; gap:9px; }
-    .step { display:flex; gap:12px; align-items:flex-start; padding:13px 14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); }
-    .step b { flex:0 0 26px; height:26px; display:grid; place-items:center; border-radius:999px; background:var(--blue); color:#fff; font-size:12px; }
-    .step h3 { font-size:14px; font-weight:850; }
-    .step p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; }
+    .step { display:flex; gap:12px; align-items:flex-start; padding:13px 14px; border-radius:20px 16px 20px 18px; }
+    .step b { flex:0 0 28px; height:28px; display:grid; place-items:center; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(110,157,40,.25); font-size:13px; font-weight:950; }
+    .step h3 { font-size:14px; font-weight:950; }
+    .step p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:650; }
     .contact-list { display:grid; gap:10px; }
-    .contact-card { display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
-    .contact-icon { flex:0 0 38px; height:38px; display:grid; place-items:center; border-radius:12px; background:var(--blue-soft); color:var(--blue-dark); font-size:13px; font-weight:900; }
+    .contact-card { display:flex; gap:12px; align-items:center; padding:14px; border-radius:20px 16px 20px 18px; }
+    .contact-icon { flex:0 0 38px; height:38px; display:grid; place-items:center; border-radius:17px 13px 17px 14px; background:var(--brochure-blue); color:var(--paper-light); border:2px solid rgba(255,255,255,.55); font-size:13px; font-weight:950; }
     .contact-card__body { flex:1; min-width:0; }
-    .contact-card h3 { font-size:14px; font-weight:850; }
-    .contact-card p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; }
-    .small-btn { flex:0 0 auto; height:34px; padding:0 12px; border:0; border-radius:10px; background:#F3F4F6; color:var(--text-light); font-size:12px; font-weight:800; }
-    .partner-card { padding:16px; border-radius:16px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
-    .partner-card h3 { font-size:17px; font-weight:850; }
-    .partner-card p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.6; }
+    .contact-card h3 { font-size:14px; font-weight:950; }
+    .contact-card p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:650; }
+    .small-btn { flex:0 0 auto; height:34px; padding:0 12px; border:0; border-radius:16px 20px 16px 18px; background:var(--green-soft); color:var(--green-dark); font-size:12px; font-weight:950; }
+    .partner-card { padding:16px; border-radius:24px 18px 26px 20px; }
+    .partner-card h3 { display:inline-flex; padding:6px 10px; border-radius:18px 22px 18px 20px; background:var(--green); color:var(--brochure-blue-deep); font-size:17px; font-weight:950; }
+    .partner-card p { margin-top:10px; color:var(--text-sub); font-size:13px; line-height:1.6; font-weight:650; }
     .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-    .chip { padding:7px 10px; border-radius:999px; background:var(--green-soft); color:var(--green-dark); font-size:12px; font-weight:800; }
-    .toast { position:fixed; left:50%; bottom:146px; transform:translateX(-50%); display:none; max-width:300px; padding:10px 14px; border-radius:999px; background:rgba(31,41,55,.9); color:#fff; font-size:13px; z-index:6; }
+    .chip { padding:7px 10px; border-radius:16px 20px 16px 18px; background:var(--green-soft); color:var(--green-dark); border:1px solid rgba(110,157,40,.18); font-size:12px; font-weight:950; }
+    .toast { position:fixed; z-index:6; left:50%; bottom:146px; transform:translateX(-50%); display:none; max-width:300px; padding:10px 14px; border-radius:999px; background:rgba(31,41,55,.9); color:#fff; font-size:13px; }
     .toast.show { display:block; }
-    .bottom-cta { position:fixed; left:50%; bottom:82px; transform:translateX(-50%); width:343px; padding:11px 12px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:rgba(255,255,255,.96); border:1px solid rgba(255,255,255,.62); border-radius:18px; box-shadow:0 10px 28px rgba(17,24,39,.16); backdrop-filter:blur(14px); }
-    .bottom-cta strong { display:block; font-size:14px; }
-    .bottom-cta span { display:block; margin-top:3px; color:var(--text-sub); font-size:11px; }
-    .bottom-cta button { flex:0 0 104px; height:38px; border:0; border-radius:999px; background:var(--green); color:var(--brochure-blue-dark); font-size:14px; font-weight:900; }
-    .tabbar { position:fixed; left:50%; bottom:0; transform:translateX(-50%); width:375px; height:72px; padding:7px 14px 8px; display:grid; grid-template-columns:repeat(5,1fr); background:linear-gradient(180deg,var(--brochure-blue-dark),#183A7C); border-top:1px solid rgba(255,255,255,.16); box-shadow:0 -8px 24px rgba(17,24,39,.2); }
-    .tabbar a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:rgba(255,255,255,.66); text-decoration:none; font-size:10px; font-weight:700; border-radius:14px; }
-    .tabbar a.active { color:var(--green); font-weight:900; }
-    .tab-icon { width:24px; height:24px; display:grid; place-items:center; border-radius:999px; font-size:11px; font-weight:900; color:rgba(255,255,255,.68); background:rgba(255,255,255,.1); }
-    .tabbar a.active .tab-icon { background:var(--green); color:var(--brochure-blue-dark); box-shadow:0 5px 12px rgba(132,204,22,.32); }
+    .bottom-cta { position:fixed; z-index:5; left:50%; bottom:82px; transform:translateX(-50%); width:343px; padding:11px 12px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:rgba(246,243,223,.97); border:3px solid var(--green); border-radius:22px 18px 24px 20px; box-shadow:0 10px 28px rgba(17,24,39,.16); backdrop-filter:blur(14px); }
+    .bottom-cta strong { display:block; font-size:14px; font-weight:950; }
+    .bottom-cta span { display:block; margin-top:3px; color:var(--text-sub); font-size:11px; font-weight:700; }
+    .bottom-cta button { flex:0 0 104px; height:38px; border:0; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; }
+    .tabbar { position:fixed; z-index:4; left:50%; bottom:0; transform:translateX(-50%); width:375px; height:72px; padding:7px 14px 8px; display:grid; grid-template-columns:repeat(5,1fr); background:linear-gradient(180deg,var(--brochure-blue-dark),var(--brochure-blue-deep)); border-top:2px solid rgba(246,243,223,.32); box-shadow:0 -8px 24px rgba(17,24,39,.2); }
+    .tabbar a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:rgba(255,255,255,.72); text-decoration:none; font-size:10px; font-weight:800; border-radius:14px; }
+    .tabbar a.active { color:var(--green); font-weight:950; }
+    .tab-icon { width:25px; height:25px; display:grid; place-items:center; border-radius:12px 16px 12px 15px; font-size:11px; font-weight:950; color:rgba(255,255,255,.72); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.16); }
+    .tabbar a.active .tab-icon { background:var(--green); color:var(--brochure-blue-deep); box-shadow:0 5px 12px rgba(182,220,98,.32); border-color:rgba(255,255,255,.55); }
     @media (max-width:375px){ .phone,.tabbar{ width:100vw; } .bottom-cta{ width:calc(100vw - 32px); } }
   </style>
 </head>
@@ -73,7 +82,7 @@
   <main class="phone">
     <div class="page">
       <header class="topbar">
-        <div><div class="brand-name">福啦呼啦宠物</div><div class="brand-sub">先说需求，再确认方案</div></div>
+        <a class="brand-lockup" href="index.html" aria-label="福拉呼啦 FulaFla Pets"><img class="top-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"></a>
         <a class="topbar-pill" href="service.html">看服务</a>
       </header>
 
@@ -85,14 +94,15 @@
       <section class="consult-hero">
         <span>微信咨询</span>
         <h2>把宠物情况说清楚，服务安排更准确</h2>
-        <p>适合咨询陪诊、上门照护、寄养、机构合作等需求。</p>
+        <p>适合咨询宠物医疗陪护、上门服务、寄养、机构合作等需求。</p>
         <div class="hero-actions"><button class="btn btn-primary action">添加客服微信</button><a class="btn btn-secondary" href="#process">查看流程</a></div>
       </section>
 
       <section class="section">
         <div class="wechat-card">
+          <img class="wechat-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets">
           <div class="qr-box">客服微信咨询</div>
-          <h3>添加客服微信</h3>
+          <h3>扫码添加客服微信</h3>
           <p>用于沟通服务时间、宠物情况、照护建议与服务前准备。</p>
           <button class="btn btn-primary action">打开微信咨询</button>
         </div>
@@ -102,7 +112,7 @@
         <div class="section-title"><h2>咨询时请提供</h2><span>便于了解需求</span></div>
         <div class="checklist">
           <div class="check-item"><strong>宠物类型</strong><span>猫 / 狗 / 其他</span></div>
-          <div class="check-item"><strong>服务类型</strong><span>陪诊 / 上门 / 寄养</span></div>
+          <div class="check-item"><strong>服务类型</strong><span>医疗陪护 / 上门 / 寄养</span></div>
           <div class="check-item"><strong>服务时间</strong><span>日期、时段、预计时长</span></div>
           <div class="check-item"><strong>所在区域</strong><span>成都具体地址或片区</span></div>
           <div class="check-item"><strong>宠物情况</strong><span>年龄、体重、性格、健康状态</span></div>
@@ -113,11 +123,11 @@
       <section class="section" id="process">
         <div class="section-title"><h2>服务流程</h2><span>先咨询，再安排</span></div>
         <div class="process">
-          <div class="step"><b>1</b><div><h3>添加客服</h3><p>通过微信说明基本需求。</p></div></div>
+          <div class="step"><b>1</b><div><h3>添加客服微信</h3><p>通过微信说明宠物情况与服务需求。</p></div></div>
           <div class="step"><b>2</b><div><h3>说明宠物情况</h3><p>提供服务时间、地点、宠物性格与健康状态。</p></div></div>
-          <div class="step"><b>3</b><div><h3>沟通照护方式</h3><p>客服根据宠物情况、服务时间与所在区域协助判断。</p></div></div>
+          <div class="step"><b>3</b><div><h3>沟通服务方案</h3><p>客服根据宠物情况、服务时间与所在区域协助判断。</p></div></div>
           <div class="step"><b>4</b><div><h3>确认服务安排</h3><p>服务前建立沟通群，同步注意事项与准备内容。</p></div></div>
-          <div class="step"><b>5</b><div><h3>服务反馈</h3><p>服务中与服务后同步照片、视频或文字反馈。</p></div></div>
+          <div class="step"><b>5</b><div><h3>服务开始并反馈</h3><p>服务中与服务后同步照片、视频或文字反馈。</p></div></div>
         </div>
       </section>
 
@@ -134,7 +144,7 @@
       <section class="section">
         <div class="partner-card">
           <h3>机构合作</h3>
-          <p>面向宠物医院、宠物门店、宠物咖啡、救助组织与社区合作伙伴，提供陪诊、上门照护、寄养等服务合作沟通。</p>
+          <p>面向宠物医院、宠物门店、宠物咖啡、救助组织与社区合作伙伴，提供陪护、上门服务、寄养等合作沟通。</p>
           <div class="chips"><span class="chip">宠物医院</span><span class="chip">宠物门店</span><span class="chip">宠物咖啡</span><span class="chip">救助组织</span><span class="chip">社区服务</span></div>
           <button class="btn btn-primary action" style="width:100%;margin-top:16px;">咨询合作方式</button>
         </div>
@@ -142,7 +152,7 @@
     </div>
 
     <div class="toast" id="toast">请通过客服微信确认最新信息</div>
-    <div class="bottom-cta"><div><strong>准备咨询服务？</strong><span>客服将协助确认方案</span></div><button class="action">立即咨询</button></div>
+    <div class="bottom-cta"><div><strong>准备咨询服务？</strong><span>客服将协助确认照护建议</span></div><button class="action">立即咨询</button></div>
     <nav class="tabbar">
       <a href="index.html"><span class="tab-icon">首</span><span>首页</span></a>
       <a href="brand.html"><span class="tab-icon">品</span><span>品牌</span></a>

@@ -3,65 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>福啦呼啦宠物-品牌故事</title>
+  <title>福拉呼啦宠物-品牌故事</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --blue:#2F5FB8; --blue-dark:#244EA2; --blue-soft:#EFF6FF; --brochure-blue:#244EA2; --brochure-blue-dark:#1D3F86; --green:#84CC16; --green-dark:#65A30D; --green-soft:#F0F9E8; --cream:#F5F5F0; --card:#FFFFFF; --text-main:#1F2937; --text-sub:#6B7280; --text-light:#9CA3AF; --line:#E5E7EB; --shadow:0 4px 14px rgba(31,41,55,.06); }
-    body { min-height:100vh; background:#D7DFEF; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; color:var(--text-main); }
+    :root { --brochure-blue:#5A91B7; --brochure-blue-dark:#3F789F; --brochure-blue-deep:#27618A; --blue-soft:#E7F3FA; --green:#B6DC62; --green-dark:#6E9D28; --green-soft:#EDF7D2; --paper:#F6F3DF; --paper-light:#FFFBEA; --ink:#1F2430; --text-sub:#4F6370; --text-light:#7A8B93; --line-green:rgba(139,187,58,.76); --shadow-paper:0 10px 0 rgba(39,97,138,.16),0 12px 26px rgba(31,36,48,.12); }
+    body { min-height:100vh; background:#D7DFEF; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; color:var(--ink); }
     .phone { position:relative; width:375px; min-height:812px; margin:0 auto; background:var(--brochure-blue); overflow:hidden; }
-    .page { padding-bottom:96px; }
-    .topbar { height:58px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; background:var(--brochure-blue-dark); border-bottom:1px solid rgba(255,255,255,.14); }
-    .brand-name { font-size:18px; font-weight:800; line-height:1; color:#fff; }
-    .brand-sub { margin-top:5px; color:rgba(255,255,255,.78); font-size:12px; }
-    .topbar-pill { height:30px; padding:0 12px; display:inline-flex; align-items:center; border-radius:999px; background:var(--blue-soft); color:var(--blue-dark); text-decoration:none; font-size:12px; font-weight:700; }
-    .page-header { padding:18px 16px 6px; }
-    .page-header h1 { font-size:22px; font-weight:850; line-height:1.25; color:#fff; }
-    .page-header p { margin-top:6px; color:rgba(255,255,255,.78); font-size:13px; line-height:1.55; }
-    .section { padding:18px 16px 0; }
-    .section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-    .section-title h2 { font-size:17px; font-weight:800; color:#fff; }
-    .section-title span { color:rgba(255,255,255,.72); font-size:12px; }
+    .phone::before { content:""; position:absolute; inset:0; opacity:.16; pointer-events:none; background:radial-gradient(circle at 35px 120px,rgba(246,243,223,.52) 0 3px,transparent 4px),radial-gradient(circle at 55px 132px,rgba(182,220,98,.38) 0 2px,transparent 3px),radial-gradient(circle at 330px 220px,rgba(246,243,223,.42) 0 3px,transparent 4px),radial-gradient(circle at 305px 246px,rgba(182,220,98,.35) 0 2px,transparent 3px); background-size:180px 230px; }
+    .page { position:relative; z-index:1; padding-bottom:96px; }
+    .topbar { height:62px; padding:9px 16px; display:flex; align-items:center; justify-content:space-between; background:var(--brochure-blue-dark); border-bottom:2px solid rgba(246,243,223,.35); }
+    .brand-lockup { display:inline-flex; align-items:center; height:44px; text-decoration:none; }
+    .top-logo { display:block; width:128px; height:auto; }
+    .brand-name { font-size:18px; font-weight:950; line-height:1; color:#fff; letter-spacing:.5px; text-shadow:0 2px 0 rgba(39,97,138,.35); }
+    .brand-sub { margin-top:5px; color:rgba(255,255,255,.84); font-size:11px; font-weight:700; }
+    .topbar-pill { height:31px; padding:0 12px; display:inline-flex; align-items:center; border-radius:18px 24px 18px 22px; background:var(--paper-light); color:var(--brochure-blue-deep); border:2px solid var(--green); text-decoration:none; font-size:12px; font-weight:950; box-shadow:0 3px 0 rgba(39,97,138,.18); }
+    .page-header { padding:20px 16px 8px; }
+    .page-header h1 { font-size:25px; font-weight:950; line-height:1.22; color:#fff; letter-spacing:.5px; }
+    .page-header p { margin-top:8px; color:rgba(255,255,255,.84); font-size:13px; line-height:1.62; font-weight:650; }
+    .section { padding:19px 16px 0; }
+    .section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .section-title h2 { position:relative; display:inline-flex; align-items:center; padding:7px 16px 8px; min-height:36px; border-radius:22px 28px 20px 26px; background:var(--green); color:var(--brochure-blue-deep); font-size:17px; font-weight:950; letter-spacing:1px; box-shadow:0 4px 0 rgba(39,97,138,.14); }
+    .section-title h2::after { content:""; position:absolute; right:-8px; bottom:6px; width:14px; height:14px; border-radius:999px; background:var(--green); }
+    .section-title span { color:rgba(255,255,255,.84); font-size:12px; font-weight:800; }
     .brand-hero { margin:14px 16px 0; }
-    .brand-photo { height:162px; display:grid; place-items:center; border-radius:18px; background:linear-gradient(135deg, rgba(59,130,246,.08), rgba(132,204,22,.14)); border:1px solid rgba(31,41,55,.06); color:var(--text-light); font-size:13px; }
-    .brand-card { position:relative; margin:-32px 14px 0; padding:16px; border-radius:16px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
-    .brand-card span { display:inline-flex; padding:5px 9px; border-radius:999px; background:var(--green-soft); color:var(--green-dark); font-size:11px; font-weight:800; }
-    .brand-card h2 { margin-top:10px; font-size:19px; line-height:1.3; font-weight:850; }
-    .brand-card p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.65; }
-    .intro-card { padding:16px; border-radius:16px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
+    .brand-photo { height:174px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border-radius:30px 22px 30px 24px; background:#EAF4F7; border:5px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; box-shadow:0 7px 0 rgba(39,97,138,.13); }
+    .brand-photo img { width:150px; height:auto; display:block; }
+    .brand-card { position:relative; margin:-32px 14px 0; padding:17px; border-radius:24px 18px 26px 20px; background:var(--paper); border:4px solid var(--green); box-shadow:var(--shadow-paper); }
+    .brand-card::after { content:""; position:absolute; right:22px; top:18px; width:26px; height:20px; border-radius:50% 50% 45% 45%; background:rgba(182,220,98,.55); box-shadow:-13px -7px 0 -6px rgba(182,220,98,.55),0 -12px 0 -7px rgba(182,220,98,.55),13px -7px 0 -6px rgba(182,220,98,.55); }
+    .brand-card span { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:11px; font-weight:950; }
+    .brand-card h2 { margin-top:10px; font-size:20px; line-height:1.32; font-weight:950; color:var(--brochure-blue-deep); }
+    .brand-card p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.65; font-weight:650; }
+    .intro-card, .stat, .timeline-item, .standard, .team-card, .role, .cta-card { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .intro-card { padding:16px; border-radius:24px 18px 26px 20px; }
     .intro-row { display:grid; gap:12px; }
     .intro-item { display:flex; gap:12px; align-items:flex-start; }
-    .intro-item b { flex:0 0 36px; height:36px; display:grid; place-items:center; border-radius:12px; background:var(--blue-soft); color:var(--blue-dark); font-size:13px; }
-    .intro-item h3 { font-size:15px; font-weight:800; }
-    .intro-item p { margin-top:4px; color:var(--text-sub); font-size:13px; line-height:1.55; }
+    .intro-item b { flex:0 0 38px; height:38px; display:grid; place-items:center; border-radius:17px 13px 17px 14px; background:var(--brochure-blue); color:var(--paper-light); border:2px solid rgba(255,255,255,.55); font-size:13px; font-weight:950; }
+    .intro-item h3 { font-size:15px; font-weight:950; }
+    .intro-item p { margin-top:4px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
     .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-    .stat { padding:14px 8px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); text-align:center; }
-    .stat strong { display:block; color:var(--blue-dark); font-size:21px; font-weight:900; }
-    .stat span { display:block; margin-top:6px; color:var(--text-sub); font-size:11px; line-height:1.35; }
+    .stat { padding:14px 8px; border-radius:20px 15px 22px 17px; text-align:center; }
+    .stat strong { display:block; color:var(--brochure-blue); font-size:23px; font-weight:950; }
+    .stat span { display:block; margin-top:6px; color:var(--ink); font-size:11px; line-height:1.35; font-weight:800; }
     .timeline { display:grid; gap:10px; }
-    .timeline-item { display:flex; gap:12px; padding:14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); }
-    .timeline-year { flex:0 0 52px; color:var(--green-dark); font-size:15px; font-weight:900; }
-    .timeline-item h3 { font-size:14px; font-weight:800; }
-    .timeline-item p { margin-top:5px; color:var(--text-sub); font-size:12px; line-height:1.5; }
+    .timeline-item { display:flex; gap:12px; padding:14px; border-radius:20px 16px 22px 18px; }
+    .timeline-year { flex:0 0 54px; color:var(--brochure-blue); font-size:16px; font-weight:950; }
+    .timeline-year::before { content:""; display:block; width:18px; height:14px; margin-bottom:5px; border-radius:999px 999px 10px 10px; background:var(--green); box-shadow:8px -6px 0 -4px var(--green),-8px -6px 0 -4px var(--green),0 -9px 0 -5px var(--green); }
+    .timeline-item h3 { font-size:14px; font-weight:950; }
+    .timeline-item p { margin-top:5px; color:var(--text-sub); font-size:12px; line-height:1.5; font-weight:650; }
     .standard-list { display:grid; gap:10px; }
-    .standard { padding:14px; border-radius:14px; background:#fff; border:1px solid rgba(31,41,55,.06); }
-    .standard h3 { display:flex; align-items:center; gap:8px; font-size:15px; font-weight:800; }
-    .standard h3:before { content:""; width:8px; height:8px; border-radius:999px; background:var(--green); }
-    .standard p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; }
-    .team-card { padding:16px; border-radius:16px; background:#fff; border:1px solid rgba(31,41,55,.06); box-shadow:var(--shadow); }
-    .team-photo { height:132px; display:grid; place-items:center; border-radius:14px; background:linear-gradient(135deg, rgba(59,130,246,.08), rgba(132,204,22,.14)); border:1px solid rgba(31,41,55,.06); color:var(--text-light); font-size:13px; }
+    .standard { padding:14px; border-radius:20px 16px 22px 18px; }
+    .standard h3 { display:flex; align-items:center; gap:8px; font-size:15px; font-weight:950; }
+    .standard h3:before { content:""; width:10px; height:10px; border-radius:999px; background:var(--green); box-shadow:0 0 0 3px rgba(182,220,98,.25); }
+    .standard p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
+    .team-card { padding:16px; border-radius:24px 18px 26px 20px; }
+    .team-photo { height:132px; display:grid; place-items:center; border-radius:22px 16px 22px 18px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
     .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px; }
-    .role { padding:12px; border-radius:12px; background:#F9FAFB; border:1px solid rgba(31,41,55,.05); }
-    .role h3 { font-size:13px; font-weight:800; }
-    .role p { margin-top:5px; color:var(--text-sub); font-size:12px; line-height:1.45; }
-    .cta-card { margin:18px 16px 0; padding:16px; border-radius:16px; background:var(--blue); color:#fff; }
-    .cta-card h2 { font-size:18px; font-weight:850; }
-    .cta-card p { margin-top:8px; opacity:.92; font-size:13px; line-height:1.55; }
-    .cta-card a { margin-top:14px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:#fff; color:var(--blue-dark); text-decoration:none; font-size:14px; font-weight:800; }
-    .tabbar { position:fixed; left:50%; bottom:0; transform:translateX(-50%); width:375px; height:72px; padding:7px 14px 8px; display:grid; grid-template-columns:repeat(5,1fr); background:linear-gradient(180deg,var(--brochure-blue-dark),#183A7C); border-top:1px solid rgba(255,255,255,.16); box-shadow:0 -8px 24px rgba(17,24,39,.2); }
-    .tabbar a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:rgba(255,255,255,.66); text-decoration:none; font-size:10px; font-weight:700; border-radius:14px; }
-    .tabbar a.active { color:var(--green); font-weight:900; }
-    .tab-icon { width:24px; height:24px; display:grid; place-items:center; border-radius:999px; font-size:11px; font-weight:900; color:rgba(255,255,255,.68); background:rgba(255,255,255,.1); }
-    .tabbar a.active .tab-icon { background:var(--green); color:var(--brochure-blue-dark); box-shadow:0 5px 12px rgba(132,204,22,.32); }
+    .role { padding:12px; border-radius:18px 14px 18px 16px; background:var(--paper-light); }
+    .role h3 { font-size:13px; font-weight:950; }
+    .role p { margin-top:5px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:650; }
+    .cta-card { margin:18px 16px 0; padding:17px; border-radius:24px 18px 26px 20px; }
+    .cta-card h2 { display:inline-flex; padding:6px 10px; border-radius:18px 22px 18px 20px; background:var(--green); color:var(--brochure-blue-deep); font-size:17px; font-weight:950; }
+    .cta-card p { margin-top:10px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
+    .cta-card a { margin-top:14px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:16px 22px 16px 20px; background:var(--brochure-blue); color:#fff; text-decoration:none; font-size:14px; font-weight:950; border:2px solid rgba(255,255,255,.42); }
+    .tabbar { position:fixed; z-index:4; left:50%; bottom:0; transform:translateX(-50%); width:375px; height:72px; padding:7px 14px 8px; display:grid; grid-template-columns:repeat(5,1fr); background:linear-gradient(180deg,var(--brochure-blue-dark),var(--brochure-blue-deep)); border-top:2px solid rgba(246,243,223,.32); box-shadow:0 -8px 24px rgba(17,24,39,.2); }
+    .tabbar a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:rgba(255,255,255,.72); text-decoration:none; font-size:10px; font-weight:800; border-radius:14px; }
+    .tabbar a.active { color:var(--green); font-weight:950; }
+    .tab-icon { width:25px; height:25px; display:grid; place-items:center; border-radius:12px 16px 12px 15px; font-size:11px; font-weight:950; color:rgba(255,255,255,.72); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.16); }
+    .tabbar a.active .tab-icon { background:var(--green); color:var(--brochure-blue-deep); box-shadow:0 5px 12px rgba(182,220,98,.32); border-color:rgba(255,255,255,.55); }
     @media (max-width:375px){ .phone,.tabbar{ width:100vw; } }
   </style>
 </head>
@@ -69,40 +77,40 @@
   <main class="phone">
     <div class="page">
       <header class="topbar">
-        <div><div class="brand-name">福啦呼啦宠物</div><div class="brand-sub">成都本地宠物照护服务</div></div>
+        <a class="brand-lockup" href="index.html" aria-label="福拉呼啦 FulaFla Pets"><img class="top-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"></a>
         <a class="topbar-pill" href="contact.html">咨询服务</a>
       </header>
 
       <section class="page-header">
         <h1>品牌故事</h1>
-        <p>从公益救助经验出发，提供陪诊、上门照护、寄养等宠物服务。</p>
+        <p>从公益救助经验出发，提供宠物医疗陪护、上门服务、寄养等照护支持。</p>
       </section>
 
       <section class="brand-hero">
-        <div class="brand-photo">团队服务现场</div>
+        <div class="brand-photo"><img src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"><span>团队服务现场 / 公益行动记录</span></div>
         <div class="brand-card">
-          <span>FuLaFuLa Pets</span>
-          <h2>用标准化服务，让善意持续发生</h2>
-          <p>福啦呼啦宠物希望用稳定、清晰、可反馈的服务流程，帮助主人处理宠物照护中的临时与长期需求。</p>
+          <span>FulaFla Pets</span>
+          <h2>对生命的温柔守护</h2>
+          <p>您托付的不只是宠物，更是家人与心底的牵挂。福拉呼啦希望用稳定、清晰、可反馈的服务流程，守护每一个生命。</p>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>我们是谁</h2></div>
+        <div class="section-title"><h2>关于我们</h2></div>
         <div class="intro-card">
           <div class="intro-row">
-            <div class="intro-item"><b>服</b><div><h3>成都宠物服务品牌</h3><p>主营宠物医疗陪诊、上门照护与宠物寄养。</p></div></div>
-            <div class="intro-item"><b>善</b><div><h3>公益救助背景</h3><p>前身长期参与公益救助，累计救助领养 500+ 毛孩子。</p></div></div>
+            <div class="intro-item"><b>服</b><div><h3>成都宠物服务品牌</h3><p>主营宠物医疗陪护、宠物上门服务与宠物寄养。</p></div></div>
+            <div class="intro-item"><b>善</b><div><h3>公益救助背景</h3><p>团队长期参与公益救助，累计救助与领养 500+ 毛孩子。</p></div></div>
             <div class="intro-item"><b>准</b><div><h3>服务流程标准化</h3><p>服务前确认需求，服务中同步反馈，服务后整理情况。</p></div></div>
           </div>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>公益与服务沉淀</h2></div>
+        <div class="section-title"><h2>公益沉淀</h2></div>
         <div class="stats">
           <div class="stat"><strong>8年</strong><span>公益救助背景</span></div>
-          <div class="stat"><strong>500+</strong><span>救助领养毛孩子</span></div>
+          <div class="stat"><strong>500+</strong><span>救助与领养</span></div>
           <div class="stat"><strong>3类</strong><span>核心照护服务</span></div>
         </div>
       </section>
@@ -113,7 +121,7 @@
           <article class="timeline-item"><div class="timeline-year">2018</div><div><h3>开始公益救助</h3><p>长期参与流浪动物救助、安置与领养回访。</p></div></article>
           <article class="timeline-item"><div class="timeline-year">2020</div><div><h3>救助规模扩大</h3><p>救助与领养案例持续增加，积累宠物照护经验。</p></div></article>
           <article class="timeline-item"><div class="timeline-year">2023</div><div><h3>以商养善</h3><p>尝试用商业服务支持长期公益行动。</p></div></article>
-          <article class="timeline-item"><div class="timeline-year">2026</div><div><h3>品牌正式运营</h3><p>形成陪诊、上门、寄养一站式服务体系。</p></div></article>
+          <article class="timeline-item"><div class="timeline-year">2026</div><div><h3>品牌持续运营</h3><p>形成陪护、上门、寄养一站式服务体系。</p></div></article>
         </div>
       </section>
 
@@ -132,7 +140,7 @@
           <div class="team-photo">服务团队与照护标准</div>
           <div class="team-grid">
             <div class="role"><h3>服务沟通</h3><p>确认需求、服务范围与照护建议。</p></div>
-            <div class="role"><h3>照护执行</h3><p>按约定流程进行陪诊、上门或寄养照护。</p></div>
+            <div class="role"><h3>照护执行</h3><p>按约定流程进行陪护、上门或寄养照护。</p></div>
             <div class="role"><h3>过程反馈</h3><p>同步关键节点，异常情况及时沟通。</p></div>
             <div class="role"><h3>公益协作</h3><p>持续参与救助与正确养宠传播。</p></div>
           </div>
@@ -141,7 +149,7 @@
 
       <section class="cta-card">
         <h2>想了解适合的服务方案？</h2>
-        <p>告诉我们宠物情况和服务需求，客服会协助确认方案。</p>
+        <p>告诉我们宠物情况和服务需求，客服会协助确认照护建议。</p>
         <a href="contact.html">联系咨询</a>
       </section>
     </div>

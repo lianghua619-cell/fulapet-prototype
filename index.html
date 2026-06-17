@@ -3,86 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>福啦呼啦宠物-首页</title>
+  <title>福拉呼啦宠物-首页</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --blue: #2F5FB8;
-      --blue-dark: #244EA2;
-      --blue-soft: #EFF6FF;
-      --brochure-blue: #244EA2;
-      --brochure-blue-dark: #1D3F86;
-      --green: #84CC16;
-      --green-dark: #65A30D;
-      --green-soft: #F0F9E8;
-      --cream: #F5F5F0;
-      --card: #FFFFFF;
-      --text-main: #1F2937;
-      --text-sub: #6B7280;
-      --text-light: #9CA3AF;
-      --line: #E5E7EB;
-      --shadow: 0 4px 14px rgba(31, 41, 55, .06);
+      --brochure-blue: #5A91B7;
+      --brochure-blue-dark: #3F789F;
+      --brochure-blue-deep: #27618A;
+      --blue-soft: #E7F3FA;
+      --green: #B6DC62;
+      --green-dark: #6E9D28;
+      --green-soft: #EDF7D2;
+      --paper: #F6F3DF;
+      --paper-light: #FFFBEA;
+      --ink: #1F2430;
+      --text-sub: #4F6370;
+      --text-light: #7A8B93;
+      --line-green: rgba(139, 187, 58, .76);
+      --shadow-paper: 0 10px 0 rgba(39, 97, 138, .16), 0 12px 26px rgba(31, 36, 48, .12);
     }
-    body { min-height: 100vh; background: #D7DFEF; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif; color: var(--text-main); }
+    body { min-height: 100vh; background: #D7DFEF; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif; color: var(--ink); }
     .phone { position: relative; width: 375px; min-height: 812px; margin: 0 auto; background: var(--brochure-blue); overflow: hidden; }
-    .page { padding-bottom: 96px; }
-    .topbar { height: 58px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; background: var(--brochure-blue-dark); border-bottom: 1px solid rgba(255,255,255,.14); }
-    .brand-name { font-size: 18px; font-weight: 800; color: #fff; line-height: 1; }
-    .brand-sub { margin-top: 5px; font-size: 12px; color: rgba(255,255,255,.78); }
-    .topbar-pill { height: 30px; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 999px; background: var(--blue-soft); color: var(--blue-dark); text-decoration: none; font-size: 12px; font-weight: 700; }
-    .section { padding: 18px 16px 0; }
-    .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .section-title h2 { font-size: 17px; font-weight: 800; color: #fff; }
-    .section-title a { color: var(--green-soft); text-decoration: none; font-size: 12px; font-weight: 700; }
-    .home-hero { margin: 16px; padding: 18px; min-height: 218px; border-radius: 18px; background: #fff; border: 3px solid rgba(132,204,22,.72); box-shadow: var(--shadow); position: relative; overflow: hidden; }
-    .eyebrow { display: inline-flex; padding: 6px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green-dark); font-size: 12px; font-weight: 700; }
-    .home-hero h1 { margin-top: 14px; width: 215px; font-size: 24px; line-height: 1.24; font-weight: 800; letter-spacing: -.2px; }
-    .home-hero p { margin-top: 10px; width: 220px; color: var(--text-sub); font-size: 13px; line-height: 1.65; }
-    .hero-actions { display: flex; gap: 10px; margin-top: 16px; }
-    .btn { height: 42px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; text-decoration: none; font-size: 14px; font-weight: 800; }
-    .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 6px 14px rgba(59,130,246,.22); }
-    .btn-secondary { background: #fff; color: var(--blue-dark); border: 1px solid rgba(59,130,246,.28); }
-    .hero-photo { position: absolute; right: 16px; bottom: 16px; width: 106px; height: 128px; display: grid; place-items: center; border-radius: 16px; background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(132,204,22,.16)); border: 1px solid rgba(31,41,55,.06); color: var(--text-light); font-size: 12px; text-align: center; line-height: 1.45; }
-    .service-list { display: grid; gap: 10px; }
-    .service-entry { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px; background: #fff; border: 1px solid rgba(31,41,55,.06); box-shadow: var(--shadow); text-decoration: none; color: inherit; }
-    .icon-word { flex: 0 0 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: var(--blue-soft); color: var(--blue-dark); font-size: 15px; font-weight: 900; }
-    .icon-word.green { background: var(--green-soft); color: var(--green-dark); }
+    .phone::before { content:""; position:absolute; inset:0; opacity:.18; pointer-events:none; background: radial-gradient(circle at 30px 110px, rgba(246,243,223,.52) 0 3px, transparent 4px), radial-gradient(circle at 47px 104px, rgba(246,243,223,.42) 0 2px, transparent 3px), radial-gradient(circle at 60px 118px, rgba(246,243,223,.38) 0 2px, transparent 3px), radial-gradient(circle at 330px 210px, rgba(182,220,98,.42) 0 3px, transparent 4px), radial-gradient(circle at 312px 225px, rgba(182,220,98,.34) 0 2px, transparent 3px); background-size: 170px 220px; }
+    .page { position: relative; z-index: 1; padding-bottom: 98px; }
+    .topbar { position: relative; z-index: 2; height: 62px; padding: 9px 16px; display: flex; align-items: center; justify-content: space-between; background: var(--brochure-blue-dark); border-bottom: 2px solid rgba(246,243,223,.35); }
+    .brand-lockup { display: inline-flex; align-items: center; height: 44px; text-decoration: none; }
+    .top-logo { display: block; width: 128px; height: auto; }
+    .brand-name { font-size: 18px; font-weight: 950; color: #fff; line-height: 1; letter-spacing: .5px; text-shadow: 0 2px 0 rgba(39,97,138,.35); }
+    .brand-sub { margin-top: 5px; font-size: 11px; color: rgba(255,255,255,.84); font-weight: 700; }
+    .topbar-pill { height: 31px; padding: 0 12px; display: inline-flex; align-items: center; border-radius: 18px 24px 18px 22px; background: var(--paper-light); color: var(--brochure-blue-deep); border: 2px solid var(--green); text-decoration: none; font-size: 12px; font-weight: 900; box-shadow: 0 3px 0 rgba(39,97,138,.18); }
+    .section { padding: 19px 16px 0; }
+    .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .section-title h2 { position: relative; display: inline-flex; align-items: center; min-height: 36px; padding: 7px 16px 8px; border-radius: 22px 28px 20px 26px; background: var(--green); color: var(--brochure-blue-deep); font-size: 17px; font-weight: 950; letter-spacing: 1px; box-shadow: 0 4px 0 rgba(39,97,138,.14); }
+    .section-title h2::after { content:""; position:absolute; right: -8px; bottom: 6px; width: 14px; height: 14px; border-radius: 999px; background: var(--green); }
+    .section-title a { color: var(--paper-light); text-decoration: none; font-size: 12px; font-weight: 900; border-bottom: 2px solid rgba(246,243,223,.45); }
+    .home-hero { position: relative; margin: 18px 16px 0; padding: 18px; min-height: 430px; border-radius: 44px 26px 42px 24px; background: var(--paper); border: 5px solid var(--green); box-shadow: var(--shadow-paper); overflow: hidden; }
+    .home-hero::before { content:""; position:absolute; left: -34px; top: -28px; width: 300px; height: 104px; border-radius: 58px 76px 44px 62px; background: var(--green); transform: rotate(-3deg); }
+    .home-hero::after { content:""; position:absolute; right: 20px; top: 18px; width: 42px; height: 33px; border: 3px solid var(--brochure-blue); border-top: 0; border-radius: 0 0 22px 22px; opacity:.55; transform: rotate(8deg); }
+    .hero-logo { position: absolute; right: 18px; top: 18px; z-index: 2; width: 94px; height: auto; filter: drop-shadow(0 2px 0 rgba(39,97,138,.18)); }
+    .brand-mark { position: relative; z-index: 1; color: var(--brochure-blue-deep); font-size: 12px; font-weight: 950; letter-spacing: .5px; }
+    .eyebrow { position: relative; z-index: 1; margin-top: 54px; display: inline-flex; padding: 6px 10px; border-radius: 18px 24px 18px 22px; background: var(--paper-light); color: var(--green-dark); border: 2px solid rgba(255,255,255,.7); font-size: 12px; font-weight: 950; }
+    .home-hero h1 { position: relative; z-index: 1; margin-top: 10px; width: 245px; font-size: 34px; line-height: 1.08; font-weight: 950; color: var(--brochure-blue); letter-spacing: 2px; }
+    .hero-slogan { position: relative; z-index: 1; margin-top: 8px; color: var(--brochure-blue); font-size: 21px; font-weight: 950; letter-spacing: 1px; }
+    .hero-pets { position: relative; z-index: 1; width: 180px; height: auto; display: block; margin: 8px auto 0; }
+    .service-ribbon { position: relative; z-index: 2; margin: -4px auto 0; width: 190px; height: 50px; display: grid; place-items: center; border-radius: 22px 28px 20px 26px; background: var(--green); color: #111; font-size: 24px; font-weight: 950; letter-spacing: 2px; transform: rotate(-1deg); }
+    .hero-services { position: relative; z-index: 1; display: grid; gap: 8px; width: 210px; margin: 13px auto 0; }
+    .hero-services span { display: grid; place-items: center; height: 34px; border-radius: 15px 18px 15px 17px; background: var(--paper-light); border: 3px solid var(--green); color: var(--brochure-blue); font-size: 15px; font-weight: 950; }
+    .hero-plus { text-align: center; color: var(--brochure-blue); font-size: 22px; font-weight: 950; line-height: .7; }
+    .home-hero p { position: relative; z-index: 1; margin-top: 12px; color: var(--text-sub); font-size: 13px; line-height: 1.65; font-weight: 700; text-align: center; }
+    .hero-actions { position: relative; z-index: 1; display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+    .btn { height: 42px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; border-radius: 16px 20px 15px 18px; text-decoration: none; font-size: 14px; font-weight: 950; box-shadow: 0 4px 0 rgba(39,97,138,.12); }
+    .btn-primary { background: var(--green); color: var(--brochure-blue-deep); border: 2px solid rgba(110,157,40,.3); }
+    .btn-secondary { background: var(--paper-light); color: var(--brochure-blue-deep); border: 2px solid rgba(90,145,183,.34); }
+    .service-list { display: grid; gap: 11px; }
+    .service-entry { position: relative; display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 22px 16px 22px 18px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.12); text-decoration: none; color: inherit; }
+    .icon-word { flex: 0 0 43px; height: 43px; display: grid; place-items: center; border-radius: 18px 14px 18px 15px; background: var(--brochure-blue); color: var(--paper-light); border: 2px solid rgba(255,255,255,.55); font-size: 15px; font-weight: 950; }
+    .icon-word.green { background: var(--green); color: var(--brochure-blue-deep); }
     .service-entry__body { flex: 1; min-width: 0; }
-    .service-entry__body h3 { font-size: 15px; font-weight: 800; }
-    .service-entry__body p { margin-top: 4px; color: var(--text-sub); font-size: 12px; line-height: 1.45; }
-    .price-tag { padding: 5px 8px; border-radius: 999px; background: var(--blue-soft); color: var(--blue-dark); font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .service-entry__body h3 { font-size: 15px; font-weight: 950; color: var(--ink); }
+    .service-entry__body p { margin-top: 4px; color: var(--text-sub); font-size: 12px; line-height: 1.45; font-weight: 650; }
+    .price-tag { padding: 6px 9px; border-radius: 16px 20px 16px 18px; background: var(--green-soft); color: var(--green-dark); border: 2px solid rgba(182,220,98,.8); font-size: 11px; font-weight: 950; white-space: nowrap; }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .stat { padding: 12px 6px; min-height: 72px; border-radius: 14px; background: #fff; border: 1px solid rgba(31,41,55,.06); text-align: center; }
-    .stat strong { display: block; color: var(--blue-dark); font-size: 18px; font-weight: 900; line-height: 1.2; }
-    .stat span { display: block; margin-top: 6px; color: var(--text-sub); font-size: 11px; line-height: 1.25; }
+    .stat { padding: 12px 5px; min-height: 74px; border-radius: 18px 14px 20px 15px; background: var(--paper); border: 3px solid var(--line-green); text-align: center; box-shadow: 0 4px 0 rgba(39,97,138,.1); }
+    .stat strong { display: block; color: var(--brochure-blue); font-size: 19px; font-weight: 950; line-height: 1.2; }
+    .stat span { display: block; margin-top: 6px; color: var(--ink); font-size: 11px; font-weight: 800; line-height: 1.25; }
     .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .process-step { padding: 12px 6px; border-radius: 14px; background: #fff; border: 1px solid rgba(31,41,55,.06); text-align: center; }
-    .process-step b { width: 24px; height: 24px; margin: 0 auto 8px; display: grid; place-items: center; border-radius: 999px; background: var(--blue); color: #fff; font-size: 12px; }
-    .process-step span { display: block; color: var(--text-main); font-size: 12px; font-weight: 700; }
+    .process-step { padding: 12px 6px; border-radius: 18px 14px 18px 16px; background: var(--paper); border: 3px solid var(--line-green); text-align: center; }
+    .process-step b { width: 26px; height: 26px; margin: 0 auto 8px; display: grid; place-items: center; border-radius: 999px; background: var(--green); color: var(--brochure-blue-deep); border: 2px solid rgba(110,157,40,.25); font-size: 13px; font-weight: 950; }
+    .process-step span { display: block; color: var(--ink); font-size: 12px; font-weight: 850; }
     .trust-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .trust-card { padding: 14px; min-height: 96px; border-radius: 14px; background: #fff; border: 1px solid rgba(31,41,55,.06); box-shadow: var(--shadow); }
-    .trust-card h3 { font-size: 14px; font-weight: 800; }
-    .trust-card p { margin-top: 7px; color: var(--text-sub); font-size: 12px; line-height: 1.5; }
-    .dot { width: 8px; height: 8px; margin-bottom: 10px; border-radius: 999px; background: var(--green); }
-    .story-card { display: block; padding: 16px; border-radius: 16px; background: #fff; border: 1px solid rgba(31,41,55,.06); box-shadow: var(--shadow); text-decoration: none; color: inherit; }
+    .trust-card { position: relative; padding: 14px; min-height: 98px; border-radius: 20px 16px 22px 17px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.1); }
+    .trust-card h3 { font-size: 14px; font-weight: 950; color: var(--ink); }
+    .trust-card p { margin-top: 7px; color: var(--text-sub); font-size: 12px; line-height: 1.5; font-weight: 650; }
+    .dot { width: 18px; height: 14px; margin-bottom: 10px; border-radius: 999px 999px 10px 10px; background: var(--green); box-shadow: 8px -6px 0 -4px var(--green), -8px -6px 0 -4px var(--green), 0 -9px 0 -5px var(--green); }
+    .story-card { display: block; padding: 16px; border-radius: 22px 16px 24px 18px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.1); text-decoration: none; color: inherit; }
     .story-card__top { display: flex; gap: 12px; align-items: center; }
-    .story-photo { flex: 0 0 86px; height: 74px; display: grid; place-items: center; border-radius: 12px; background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(132,204,22,.14)); border: 1px solid rgba(31,41,55,.06); color: var(--text-light); font-size: 12px; text-align: center; }
-    .story-card h3 { font-size: 16px; font-weight: 800; }
-    .story-card p { margin-top: 8px; color: var(--text-sub); font-size: 13px; line-height: 1.6; }
+    .story-photo, .case-photo { position: relative; display: grid; place-items: center; background: #EAF4F7; border: 3px solid var(--green); color: var(--brochure-blue-deep); font-weight: 900; text-align: center; }
+    .story-photo { flex: 0 0 88px; height: 76px; border-radius: 18px 14px 18px 16px; font-size: 12px; }
+    .story-card h3 { font-size: 16px; font-weight: 950; }
+    .story-card p { margin-top: 8px; color: var(--text-sub); font-size: 13px; line-height: 1.6; font-weight: 650; }
     .case-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
-    .case-card { overflow: hidden; border-radius: 14px; background: #fff; border: 1px solid rgba(31,41,55,.06); }
-    .case-photo { height: 78px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(132,204,22,.12)); color: var(--text-light); font-size: 11px; text-align: center; line-height: 1.35; }
-    .case-card p { padding: 8px; color: var(--text-sub); font-size: 11px; line-height: 1.35; }
-    .consult-card { margin: 18px 16px 0; padding: 16px; border-radius: 16px; background: var(--blue); color: #fff; }
-    .consult-card h2 { font-size: 18px; font-weight: 800; }
-    .consult-card p { margin-top: 8px; opacity: .92; font-size: 13px; line-height: 1.55; }
-    .consult-card a { margin-top: 14px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #fff; color: var(--blue-dark); text-decoration: none; font-size: 14px; font-weight: 800; }
-    .float-contact { position: fixed; left: calc(50% + 122px); bottom: 82px; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 999px; background: var(--green); color: var(--brochure-blue-dark); text-decoration: none; font-size: 13px; font-weight: 900; box-shadow: 0 10px 22px rgba(17,24,39,.24); border: 3px solid rgba(255,255,255,.88); }
-    .tabbar { position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: 375px; height: 72px; padding: 7px 14px 8px; display: grid; grid-template-columns: repeat(5, 1fr); background: linear-gradient(180deg, var(--brochure-blue-dark), #183A7C); border-top: 1px solid rgba(255,255,255,.16); box-shadow: 0 -8px 24px rgba(17,24,39,.2); }
-    .tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: rgba(255,255,255,.66); text-decoration: none; font-size: 10px; font-weight: 700; border-radius: 14px; }
-    .tabbar a.active { color: var(--green); font-weight: 900; }
-    .tab-icon { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 999px; font-size: 11px; font-weight: 900; color: rgba(255,255,255,.68); background: rgba(255,255,255,.1); }
-    .tabbar a.active .tab-icon { background: var(--green); color: var(--brochure-blue-dark); box-shadow: 0 5px 12px rgba(132,204,22,.32); }
+    .case-card { overflow: hidden; border-radius: 18px 14px 20px 15px; background: var(--paper); border: 3px solid var(--line-green); }
+    .case-photo { height: 80px; border: 0; border-bottom: 3px solid var(--green); border-radius: 0; font-size: 11px; line-height: 1.35; }
+    .case-card p { padding: 8px; color: var(--text-sub); font-size: 11px; line-height: 1.35; font-weight: 750; }
+    .consult-card { margin: 18px 16px 0; padding: 17px; border-radius: 24px 18px 26px 20px; background: var(--paper); color: var(--ink); border: 4px solid var(--green); box-shadow: var(--shadow-paper); }
+    .consult-card h2 { display:inline-flex; padding: 6px 10px; border-radius: 18px 22px 18px 20px; background: var(--green); color: var(--brochure-blue-deep); font-size: 17px; font-weight: 950; }
+    .consult-card p { margin-top: 10px; color: var(--text-sub); font-size: 13px; line-height: 1.55; font-weight: 650; }
+    .consult-card a { margin-top: 14px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 16px 22px 16px 20px; background: var(--brochure-blue); color: #fff; text-decoration: none; font-size: 14px; font-weight: 950; border: 2px solid rgba(255,255,255,.42); }
+    .float-contact { position: fixed; z-index: 5; left: calc(50% + 122px); bottom: 82px; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 999px 999px 999px 20px; background: var(--green); color: var(--brochure-blue-deep); text-decoration: none; font-size: 13px; font-weight: 950; box-shadow: 0 10px 22px rgba(17,24,39,.24); border: 3px solid var(--paper-light); }
+    .tabbar { position: fixed; z-index: 4; left: 50%; bottom: 0; transform: translateX(-50%); width: 375px; height: 72px; padding: 7px 14px 8px; display: grid; grid-template-columns: repeat(5, 1fr); background: linear-gradient(180deg, var(--brochure-blue-dark), var(--brochure-blue-deep)); border-top: 2px solid rgba(246,243,223,.32); box-shadow: 0 -8px 24px rgba(17,24,39,.2); }
+    .tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: rgba(255,255,255,.72); text-decoration: none; font-size: 10px; font-weight: 800; border-radius: 14px; }
+    .tabbar a.active { color: var(--green); font-weight: 950; }
+    .tab-icon { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 12px 16px 12px 15px; font-size: 11px; font-weight: 950; color: rgba(255,255,255,.72); background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.16); }
+    .tabbar a.active .tab-icon { background: var(--green); color: var(--brochure-blue-deep); box-shadow: 0 5px 12px rgba(182,220,98,.32); border-color: rgba(255,255,255,.55); }
     @media (max-width: 375px) { .phone, .tabbar { width: 100vw; } .float-contact { left: auto; right: 18px; } }
   </style>
 </head>
@@ -90,41 +103,48 @@
   <main class="phone">
     <div class="page">
       <header class="topbar">
-        <div>
-          <div class="brand-name">福啦呼啦宠物</div>
-          <div class="brand-sub">陪诊｜上门｜寄养</div>
-        </div>
+        <a class="brand-lockup" href="index.html" aria-label="福拉呼啦 FulaFla Pets"><img class="top-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"></a>
         <a class="topbar-pill" href="contact.html">微信咨询</a>
       </header>
 
       <section class="home-hero">
-        <span class="eyebrow">成都宠物一站式照护</span>
-        <h1>陪诊、上门、寄养，把毛孩子安排妥当</h1>
-        <p>服务前沟通需求，服务中同步照片与视频反馈。</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="contact.html">立即咨询</a>
-          <a class="btn btn-secondary" href="service.html">查看服务</a>
+        <img class="hero-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets">
+        <span class="eyebrow">成都本地一站式宠物照护</span>
+        <h1>福拉呼啦</h1>
+        <div class="hero-slogan">对生命的温柔守护</div>
+        <img class="hero-pets" src="assets/hero-pets.svg" alt="猫狗拥抱插画">
+        <div class="service-ribbon">一站式服务</div>
+        <div class="hero-services">
+          <span>宠物医疗陪护</span>
+          <div class="hero-plus">+</div>
+          <span>宠物上门服务</span>
+          <div class="hero-plus">+</div>
+          <span>宠物寄养服务</span>
         </div>
-        <div class="hero-photo">陪诊与照护服务</div>
+        <p>从公益救助经验出发，把毛孩子安排妥当。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="contact.html">联系咨询</a>
+          <a class="btn btn-secondary" href="service.html">了解服务</a>
+        </div>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>核心服务</h2><a href="service.html">了解服务</a></div>
+        <div class="section-title"><h2>主营业务</h2><a href="service.html">了解服务</a></div>
         <div class="service-list">
           <a class="service-entry" href="service.html#escort">
             <span class="icon-word">医</span>
-            <div class="service-entry__body"><h3>宠物医疗陪诊</h3><p>协助就医、接送沟通、诊后反馈</p></div>
-            <span class="price-tag">流程协助</span>
+            <div class="service-entry__body"><h3>宠物医疗陪护</h3><p>协助就医、流程沟通、诊后反馈</p></div>
+            <span class="price-tag">流程陪护</span>
           </a>
           <a class="service-entry" href="service.html#home">
             <span class="icon-word green">家</span>
-            <div class="service-entry__body"><h3>宠物上门照护</h3><p>喂食换水、清洁陪伴、状态反馈</p></div>
+            <div class="service-entry__body"><h3>宠物上门服务</h3><p>喂食换水、清洁陪伴、状态反馈</p></div>
             <span class="price-tag">到家照护</span>
           </a>
           <a class="service-entry" href="service.html#boarding">
             <span class="icon-word">寄</span>
             <div class="service-entry__body"><h3>宠物寄养服务</h3><p>日常喂养、健康观察、照片反馈</p></div>
-            <span class="price-tag">短期托管</span>
+            <span class="price-tag">安心寄养</span>
           </a>
         </div>
       </section>
@@ -132,30 +152,30 @@
       <section class="section">
         <div class="section-title"><h2>品牌背书</h2><a href="brand.html">了解品牌</a></div>
         <div class="stats">
-          <div class="stat"><strong>500+</strong><span>救助领养</span></div>
-          <div class="stat"><strong>8年</strong><span>公益背景</span></div>
+          <div class="stat"><strong>500+</strong><span>救助与领养</span></div>
+          <div class="stat"><strong>8年</strong><span>公益救助</span></div>
           <div class="stat"><strong>3类</strong><span>核心服务</span></div>
-          <div class="stat"><strong>1对1</strong><span>服务沟通</span></div>
+          <div class="stat"><strong>SOP</strong><span>服务流程</span></div>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>服务流程</h2><a href="contact.html">提交需求</a></div>
+        <div class="section-title"><h2>服务流程</h2><a href="contact.html">先说需求</a></div>
         <div class="process">
-          <div class="process-step"><b>1</b><span>提交需求</span></div>
+          <div class="process-step"><b>1</b><span>说明需求</span></div>
           <div class="process-step"><b>2</b><span>客服沟通</span></div>
-          <div class="process-step"><b>3</b><span>沟通安排</span></div>
+          <div class="process-step"><b>3</b><span>确认安排</span></div>
           <div class="process-step"><b>4</b><span>过程反馈</span></div>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>为什么选择我们</h2></div>
+        <div class="section-title"><h2>为什么选择</h2></div>
         <div class="trust-grid">
-          <article class="trust-card"><div class="dot"></div><h3>服务前确认需求</h3><p>先了解宠物情况、服务时间与所在区域，再确认方案。</p></article>
-          <article class="trust-card"><div class="dot"></div><h3>过程照片反馈</h3><p>服务中同步关键节点，主人可以及时了解状态。</p></article>
-          <article class="trust-card"><div class="dot"></div><h3>多场景覆盖</h3><p>陪诊、上门、寄养覆盖日常与临时照护需求。</p></article>
-          <article class="trust-card"><div class="dot"></div><h3>公益救助背景</h3><p>长期接触不同性格宠物，更理解照护中的细节。</p></article>
+          <article class="trust-card"><div class="dot"></div><h3>服务后再确认</h3><p>先了解宠物情况、服务时间与所在区域，再沟通合适安排。</p></article>
+          <article class="trust-card"><div class="dot"></div><h3>过程可反馈</h3><p>服务中同步照片、视频或文字，让主人更安心。</p></article>
+          <article class="trust-card"><div class="dot"></div><h3>多场景覆盖</h3><p>医疗陪护、上门服务、寄养服务覆盖日常与临时照护。</p></article>
+          <article class="trust-card"><div class="dot"></div><h3>公益救助背景</h3><p>长期接触不同性格宠物，更理解照护里的细节。</p></article>
         </div>
       </section>
 
@@ -163,27 +183,27 @@
         <div class="section-title"><h2>品牌故事</h2><a href="brand.html">查看</a></div>
         <a class="story-card" href="brand.html">
           <div class="story-card__top">
-            <div class="story-photo">公益救助<br>照片</div>
+            <div class="story-photo">公益救助<br>记录</div>
             <div>
-              <h3>从公益救助到专业服务</h3>
-              <p>用稳定的商业服务，支持长期善意持续发生。</p>
+              <h3>因为懂得，所以守护</h3>
+              <p>用标准化服务承接日常照护，也让以商养善持续发生。</p>
             </div>
           </div>
         </a>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>服务与公益动态</h2><a href="activity.html">更多</a></div>
+        <div class="section-title"><h2>服务剪影</h2><a href="activity.html">更多</a></div>
         <div class="case-row">
-          <article class="case-card"><div class="case-photo">救助记录</div><p>公益救助与领养回访</p></article>
-          <article class="case-card"><div class="case-photo">服务反馈</div><p>陪诊与上门服务记录</p></article>
-          <article class="case-card"><div class="case-photo">寄养环境</div><p>场地与日常照护展示</p></article>
+          <article class="case-card"><div class="case-photo">公益行动</div><p>救助与领养回访</p></article>
+          <article class="case-card"><div class="case-photo">服务现场</div><p>陪护与上门记录</p></article>
+          <article class="case-card"><div class="case-photo">寄养环境</div><p>场地与日常照护</p></article>
         </div>
       </section>
 
       <section class="consult-card">
         <h2>不确定选哪项服务？</h2>
-        <p>告诉我们宠物类型、服务时间和所在区域，客服会协助确认方案。</p>
+        <p>告诉我们宠物类型、服务时间和所在区域，客服会协助判断合适的照护方式。</p>
         <a href="contact.html">联系咨询</a>
       </section>
     </div>
