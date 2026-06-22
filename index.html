@@ -51,9 +51,7 @@
 <body>
   <main class="phone">
     <div class="page">
-      <header class="topbar">
-        <a class="brand-lockup" href="index.html" aria-label="福拉呼啦 FulaFla Pets"><img class="top-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"></a>
-      </header>
+      <div id="topbar-container"></div>
 
       <section class="home-hero">
 
@@ -131,15 +129,16 @@
 
     </div>
 
-    <a class="float-contact" href="contact.html">咨询</a>
-    <nav class="tabbar">
-      <a class="active" href="index.html"><span class="tab-icon">首</span><span>首页</span></a>
-      <a href="brand.html"><span class="tab-icon">品</span><span>品牌</span></a>
-      <a href="service.html"><span class="tab-icon">服</span><span>服务</span></a>
-      <a href="activity.html"><span class="tab-icon">动</span><span>动态</span></a>
-      <a href="contact.html"><span class="tab-icon">联</span><span>咨询</span></a>
-    </nav>
+    <div id="float-contact-container"></div>
+    <div id="tabbar-container"></div>
   </main>
+  <script src="assets/component-loader.js"></script>
   <script src="assets/gallery-preview.js"></script>
+  <script>
+    // 设置当前页面active状态
+    document.addEventListener('DOMContentLoaded', () => {
+      ComponentLoader.setActiveTab('index.html');
+    });
+  </script>
 </body>
 </html>

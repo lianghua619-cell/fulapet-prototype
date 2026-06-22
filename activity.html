@@ -47,9 +47,7 @@
 <body>
   <main class="phone">
     <div class="page">
-      <header class="topbar">
-        <a class="brand-lockup" href="index.html" aria-label="福拉呼啦 FulaFla Pets"><img class="top-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"></a>
-      </header>
+      <div id="topbar-container"></div>
 
       <section class="page-header">
         <h1>公益与服务记录</h1>
@@ -93,16 +91,16 @@
 
     </div>
 
-    <a class="float-contact" href="contact.html">咨询</a>
-    <nav class="tabbar">
-      <a href="index.html"><span class="tab-icon">首</span><span>首页</span></a>
-      <a href="brand.html"><span class="tab-icon">品</span><span>品牌</span></a>
-      <a href="service.html"><span class="tab-icon">服</span><span>服务</span></a>
-      <a class="active" href="activity.html"><span class="tab-icon">动</span><span>动态</span></a>
-      <a href="contact.html"><span class="tab-icon">联</span><span>咨询</span></a>
-    </nav>
+    <div id="float-contact-container"></div>
+    <div id="tabbar-container"></div>
   </main>
 
+  <script src="assets/component-loader.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ComponentLoader.setActiveTab('activity.html');
+    });
+  </script>
   <script>
     const tabs = document.querySelectorAll('.filter-tab');
     const cards = document.querySelectorAll('.activity-card');
