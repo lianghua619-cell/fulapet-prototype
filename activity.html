@@ -4,32 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>福拉呼啦宠物-品牌动态</title>
+  <link rel="stylesheet" href="assets/common.css">
   <link rel="stylesheet" href="assets/gallery-preview.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --brochure-blue:#5A91B7; --brochure-blue-dark:#3F789F; --brochure-blue-deep:#27618A; --blue-soft:#E7F3FA; --green:#B6DC62; --green-dark:#6E9D28; --green-soft:#EDF7D2; --paper:#F6F3DF; --paper-light:#FFFBEA; --ink:#1F2430; --text-sub:#4F6370; --text-light:#7A8B93; --line-green:rgba(139,187,58,.76); --shadow-paper:0 10px 0 rgba(39,97,138,.16),0 12px 26px rgba(31,36,48,.12); }
-    body { min-height:100vh; background:#D7DFEF; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; color:var(--ink); }
-    .phone { position:relative; width:375px; min-height:812px; margin:0 auto; background:var(--brochure-blue); overflow:hidden; }
-    .phone::before { content:""; position:absolute; inset:0; opacity:.16; pointer-events:none; background:radial-gradient(circle at 34px 120px,rgba(246,243,223,.52) 0 3px,transparent 4px),radial-gradient(circle at 54px 132px,rgba(182,220,98,.38) 0 2px,transparent 3px),radial-gradient(circle at 324px 210px,rgba(246,243,223,.42) 0 3px,transparent 4px),radial-gradient(circle at 308px 236px,rgba(182,220,98,.35) 0 2px,transparent 3px); background-size:180px 230px; }
-    .page { position:relative; z-index:1; padding-bottom:96px; }
-    .topbar { height:62px; padding:9px 16px; display:flex; align-items:center; justify-content:space-between; background:var(--brochure-blue-dark); border-bottom:2px solid rgba(246,243,223,.35); }
-    .brand-lockup { display:inline-flex; align-items:center; height:44px; text-decoration:none; }
-    .top-logo { display:block; width:128px; height:auto; }
-    .brand-name { font-size:18px; font-weight:950; line-height:1; color:#fff; letter-spacing:.5px; text-shadow:0 2px 0 rgba(39,97,138,.35); }
-    .brand-sub { margin-top:5px; color:rgba(255,255,255,.84); font-size:11px; font-weight:700; }
-    .topbar-pill { height:31px; padding:0 12px; display:inline-flex; align-items:center; border-radius:18px 24px 18px 22px; background:var(--paper-light); color:var(--brochure-blue-deep); border:2px solid var(--green); text-decoration:none; font-size:12px; font-weight:950; box-shadow:0 3px 0 rgba(39,97,138,.18); }
-    .page-header { padding:20px 16px 8px; }
-    .page-header h1 { font-size:25px; font-weight:950; line-height:1.22; color:#fff; letter-spacing:.5px; }
-    .page-header p { margin-top:8px; color:rgba(255,255,255,.84); font-size:13px; line-height:1.62; font-weight:650; }
-    .filter-tabs { display:flex; gap:8px; padding:12px 16px 0; overflow-x:auto; scrollbar-width:none; }
+    .page { padding-bottom:96px; padding-top:120px; }
+    .filter-tabs { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; gap:8px; padding:10px 16px; overflow-x:auto; scrollbar-width:none; background:var(--brochure-blue); z-index:3; }
+    .filter-tabs::after { content:""; position:absolute; bottom:0; left:0; right:0; height:8px; background:linear-gradient(180deg,rgba(0,0,0,.08),transparent); pointer-events:none; }
     .filter-tabs::-webkit-scrollbar { display:none; }
     .filter-tab { flex:0 0 auto; padding:9px 14px; border:3px solid var(--line-green); border-radius:18px 24px 18px 22px; background:var(--paper); color:var(--brochure-blue-deep); font-size:13px; font-weight:900; box-shadow:0 3px 0 rgba(39,97,138,.12); }
     .filter-tab.active { background:var(--green); color:var(--brochure-blue-deep); border-color:rgba(246,243,223,.6); }
-    .section { padding:19px 16px 0; }
-    .section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-    .section-title h2 { position:relative; display:inline-flex; align-items:center; padding:7px 16px 8px; min-height:36px; border-radius:22px 28px 20px 26px; background:var(--green); color:var(--brochure-blue-deep); font-size:17px; font-weight:950; letter-spacing:1px; box-shadow:0 4px 0 rgba(39,97,138,.14); }
-    .section-title h2::after { content:""; position:absolute; right:-8px; bottom:6px; width:14px; height:14px; border-radius:999px; background:var(--green); }
-    .section-title a { color:var(--paper-light); text-decoration:none; font-size:12px; font-weight:900; border-bottom:2px solid rgba(246,243,223,.45); }
     .featured-card { overflow:hidden; border-radius:30px 22px 32px 24px; background:var(--paper); border:5px solid var(--green); box-shadow:var(--shadow-paper); }
     .featured-photo { position:relative; overflow:hidden; height:166px; display:grid; place-items:center; background:#EAF4F7; color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
     .featured-photo img { width:100%; height:100%; display:block; object-fit:cover; }
@@ -48,10 +31,6 @@
     .activity-info h3 { margin-top:8px; font-size:13px; font-weight:950; line-height:1.35; }
     .activity-info p { margin-top:5px; color:var(--text-sub); font-size:11px; line-height:1.45; font-weight:650; }
     .note-card { padding:14px; border-radius:20px 16px 22px 18px; background:var(--paper); border:3px solid var(--line-green); color:var(--text-sub); font-size:13px; line-height:1.6; font-weight:650; }
-    .cta-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    .btn { height:42px; display:flex; align-items:center; justify-content:center; border-radius:16px 22px 16px 20px; text-decoration:none; font-size:14px; font-weight:950; box-shadow:0 4px 0 rgba(39,97,138,.12); }
-    .btn-primary { background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(110,157,40,.3); }
-    .btn-secondary { background:var(--paper-light); color:var(--brochure-blue-deep); border:2px solid rgba(90,145,183,.34); }
     .modal { position:fixed; inset:0; z-index:8; display:none; align-items:center; justify-content:center; background:rgba(17,24,39,.68); }
     .modal.show { display:flex; }
     .modal-card { width:300px; padding:16px; border-radius:26px 20px 28px 22px; background:var(--paper); border:4px solid var(--green); box-shadow:var(--shadow-paper); }
@@ -60,12 +39,6 @@
     .modal-card h3 { margin-top:12px; font-size:17px; font-weight:950; }
     .modal-card p { margin-top:6px; color:var(--text-sub); font-size:13px; font-weight:650; }
     .modal-card button { margin-top:14px; width:100%; height:40px; border:0; border-radius:16px 22px 16px 20px; background:var(--brochure-blue); color:#fff; font-size:14px; font-weight:950; }
-    .tabbar { position:fixed; z-index:4; left:50%; bottom:0; transform:translateX(-50%); width:375px; height:72px; padding:7px 14px 8px; display:grid; grid-template-columns:repeat(5,1fr); background:linear-gradient(180deg,var(--brochure-blue-dark),var(--brochure-blue-deep)); border-top:2px solid rgba(246,243,223,.32); box-shadow:0 -8px 24px rgba(17,24,39,.2); }
-    .tabbar a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:rgba(255,255,255,.72); text-decoration:none; font-size:10px; font-weight:800; border-radius:14px; }
-    .tabbar a.active { color:var(--green); font-weight:950; }
-    .tab-icon { width:25px; height:25px; display:grid; place-items:center; border-radius:12px 16px 12px 15px; font-size:11px; font-weight:950; color:rgba(255,255,255,.72); background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.16); }
-    .tabbar a.active .tab-icon { background:var(--green); color:var(--brochure-blue-deep); box-shadow:0 5px 12px rgba(182,220,98,.32); border-color:rgba(255,255,255,.55); }
-    @media (max-width:375px){ .phone,.tabbar{ width:100vw; } }
   </style>
 </head>
 <body>
@@ -73,7 +46,6 @@
     <div class="page">
       <header class="topbar">
         <a class="brand-lockup" href="index.html" aria-label="福拉呼啦 FulaFla Pets"><img class="top-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets"></a>
-        <a class="topbar-pill" href="contact.html">合作咨询</a>
       </header>
 
       <section class="page-header">
@@ -100,7 +72,7 @@
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>动态相册</h2><a href="contact.html">咨询合作</a></div>
+        <div class="section-title"><h2>动态相册</h2></div>
         <div class="activity-grid" id="grid">
           <article class="activity-card" data-kind="welfare" data-title="公益救助记录" data-preview-title="公益救助记录" data-preview-items="assets/images/welfare/rescue-1.jpg|assets/images/welfare/rescue-2.jpg|assets/images/welfare/volunteer-1.jpg|assets/images/welfare/volunteer-2.jpg|assets/images/welfare/team-welfare-1.jpg|assets/images/welfare/team-welfare-2.jpg|assets/images/welfare/event-1.jpg|assets/images/welfare/event-2.jpg"><div class="activity-photo"><img src="assets/images/welfare/rescue-1.jpg" alt="公益救助记录"></div><div class="activity-info"><span>公益救助</span><h3>公益救助记录</h3><p>记录救助、安置与回访过程。</p></div></article>
           <article class="activity-card" data-kind="service" data-title="医疗陪护现场" data-preview-title="医疗陪护现场" data-preview-items="assets/images/service-medical/escort-1.jpg|assets/images/service-medical/escort-2.jpg|assets/images/service-medical/escort-3.jpg|assets/images/service-medical/car-1.jpg|assets/images/service-medical/car-2.jpg"><div class="activity-photo"><img src="assets/images/service-medical/escort-3.jpg" alt="医疗陪护现场"></div><div class="activity-info"><span>服务现场</span><h3>医疗陪护现场</h3><p>陪同就医与诊后反馈记录。</p></div></article>
@@ -115,11 +87,10 @@
         <div class="note-card">更多服务记录、救助回访、寄养环境与合作案例将持续更新。</div>
       </section>
 
-      <section class="section">
-        <div class="cta-row"><a class="btn btn-primary" href="service.html">查看服务项目</a><a class="btn btn-secondary" href="contact.html">咨询合作</a></div>
-      </section>
+
     </div>
 
+    <a class="float-contact" href="contact.html">咨询</a>
     <nav class="tabbar">
       <a href="index.html"><span class="tab-icon">首</span><span>首页</span></a>
       <a href="brand.html"><span class="tab-icon">品</span><span>品牌</span></a>

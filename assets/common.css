@@ -1,0 +1,297 @@
+/* 福拉呼啦宠物 - 公共样式表 */
+/* 用于微信小程序开发的原型公共样式 */
+
+/* ==================== CSS 变量 ==================== */
+:root {
+  --brochure-blue: #5A91B7;
+  --brochure-blue-dark: #3F789F;
+  --brochure-blue-deep: #27618A;
+  --blue-soft: #E7F3FA;
+  --green: #B6DC62;
+  --green-dark: #6E9D28;
+  --green-soft: #EDF7D2;
+  --paper: #F6F3DF;
+  --paper-light: #FFFBEA;
+  --ink: #1F2430;
+  --text-sub: #4F6370;
+  --text-light: #7A8B93;
+  --line-green: rgba(139, 187, 58, .76);
+  --shadow-paper: 0 10px 0 rgba(39, 97, 138, .16), 0 12px 26px rgba(31, 36, 48, .12);
+}
+
+/* ==================== 全局重置 ==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #D7DFEF;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  color: var(--ink);
+}
+
+/* ==================== 手机容器 ==================== */
+.phone {
+  position: relative;
+  width: 375px;
+  min-height: 812px;
+  margin: 0 auto;
+  background: var(--brochure-blue);
+  overflow: hidden;
+}
+
+.phone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .16;
+  pointer-events: none;
+  background: radial-gradient(circle at 34px 120px, rgba(246,243,223,.52) 0 3px, transparent 4px),
+              radial-gradient(circle at 54px 132px, rgba(182,220,98,.38) 0 2px, transparent 3px),
+              radial-gradient(circle at 324px 210px, rgba(246,243,223,.42) 0 3px, transparent 4px),
+              radial-gradient(circle at 308px 236px, rgba(182,220,98,.35) 0 2px, transparent 3px);
+  background-size: 180px 230px;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 96px;
+}
+
+/* ==================== 顶部导航栏 ==================== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 375px;
+  height: 62px;
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--brochure-blue-dark);
+  border-bottom: 2px solid rgba(246,243,223,.35);
+  z-index: 3;
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  text-decoration: none;
+}
+
+.top-logo {
+  display: block;
+  width: 128px;
+  height: auto;
+}
+
+/* ==================== 页面标题区 ==================== */
+.page-header {
+  padding: 20px 16px 8px;
+}
+
+.page-header h1 {
+  font-size: 25px;
+  font-weight: 950;
+  line-height: 1.22;
+  color: #fff;
+  letter-spacing: .5px;
+}
+
+.page-header p {
+  margin-top: 8px;
+  color: rgba(255,255,255,.84);
+  font-size: 13px;
+  line-height: 1.62;
+  font-weight: 650;
+}
+
+/* ==================== Section 标题 ==================== */
+.section {
+  padding: 19px 16px 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.section-title h2 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px 8px;
+  min-height: 36px;
+  border-radius: 22px 28px 20px 26px;
+  background: var(--green);
+  color: var(--brochure-blue-deep);
+  font-size: 17px;
+  font-weight: 950;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 0 rgba(39,97,138,.14);
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+.section-title span {
+  color: rgba(255,255,255,.84);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.section-title a {
+  color: var(--paper-light);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+  border-bottom: 2px solid rgba(246,243,223,.45);
+}
+
+/* ==================== 按钮 ==================== */
+.btn {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px 22px 16px 20px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 950;
+  box-shadow: 0 4px 0 rgba(39,97,138,.12);
+}
+
+.btn-primary {
+  background: var(--green);
+  color: var(--brochure-blue-deep);
+  border: 2px solid rgba(110,157,40,.3);
+}
+
+.btn-secondary {
+  background: var(--paper-light);
+  color: var(--brochure-blue-deep);
+  border: 2px solid rgba(90,145,183,.34);
+}
+
+/* ==================== 悬浮咨询按钮 ==================== */
+.float-contact {
+  position: fixed;
+  z-index: 5;
+  left: calc(50% + 122px);
+  bottom: 82px;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px 999px 999px 20px;
+  background: var(--green);
+  color: var(--brochure-blue-deep);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 950;
+  box-shadow: 0 10px 22px rgba(17,24,39,.24);
+  border: 3px solid var(--paper-light);
+}
+
+/* ==================== 底部导航栏 ==================== */
+.tabbar {
+  position: fixed;
+  z-index: 4;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 375px;
+  height: 72px;
+  padding: 7px 14px 8px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: linear-gradient(180deg, var(--brochure-blue-dark), var(--brochure-blue-deep));
+  border-top: 2px solid rgba(246,243,223,.32);
+  box-shadow: 0 -8px 24px rgba(17,24,39,.2);
+}
+
+.tabbar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: rgba(255,255,255,.72);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 14px;
+}
+
+.tabbar a.active {
+  color: var(--green);
+  font-weight: 950;
+}
+
+.tab-icon {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px 16px 12px 15px;
+  font-size: 11px;
+  font-weight: 950;
+  color: rgba(255,255,255,.72);
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.16);
+}
+
+.tabbar a.active .tab-icon {
+  background: var(--green);
+  color: var(--brochure-blue-deep);
+  box-shadow: 0 5px 12px rgba(182,220,98,.32);
+  border-color: rgba(255,255,255,.55);
+}
+
+/* ==================== 响应式适配 ==================== */
+@media (max-width: 428px) {
+  .phone, .tabbar, .topbar {
+    width: 100vw;
+  }
+  .float-contact {
+    left: auto;
+    right: 18px;
+  }
+}
+
+@media (max-width: 414px) {
+  .phone, .tabbar, .topbar {
+    width: 100vw;
+  }
+  .float-contact {
+    left: auto;
+    right: 18px;
+  }
+}
+
+@media (max-width: 375px) {
+  .phone, .tabbar, .topbar {
+    width: 100vw;
+  }
+  .float-contact {
+    left: auto;
+    right: 18px;
+  }
+}
