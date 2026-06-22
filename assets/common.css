@@ -75,7 +75,6 @@ body {
   align-items: center;
   justify-content: space-between;
   background: var(--brochure-blue-dark);
-  border-bottom: 2px solid rgba(246,243,223,.35);
   z-index: 3;
 }
 
