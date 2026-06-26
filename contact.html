@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/gallery-preview.css">
   <style>
     .page { padding-bottom:96px; padding-top:62px; }
-    .consult-hero, .wechat-card, .check-item, .step, .partner-card { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .consult-hero, .wechat-card, .check-item, .partner-card { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
     .consult-hero { position:relative; margin:14px 16px 0; padding:18px; border-radius:28px 22px 30px 24px; box-shadow:var(--shadow-paper); overflow:hidden; }
     .consult-hero::after { content:""; position:absolute; right:22px; top:18px; width:26px; height:20px; border-radius:50% 50% 45% 45%; background:rgba(182,220,98,.55); box-shadow:-13px -7px 0 -6px rgba(182,220,98,.55),0 -12px 0 -7px rgba(182,220,98,.55),13px -7px 0 -6px rgba(182,220,98,.55); }
     .consult-hero span { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:12px; font-weight:950; }
@@ -35,11 +35,6 @@
     .check-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 14px; border-radius:18px 14px 18px 16px; }
     .check-item strong { font-size:14px; font-weight:950; }
     .check-item span { color:var(--text-sub); font-size:12px; font-weight:700; text-align:right; }
-    .process { display:grid; gap:9px; }
-    .step { display:flex; gap:12px; align-items:flex-start; padding:13px 14px; border-radius:20px 16px 20px 18px; }
-    .step b { flex:0 0 28px; height:28px; display:grid; place-items:center; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(110,157,40,.25); font-size:13px; font-weight:950; }
-    .step h3 { font-size:14px; font-weight:950; }
-    .step p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:650; }
     .partner-card { padding:16px; border-radius:24px 18px 26px 20px; }
     .partner-card h3 { display:inline-flex; padding:6px 10px; border-radius:18px 22px 18px 20px; background:var(--green); color:var(--brochure-blue-deep); font-size:17px; font-weight:950; }
     .partner-card p { margin-top:10px; color:var(--text-sub); font-size:13px; line-height:1.6; font-weight:650; }
@@ -50,11 +45,39 @@
     .modal-mask { position:fixed; inset:0; z-index:10; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; }
     .modal-mask.show { display:flex; }
     .modal-box { position:relative; width:343px; max-height:80vh; background:var(--paper); border:3px solid var(--green); border-radius:28px 22px 30px 24px; box-shadow:0 20px 60px rgba(0,0,0,.3); overflow:hidden; }
-    .modal-box .process { padding:18px; max-height:70vh; overflow-y:auto; }
     .modal-close { position:absolute; top:14px; right:14px; width:32px; height:32px; border:0; border-radius:999px; background:var(--green-soft); color:var(--green-dark); font-size:18px; font-weight:950; cursor:pointer; z-index:1; display:grid; place-items:center; }
-    .modal-title { display:flex; align-items:center; gap:10px; margin-bottom:14px; padding-right:40px; }
-    .modal-title h2 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
-    .modal-title span { color:var(--text-sub); font-size:12px; font-weight:700; }
+    .order-modal .modal-close { top:6px; right:6px; width:24px; height:24px; font-size:13px; background:var(--green-soft); color:var(--green-dark); }
+    .order-modal { position:fixed; left:50%; top:50%; width:350px; max-height:80vh; transform:translate(-50%,-50%) scale(.92); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:20; background:var(--paper); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.3); border:3px solid var(--green); overflow:hidden; display:none; flex-direction:column; pointer-events:none; }
+    .order-modal.show { display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); pointer-events:auto; }
+    .order-modal .modal-box { display:flex; flex-direction:column; height:100%; }
+    .order-form { padding:4px 16px 12px; overflow-y:auto; flex:1; -webkit-overflow-scrolling:touch; }
+    .order-form .form-header { position:relative; text-align:center; padding:20px 16px 14px; margin:8px 10px 10px; background:linear-gradient(135deg,var(--green) 0%,rgba(182,220,98,.6) 100%); border-radius:18px; overflow:hidden; }
+    .order-form .form-header::before { content:""; position:absolute; top:-6px; right:-6px; width:36px; height:28px; border-radius:50%; background:rgba(255,255,255,.12); }
+    .order-form .form-header h2 { font-size:16px; font-weight:950; color:var(--brochure-blue-deep); position:relative; z-index:1; }
+    .order-form .form-header p { font-size:11px; color:var(--brochure-blue-deep); opacity:.75; margin-top:3px; position:relative; z-index:1; }
+    .form-group { margin-bottom:10px; }
+    .form-group label { display:block; font-size:12px; font-weight:950; color:var(--ink); margin-bottom:4px; }
+    .form-group label .req { color:#e53e3e; }
+    .form-group input,.form-group select,.form-group textarea { width:100%; padding:9px 11px; border:2px solid var(--line-green); border-radius:12px 8px 12px 10px; font-size:13px; font-weight:650; background:#fff; color:var(--ink); box-sizing:border-box; }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--green); }
+    .form-group textarea { min-height:50px; resize:vertical; line-height:1.4; }
+    .form-group select { appearance:auto; font-weight:700; }
+    .radio-group,.check-group { display:flex; flex-wrap:wrap; gap:6px; }
+    .radio-group label,.check-group label { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:950; color:var(--brochure-blue-deep); padding:5px 9px; border-radius:10px 8px 10px 9px; background:var(--green-soft); border:1.5px solid rgba(110,157,40,.2); cursor:pointer; white-space:nowrap; }
+    .radio-group label:has(input:checked),.check-group label:has(input:checked) { background:var(--green); border-color:rgba(110,157,40,.4); }
+    .radio-group input,.check-group input { accent-color:var(--brochure-blue-deep); width:14px; height:14px; }
+    .submit-btn { width:100%; height:42px; border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; cursor:pointer; margin-top:6px; margin-bottom:8px; box-shadow:0 4px 0 rgba(39,97,138,.1); }
+    .submit-btn:active { transform:translateY(2px); box-shadow:0 2px 0 rgba(39,97,138,.1); }
+    .btn-glow { position:relative; animation:pulse 2s ease-in-out infinite; }
+    .btn-glow::after { content:""; position:absolute; inset:-3px; border-radius:inherit; background:var(--green); opacity:0; z-index:-1; animation:glow 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.03)} }
+    @keyframes glow { 0%,100%{opacity:0;transform:scale(1)} 50%{opacity:.3;transform:scale(1.06)} }
+    .form-success { display:none; text-align:center; padding:40px 16px; }
+    .form-success.show { display:block; }
+    .form-success .icon { font-size:44px; margin-bottom:10px; }
+    .form-success h3 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
+    .form-success p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.5; }
+    .form-success .btn { margin-top:16px; width:100%; }
   </style>
 </head>
 <body>
@@ -71,10 +94,10 @@
         <span>微信咨询</span>
         <h2>把宠物情况说清楚，服务安排更准确</h2>
         <p>适合咨询宠物医疗陪护、上门服务、寄养、机构合作等需求。</p>
-        <div class="hero-actions"><button class="btn btn-primary action">添加客服微信</button><button class="btn btn-secondary" id="open-process">查看流程</button></div>
+        <div class="hero-actions"><button class="btn btn-secondary action" id="open-wechat">添加客服沟通</button><button class="btn btn-primary btn-glow" id="open-order">立即下单</button></div>
       </section>
 
-      <section class="section">
+      <section class="section" id="wechat-section" style="display:none">
         <div class="wechat-card">
           <img class="wechat-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets">
           <div class="qr-box">客服微信咨询</div>
@@ -115,20 +138,76 @@
     </div>
 
     <div class="toast" id="toast">请通过客服微信确认最新信息</div>
-    <div class="modal-mask" id="process-modal">
-      <div class="modal-box">
-        <button class="modal-close" id="close-process">&times;</button>
-        <div class="process">
-          <div class="modal-title"><h2>服务流程</h2><span>先咨询，再安排</span></div>
-          <div class="step"><b>1</b><div><h3>添加客服微信</h3><p>通过微信说明宠物情况与服务需求。</p></div></div>
-          <div class="step"><b>2</b><div><h3>说明宠物情况</h3><p>提供服务时间、地点、宠物性格与健康状态。</p></div></div>
-          <div class="step"><b>3</b><div><h3>沟通服务方案</h3><p>客服根据宠物情况、服务时间与所在区域协助判断。</p></div></div>
-          <div class="step"><b>4</b><div><h3>确认服务安排</h3><p>服务前建立沟通群，同步注意事项与准备内容。</p></div></div>
-          <div class="step"><b>5</b><div><h3>服务开始并反馈</h3><p>服务中与服务后同步照片、视频或文字反馈。</p></div></div>
+      </div>
+
+      <div class="order-modal" id="order-modal">
+        <div class="modal-box">
+          <button class="modal-close" id="close-order">&times;</button>
+          <div class="order-form" id="order-form-content">
+            <div class="form-header"><h2>上门遛喂信息收集</h2><p>请填写以下信息，客服将尽快与您联系</p></div>
+            <form id="service-form">
+              <div class="form-group"><label>客户姓名</label><input type="text" name="客户姓名" placeholder="请输入您的姓名"></div>
+              <div class="form-group"><label><span class="req">*</span>宠物姓名</label><input type="text" name="宠物姓名" placeholder="请输入宠物名字" required></div>
+              <div class="form-group"><label><span class="req">*</span>种类</label>
+                <div class="radio-group"><label><input type="radio" name="种类" value="狗狗" required><span>狗狗</span></label><label><input type="radio" name="种类" value="猫猫"><span>猫猫</span></label><label><input type="radio" name="种类" value="其他"><span>其他</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>品种</label><input type="text" name="品种" placeholder="如：布偶、柯基、金毛等" required></div>
+              <div class="form-group"><label>宠物年龄</label><input type="text" name="宠物年龄" placeholder="如：2岁"></div>
+              <div class="form-group"><label>性别</label>
+                <div class="radio-group"><label><input type="radio" name="性别" value="弟弟"><span>弟弟</span></label><label><input type="radio" name="性别" value="妹妹"><span>妹妹</span></label></div>
+              </div>
+              <div class="form-group"><label>宠物体重（kg）</label><input type="text" name="宠物体重" placeholder="请输入体重"></div>
+              <div class="form-group"><label>是否绝育</label>
+                <div class="radio-group"><label><input type="radio" name="是否绝育" value="是"><span>是</span></label><label><input type="radio" name="是否绝育" value="否"><span>否</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>是否打疫苗</label>
+                <div class="radio-group"><label><input type="radio" name="是否打疫苗" value="是" required><span>是</span></label><label><input type="radio" name="是否打疫苗" value="否"><span>否</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>是否怀孕</label>
+                <div class="radio-group"><label><input type="radio" name="是否怀孕" value="是" required><span>是</span></label><label><input type="radio" name="是否怀孕" value="否"><span>否</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>性格特点</label>
+                <div class="check-group"><label><input type="checkbox" name="性格特点" value="外向"><span>外向</span></label><label><input type="checkbox" name="性格特点" value="内向"><span>内向</span></label><label><input type="checkbox" name="性格特点" value="爱社交"><span>爱社交</span></label><label><input type="checkbox" name="性格特点" value="不爱社交"><span>不爱社交</span></label><label><input type="checkbox" name="性格特点" value="有攻击性"><span>有攻击性</span></label><label><input type="checkbox" name="性格特点" value="无攻击性"><span>无攻击性</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>服务时间开始</label><input type="datetime-local" name="服务时间开始" required></div>
+              <div class="form-group"><label><span class="req">*</span>服务时间结束</label><input type="datetime-local" name="服务时间结束" required></div>
+              <div class="form-group"><label><span class="req">*</span>服务选项</label><select name="服务选项" required>
+                <option value="">请选择服务类型</option><option>上门喂猫</option><option>上门喂狗</option><option>上门遛狗</option><option>陪诊</option><option>陪护</option><option>寄养</option><option>城内托运</option><option>跨城托运</option><option>国际托运</option><option>帮忙挂号</option><option>其他</option>
+              </select></div>
+              <div class="form-group"><label>其他服务内容</label><textarea name="其他服务内容" placeholder="请补充除了基础服务项的其他需求"></textarea></div>
+              <div class="form-group"><label><span class="req">*</span>联系电话</label><input type="tel" name="联系电话" placeholder="请输入电话号码" required></div>
+              <div class="form-group"><label><span class="req">*</span>上门地址</label><input type="text" name="上门地址" placeholder="请选择位置" required></div>
+              <div class="form-group"><label><span class="req">*</span>具体单元门号</label><input type="text" name="具体单元门号" placeholder="如：3栋2单元1801" required></div>
+              <div class="form-group"><label><span class="req">*</span>电梯还是楼梯</label>
+                <div class="radio-group"><label><input type="radio" name="电梯还是楼梯" value="电梯" required><span>电梯</span></label><label><input type="radio" name="电梯还是楼梯" value="楼梯"><span>楼梯</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>是否有实时监控</label>
+                <div class="radio-group"><label><input type="radio" name="是否有实时监控" value="是" required><span>是</span></label><label><input type="radio" name="是否有实时监控" value="否"><span>否</span></label></div>
+              </div>
+              <div class="form-group"><label>其他备注</label><textarea name="其他备注" placeholder="注意事项等，如有多只请备注，性格特别请注明"></textarea></div>
+              <button type="submit" class="submit-btn">提交需求</button>
+            </form>
+            <div class="form-success" id="form-success">
+              <div class="icon">✅</div>
+              <h3>提交成功！</h3>
+              <p>客服已收到您的需求，将尽快与您联系确认服务安排。</p>
+              <button class="btn btn-primary" id="close-success">关闭</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
+    <div class="modal-mask" id="wechat-modal">
+      <div class="modal-box">
+        <button class="modal-close" id="close-wechat">&times;</button>
+        <div class="wechat-card" style="border:0;box-shadow:none;">
+          <img class="wechat-logo" src="assets/logo-white.svg" alt="福拉呼啦">
+          <div class="qr-box">客服微信咨询</div>
+          <h3>扫码添加客服微信</h3>
+          <p>用于沟通服务时间、宠物情况、照护建议与服务前准备。</p>
+        </div>
+      </div>
+    </div>
     <div id="tabbar-container"></div>
   </main>
 
@@ -148,10 +227,59 @@
         timer = setTimeout(() => toast.classList.remove('show'), 1600);
       });
     });
-    const processModal = document.getElementById('process-modal');
-    document.getElementById('open-process').addEventListener('click', () => processModal.classList.add('show'));
-    document.getElementById('close-process').addEventListener('click', () => processModal.classList.remove('show'));
-    processModal.addEventListener('click', e => { if (e.target === processModal) processModal.classList.remove('show'); });
+    const wechatModal = document.getElementById('wechat-modal');
+    document.getElementById('open-wechat').addEventListener('click', () => wechatModal.classList.add('show'));
+    document.getElementById('close-wechat').addEventListener('click', () => wechatModal.classList.remove('show'));
+    wechatModal.addEventListener('click', e => { if (e.target === wechatModal) wechatModal.classList.remove('show'); });
+    const orderModal = document.getElementById('order-modal');
+    const orderFormContent = document.getElementById('order-form-content');
+    const orderBackdrop = document.createElement('div');
+    orderBackdrop.style.cssText = 'position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.4);display:none;';
+    document.body.appendChild(orderBackdrop);
+    document.getElementById('open-order').addEventListener('click', () => {
+      orderFormContent.querySelector('form').style.display = '';
+      document.getElementById('form-success').classList.remove('show');
+      orderFormContent.querySelector('form').reset();
+      orderBackdrop.style.display = 'block';
+      orderModal.classList.add('show');
+    });
+    function closeOrderModal() {
+      orderModal.classList.remove('show');
+      orderBackdrop.style.display = 'none';
+    }
+    document.getElementById('close-order').addEventListener('click', closeOrderModal);
+    orderBackdrop.addEventListener('click', closeOrderModal);
+    document.getElementById('close-success').addEventListener('click', closeOrderModal);
+    const WEBHOOK_URL = '/webhook';
+    document.getElementById('service-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const lines = [];
+      const seen = new Set();
+      for (const [key, val] of data.entries()) {
+        if (val && !seen.has(key)) { seen.add(key); lines.push(key + '：' + val); }
+      }
+      const checkboxFields = {};
+      form.querySelectorAll('input[type=checkbox]:checked').forEach(cb => {
+        if (!checkboxFields[cb.name]) checkboxFields[cb.name] = [];
+        checkboxFields[cb.name].push(cb.value);
+      });
+      for (const [name, vals] of Object.entries(checkboxFields)) {
+        if (!seen.has(name)) { seen.add(name); lines.push(name + '：' + vals.join('、')); }
+      }
+      const text = '【新需求订单】\n' + lines.join('\n');
+      try {
+        const blob = new Blob([JSON.stringify({ msgtype: 'text', text: { content: text } })], { type: 'application/json;charset=utf-8' });
+        const resp = await fetch(WEBHOOK_URL, { method: 'POST', body: blob });
+        const result = await resp.json();
+        if (result.errcode !== 0) console.warn('webhook error:', result);
+      } catch (err) {
+        console.warn('webhook request failed:', err);
+      }
+      form.style.display = 'none';
+      document.getElementById('form-success').classList.add('show');
+    });
   </script>
   <script src="assets/gallery-preview.js"></script>
 </body>
