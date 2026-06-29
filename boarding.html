@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>福拉呼啦-寄养服务</title>
+  <link rel="stylesheet" href="../assets/common.css?v=2">
+  <style>
+    .page { padding-bottom:80px; padding-top:110px; }
+    .detail-header { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; align-items:center; gap:8px; padding:8px 16px; z-index:4; background:var(--brochure-blue); }
+    .detail-header .back { width:0; height:0; border-top:8px solid transparent; border-bottom:8px solid transparent; border-right:12px solid #fff; cursor:pointer; flex-shrink:0; }
+    .detail-header .title { font-size:16px; font-weight:950; color:#fff; white-space:nowrap; }
+    .detail-body { margin:0 12px; padding:20px 16px 24px; background:var(--paper); border-radius:0 0 30px 30px; border:3px solid var(--green); border-top:0; position:relative; }
+    .detail-body::before { content:""; position:absolute; top:-12px; left:-8px; right:-8px; height:24px; background:var(--green); border-radius:0 0 20px 20px; z-index:0; }
+    .detail-body > * { position:relative; z-index:1; }
+    .page-title { font-size:28px; font-weight:950; color:var(--brochure-blue-deep); margin-bottom:16px; line-height:1.2; }
+    .photo-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:20px; }
+    .photo-item { background:#fff; padding:6px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.1); transform:rotate(var(--rot,0deg)); }
+    .photo-item img { width:100%; height:90px; object-fit:cover; border-radius:4px; display:block; }
+    .photo-item:nth-child(1) { --rot:-2deg; }
+    .photo-item:nth-child(2) { --rot:1deg; }
+    .photo-item:nth-child(3) { --rot:-1deg; }
+    .photo-item:nth-child(4) { --rot:2deg; }
+    .section-badge { display:inline-flex; padding:6px 14px; border-radius:8px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; margin-bottom:12px; }
+    .numbered-list { display:grid; gap:16px; margin-bottom:20px; }
+    .numbered-item { display:flex; gap:10px; align-items:flex-start; }
+    .numbered-item .num { flex:0 0 24px; height:24px; display:grid; place-items:center; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:950; }
+    .numbered-item .content { flex:1; }
+    .numbered-item .content strong { font-size:13px; font-weight:950; color:var(--ink); }
+    .numbered-item .content p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.6; font-weight:600; }
+    .charge-note { color:var(--brochure-blue-deep); font-size:12px; font-weight:700; margin-bottom:16px; line-height:1.6; }
+    .price-table { width:100%; border-collapse:collapse; margin-bottom:16px; font-size:12px; }
+    .price-table th,.price-table td { padding:8px 6px; border:1px solid var(--line-green); text-align:center; font-weight:600; }
+    .price-table th { background:var(--green-soft); color:var(--brochure-blue-deep); font-weight:950; }
+    .price-table td:first-child { font-weight:800; }
+    .section-badge-sm { display:inline-flex; padding:5px 12px; border-radius:8px; background:var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; margin-bottom:10px; margin-top:10px; }
+    .address-text { color:var(--ink); font-size:12px; line-height:1.6; font-weight:600; }
+    .deco-bottom { display:flex; justify-content:space-around; align-items:flex-end; margin-top:16px; padding:0 20px; }
+    .bottom-bar { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:375px; padding:10px 16px; background:var(--paper); border-top:2px solid rgba(39,97,138,.08); z-index:5; }
+    .bottom-bar .btn-order { width:100%; height:48px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; font-size:16px; font-weight:950; }
+    .order-modal { position:fixed; left:50%; top:50%; width:350px; max-height:85vh; transform:translate(-50%,-50%) scale(.92); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:20; background:var(--paper); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.3); border:3px solid var(--green); overflow:visible; display:none; flex-direction:column; pointer-events:none; }
+    .order-modal.show { display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); pointer-events:auto; }
+    .order-modal .modal-box { display:flex; flex-direction:column; height:100%; overflow:hidden; }
+    .order-modal .modal-close { position:absolute; top:10px; right:10px; width:28px; height:28px; font-size:14px; background:var(--green-soft); color:var(--green-dark); border:2px solid rgba(110,157,40,.2); border-radius:50%; cursor:pointer; z-index:1; display:grid; place-items:center; line-height:1; }
+    .order-form { padding:4px 16px 12px; overflow-y:auto; flex:1; -webkit-overflow-scrolling:touch; }
+    .order-form .form-header { position:relative; text-align:center; padding:14px 16px 12px; margin:8px 10px 10px; background:linear-gradient(135deg,var(--green) 0%,rgba(182,220,98,.6) 100%); border-radius:18px; overflow:hidden; }
+    .order-form .form-header h2 { font-size:16px; font-weight:950; color:var(--brochure-blue-deep); }
+    .order-form .form-header p { font-size:11px; color:var(--brochure-blue-deep); opacity:.75; margin-top:3px; }
+    .form-group { margin-bottom:10px; }
+    .form-group label { display:block; font-size:12px; font-weight:950; color:var(--ink); margin-bottom:4px; }
+    .form-group label .req { color:#e53e3e; }
+    .form-group input,.form-group select,.form-group textarea { width:100%; padding:9px 11px; border:2px solid var(--line-green); border-radius:12px 8px 12px 10px; font-size:13px; font-weight:650; background:#fff; color:var(--ink); box-sizing:border-box; }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--green); }
+    .form-group textarea { min-height:50px; resize:vertical; line-height:1.4; }
+    .form-group select { appearance:auto; font-weight:700; }
+    .radio-group,.check-group { display:flex; flex-wrap:wrap; gap:6px; }
+    .radio-group label,.check-group label { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:950; color:var(--brochure-blue-deep); padding:5px 9px; border-radius:10px 8px 10px 9px; background:var(--green-soft); border:1.5px solid rgba(110,157,40,.2); cursor:pointer; white-space:nowrap; }
+    .radio-group label:has(input:checked),.check-group label:has(input:checked) { background:var(--green); border-color:rgba(110,157,40,.4); }
+    .radio-group input,.check-group input { accent-color:var(--brochure-blue-deep); width:14px; height:14px; }
+    .submit-btn { width:100%; height:42px; border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; cursor:pointer; margin-top:6px; margin-bottom:8px; box-shadow:0 4px 0 rgba(39,97,138,.1); }
+    .submit-btn:active { transform:translateY(2px); box-shadow:0 2px 0 rgba(39,97,138,.1); }
+    .submit-btn:disabled { opacity:.6; cursor:not-allowed; }
+    .form-success { display:none; text-align:center; padding:40px 16px; }
+    .form-success.show { display:block; }
+    .form-success .icon { font-size:44px; margin-bottom:10px; }
+    .form-success h3 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
+    .form-success p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.5; }
+    .form-success .btn { margin-top:16px; width:100%; }
+    .section-divider { display:flex; align-items:center; gap:10px; margin:14px 0 10px; }
+    .section-divider::before,.section-divider::after { content:""; flex:1; height:1.5px; background:linear-gradient(90deg,transparent,rgba(39,97,138,.12),transparent); }
+    .section-divider span { font-size:11px; font-weight:950; color:var(--brochure-blue-deep); white-space:nowrap; background:var(--green-soft); padding:3px 10px; border-radius:10px; }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <div class="page">
+      <div id="topbar-container"></div>
+      <div class="detail-header">
+        <div class="back" onclick="history.back()"></div>
+        <div class="title">寄养服务</div>
+      </div>
+
+      <div class="detail-body">
+        <h1 class="page-title">宠物寄养服务</h1>
+
+        <div class="photo-grid">
+          <div class="photo-item"><img src="../assets/images/service-boarding/boarding-1.jpg" alt="寄养环境1"></div>
+          <div class="photo-item"><img src="../assets/images/service-boarding/boarding-2.jpg" alt="寄养环境2"></div>
+          <div class="photo-item"><img src="../assets/images/service-boarding/boarding-3.jpg" alt="寄养环境3"></div>
+          <div class="photo-item"><img src="../assets/images/service-boarding/boarding-1.jpg" alt="寄养环境4"></div>
+        </div>
+
+        <div class="section-badge">服务内容</div>
+        <div class="numbered-list">
+          <div class="numbered-item">
+            <span class="num">1</span>
+            <div class="content">
+              <strong>寄养环境：</strong>
+              <p>临公园绿道，环境好，空间大，独享独立寄养单间</p>
+            </div>
+          </div>
+          <div class="numbered-item">
+            <span class="num">2</span>
+            <div class="content">
+              <strong>专业照护：</strong>
+              <p>每日科学遛放、定时喂食、清洁消毒、情绪观察</p>
+            </div>
+          </div>
+          <div class="numbered-item">
+            <span class="num">3</span>
+            <div class="content">
+              <strong>健康监测：</strong>
+              <p>每日记录精神状态、食欲、排便，异常即时联系</p>
+            </div>
+          </div>
+          <div class="number0item">
+            <span class="num">4</span>
+            <div class="content">
+              <strong>可预约接送：</strong>
+              <p>宠物专车服务，门到门接送（付费）</p>
+            </div>
+          </div>
+          <div class="numbered-item">
+            <span class="num">5</span>
+            <div class="content">
+              <strong>营养餐食：</strong>
+              <p>每日鲜食现做作为加餐或根据宠物情况提供定制营养餐（可自带粮）</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-badge">服务收费</div>
+        <p class="charge-note">寄养前需提供免疫证明，做好内外驱虫，只接全疫苗犬只</p>
+
+        <table class="price-table">
+          <thead>
+            <tr><th colspan="3">寄养收费标准</th></tr>
+            <tr><th>体重</th><th>非会员（天）</th><th>会员（天）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0-4kg</td><td>78</td><td>48</td></tr>
+            <tr><td>4-15kg</td><td>98</td><td>78</td></tr>
+            <tr><td>15-35kg</td><td>128</td><td>98</td></tr>
+            <tr><td>35-50kg</td><td>158</td><td>128</td></tr>
+            <tr><td>50kg以上</td><td>188</td><td>158</td></tr>
+          </tbody>
+        </table>
+
+        <div class="section-badge-sm">服务地址</div>
+        <p class="address-text">金牛区金府路段900号(三环内，上新桥公园)，场地面积1500—2000平米左右</p>
+
+        <div class="deco-bottom">
+          <svg class="paw" width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="8" cy="8" r="4" fill="var(--green)" opacity=".3"/><circle cx="20" cy="8" r="4" fill="var(--green)" opacity=".3"/><circle cx="5" cy="18" r="3.5" fill="var(--green)" opacity=".3"/><circle cx="23" cy="18" r="3.5" fill="var(--green)" opacity=".3"/><ellipse cx="14" cy="22" rx="7" ry="5" fill="var(--green)" opacity=".3"/></svg>
+          <svg class="medical" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="4" width="16" height="24" rx="3" stroke="var(--green)" stroke-width="2.5" fill="none" opacity=".3"/><path d="M16 10v12M10 16h12" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" opacity=".3"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <button class="btn-order service-order-btn" data-type="boarding">立即下单</button>
+    </div>
+
+    <div class="modal-mask order-modal" id="order-modal"><div class="modal-box"><button class="modal-close" id="close-order">&times;</button><div class="order-form" id="order-form-content"><div class="form-header"><h2>服务需求收集</h2><p>请填写以下信息，客服将尽快与您联系</p></div><form id="service-form"><div class="form-group"><label><span class="req">*</span>需求类型</label><select name="需求类型" id="demand-type" required><option value="">请选择需求类型</option><option value="door">宠物上门服务</option><option value="care">陪护需求</option><option value="transport">托运需求</option><option value="boarding">寄养需求</option></select></div><div class="form-group" id="service-options-group" style="display:none"><label><span class="req">*</span>服务项目</label><select name="服务选项" id="service-option"><option value="">请先选择需求类型</option></select></div><div class="section-divider"><span>客户信息</span></div><div class="form-group"><label>客户姓名</label><input type="text" name="客户姓名" placeholder="请输入您的姓名"></div><div class="form-group"><label><span class="req">*</span>联系电话</label><input type="tel" name="联系电话" placeholder="请输入电话号码" required></div><div class="section-divider"><span>宠物信息</span></div><div class="form-group"><label><span class="req">*</span>宠物姓名</label><input type="text" name="宠物姓名" placeholder="请输入宠物名字" required></div><div class="form-group"><label><span class="req">*</span>种类</label><div class="radio-group"><label><input type="radio" name="种类" value="狗狗" required><span>狗狗</span></label><label><input type="radio" name="种类" value="猫猫"><span>猫猫</span></label><label><input type="radio" name="种类" value="其他"><span>其他</span></label></div></div><div class="form-group"><label><span class="req">*</span>品种</label><input type="text" name="品种" placeholder="如：布偶、柯基、金毛等" required></div><div class="form-group"><label>宠物年龄</label><input type="text" name="宠物年龄" placeholder="如：2"></div><div class="form-group"><label>性别</label><div class="radio-group"><label><input type="radio" name="性别" value="弟弟"><span>弟弟</span></label><label><input type="radio" name="性别" value="妹妹"><span>妹妹</span></label></div></div><div class="form-group"><label>宠物体重（kg）</label><input type="text" name="宠物体重" placeholder="请输入体重"></div><div class="form-group"><label>是否绝育</label><div class="radio-group"><label><input type="radio" name="是否绝育" value="是"><span>是</span></label><label><input type="radio" name="是否绝育" value="否"><span>否</span></label></div></div><div class="form-group"><label><span class="req">*</span>是否打疫苗</label><div class="radio-group"><label><input type="radio" name="是否打疫苗" value="是" required><span>是</span></label><label><input type="radio" name="是否打疫苗" value="否"><span>否</span></label></div></div><div class="form-group"><label><span class="req">*</span>是否怀孕</label><div class="radio-group"><label><input type="radio" name="是否怀孕" value="是" required><span>是</span></label><label><input type="radio" name="是否怀孕" value="否"><span>否</span></label></div></div><div class="form-group"><label><span class="req">*</span>性格特点</label><div class="check-group"><label><input type="checkbox" name="性格特点" value="E，外向"><span>外向</span></label><label><input type="checkbox" name="性格特点" value="I,内向"><span>内向</span></label><label><input type="checkbox" name="性格特点" value="爱社交"><span>爱社交</span></label><label><input type="checkbox" name="性格特点" value="不爱社交"><span>不爱社交</span></label><label><input type="checkbox" name="性格特点" value="有攻击性，要注意"><span>有攻击性</span></label><label><input type="checkbox" name="性格特点" value="无攻击性"><span>无攻击性</span></label></div></div><div class="form-group"><label><span class="req">*</span>服务时间开始</label><input type="datetime-local" name="服务时间开始" required></div><div class="form-group"><label><span class="req">*</span>服务时间结束</label><input type="datetime-local" name="服务时间结束" required></div><div class="form-group"><label>其他备注</label><textarea name="其他备注" placeholder="注意事项等，如有多只请备注，性格特别请注明"></textarea></div><div class="type-fields" id="fields-door" style="display:none"><div class="section-divider"><span>宠物上门服务信息</span></div><div class="form-group"><label><span class="req">*</span>上门地址</label><input type="text" name="上门地址" data-required></div><div class="form-group"><label><span class="req">*</span>具体单元门号</label><input type="text" name="具体单元门号" data-required></div><div class="form-group"><label><span class="req">*</span>电梯还是楼梯</label><div class="radio-group"><label><input type="radio" name="电梯还是楼梯" value="电梯" data-required><span>电梯</span></label><label><input type="radio" name="电梯还是楼梯" value="楼梯"><span>楼梯</span></label></div></div><div class="form-group"><label><span class="req">*</span>是否有实时监控</label><div class="radio-group"><label><input type="radio" name="是否有实时监控" value="是" data-required><span>是</span></label><label><input type="radio" name="是否有实时监控" value="否"><span>否</span></label></div></div></div><div class="type-fields" id="fields-care" style="display:none"><div class="section-divider"><span>陪护信息</span></div><div class="form-group"><label>预约就诊内容</label><div class="check-group"><label><input type="checkbox" name="预约就诊内容" value="初次就诊"><span>初次就诊</span></label><label><input type="checkbox" name="预约就诊内容" value="针灸"><span>针灸</span></label><label><input type="checkbox" name="预约就诊内容" value="输液"><span>输液</span></label><label><input type="checkbox" name="预约就诊内容" value="激光"><span>激光</span></label><label><input type="checkbox" name="预约就诊内容" value="其他"><span>其他</span></label></div></div><div class="form-group"><label><span class="req">*</span>预约预留电话</label><input type="tel" name="预约预留电话" data-required></div><div class="form-group"><label>预约就诊医生</label><input type="text" name="预约就诊医生"></div></div><div class="type-fields" id="fields-transport" style="display:none"><div class="section-divider"><span>托运信息</span></div><div class="form-group"><label><span class="req">*</span>托运出发地</label><input type="text" name="托运出发地" data-required></div><div class="form-group"><label><span class="req">*</span>出发地具体单元门号</label><input type="text" name="出发地单元门号" data-required></div><div class="form-group"><label><span class="req">*</span>托运目的地</label><input type="text" name="托运目的地" data-required></div><div class="form-group"><label><span class="req">*</span>目的地具体单元门号</label><input type="text" name="目的地单元门号" data-required></div><div class="form-group"><label>随行物品</label><input type="text" name="随行物品"></div></div><div class="type-fields" id="fields-boarding" style="display:none"><div class="section-divider"><span>寄养信息</span></div><div class="form-group"><label><span class="req">*</span>出发接宠电话</label><input type="tel" name="出发接宠电话" data-required></div><div class="form-group"><label><span class="req">*</span>到达接宠电话</label><input type="tel" name="到达接宠电话" data-required></div></div><button type="submit" class="submit-btn">立即下单</button></form><div class="form-success" id="form-success"><div class="icon">✅</div><h3>提交成功！</h3><p>客服已收到您的需求，将尽快与您联系确认服务安排。</p><button class="btn btn-primary" id="close-success">关闭</button></div></div></div></div>
+  </main>
+  <script src="../assets/component-loader.js?v=2"></script>
+  <script src="../data/contact.js?v=2"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => { ComponentLoader.setActiveTab('index.html'); });
+    const DATA = contactData;
+    const DEMAND_TYPES = DATA.demandTypes;
+    const TYPE_MAP = {};
+    DEMAND_TYPES.forEach(t => TYPE_MAP[t.key] = t.code);
+    const demandTypeEl = document.getElementById('demand-type');
+    const serviceOptionGroup = document.getElementById('service-options-group');
+    const serviceOptionEl = document.getElementById('service-option');
+    const typeFieldEls = {};
+    DEMAND_TYPES.forEach(t => { typeFieldEls[t.key] = document.getElementById('fields-' + t.key); });
+    function clearTypeRequired() { document.querySelectorAll('.type-fields [required]').forEach(el => el.removeAttribute('required')); }
+    function setTypeRequired(typeKey) { const cfg = DEMAND_TYPES.find(t => t.key === typeKey); if (!cfg) return; cfg.fields.forEach(f => { if (f.required) { const el = document.querySelector(`[name="${f.name}"]`); if (el) el.setAttribute('required', ''); } }); }
+    demandTypeEl.addEventListener('change', () => { const type = demandTypeEl.value; clearTypeRequired(); Object.values(typeFieldEls).forEach(el => { if (el) el.style.display = 'none'; }); const cfg = DEMAND_TYPES.find(t => t.key === type); if (cfg) { typeFieldEls[type].style.display = ''; setTypeRequired(type); if (cfg.serviceOptions.length === 1) { serviceOptionEl.innerHTML = '<option selected>' + cfg.serviceOptions[0] + '</option>'; serviceOptionEl.disabled = true; serviceOptionGroup.style.display = ''; } else { serviceOptionEl.innerHTML = '<option value="">请选择服务项目</option>' + cfg.serviceOptions.map(o => '<option>' + o + '</option>').join(''); serviceOptionEl.disabled = false; serviceOptionGroup.style.display = ''; } } else { serviceOptionGroup.style.display = 'none'; serviceOptionEl.innerHTML = ''; serviceOptionEl.disabled = false; } });
+    const orderModal = document.getElementById('order-modal');
+    const orderFormContent = document.getElementById('order-form-content');
+    const orderBackdrop = document.createElement('div');
+    orderBackdrop.style.cssText = 'position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.4);display:none;';
+    document.body.appendChild(orderBackdrop);
+    function openOrderForm(prefillType) { const form = orderFormContent.querySelector('form'); form.style.display = ''; form.reset(); clearTypeRequired(); document.getElementById('form-success').classList.remove('show'); Object.values(typeFieldEls).forEach(el => { if (el) el.style.display = 'none'; }); serviceOptionGroup.style.display = 'none'; serviceOptionEl.innerHTML = ''; serviceOptionEl.disabled = false; if (prefillType) { demandTypeEl.value = prefillType; demandTypeEl.dispatchEvent(new Event('change')); } orderBackdrop.style.display = 'block'; orderModal.classList.add('show'); }
+    function closeOrderModal() { orderModal.classList.remove('show'); orderBackdrop.style.display = 'none'; }
+    document.getElementById('close-order').addEventListener('click', closeOrderModal);
+    orderBackdrop.addEventListener('click', closeOrderModal);
+    document.getElementById('close-success').addEventListener('click', closeOrderModal);
+    document.querySelectorAll('.service-order-btn').forEach(btn => { btn.addEventListener('click', () => openOrderForm(btn.dataset.type)); });
+    function getTodayStr() { const d = new Date(); return d.getFullYear().toString() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0'); }
+    function buildPayload(form) { const getVal = name => (form.querySelector(`[name="${name}"]`) || {}).value || ''; const getSelect = name => { const el = form.querySelector(`[name="${name}"]:checked`); const v = el ? el.value : ''; return v ? [{ text: v }] : []; }; const getCheckAll = name => Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(c => ({ text: c.value })); const getNum = name => { const v = parseFloat(getVal(name)); return isNaN(v) ? 0 : v; }; const getDateTime = name => { const v = getVal(name); return v ? new Date(v).getTime().toString() : ''; }; const values = {}; values.f0muP1 = [{ text: DATA.orderStatus }]; values.fVFGi1 = TYPE_MAP[demandTypeEl.value] || ''; values.fuJi1Z = getTodayStr(); const allFields = [...DATA.customerFields, ...DATA.petFields, ...DATA.serviceFields]; const cfg = DEMAND_TYPES.find(t => t.key === demandTypeEl.value); if (cfg) allFields.push(...cfg.fields); allFields.forEach(f => { if (!f.sheetId) return; let val; switch (f.type) { case 'radio': val = getSelect(f.name); if (val.length === 0) return; break; case 'checkbox': val = getCheckAll(f.name); if (val.length === 0) return; break; case 'number': val = getNum(f.name); if (val === 0) return; break; case 'datetime': val = getDateTime(f.name); if (!val) return; break; default: val = getVal(f.name); if (!val) return; } values[f.sheetId] = val; }); return { add_records: [{ values }] }; }
+    document.getElementById('service-form').addEventListener('submit', async e => { e.preventDefault(); const form = e.target; if (!form.checkValidity()) { form.reportValidity(); return; } const submitBtn = form.querySelector('.submit-btn'); submitBtn.disabled = true; submitBtn.textContent = '提交中...'; const payload = buildPayload(form); try { await fetch(DATA.webhook, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); } catch (err) { console.warn('webhook request failed:', err); } submitBtn.disabled = false; submitBtn.textContent = '立即下单'; form.style.display = 'none'; document.getElementById('form-success').classList.add('show'); });
+  </script>
+</body>
+</html>

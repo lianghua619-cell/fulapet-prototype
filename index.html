@@ -5,39 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>福拉呼啦-首页</title>
   <link rel="stylesheet" href="assets/common.css?v=2">
-  <link rel="stylesheet" href="assets/gallery-preview.css?v=2">
   <style>
     .page { padding-bottom:98px; padding-top:62px; }
-    .page-header { position:relative; z-index:2; }
-    .home-hero { position:relative; z-index:2; margin:18px 16px 0; padding:18px; height:calc(100vh - 180px); border-radius:44px 26px 42px 24px; background:var(--paper); border:5px solid var(--green); box-shadow:var(--shadow-paper); overflow:hidden; display:flex; flex-direction:column; align-items:center; }
-    .home-hero::before { content:""; position:absolute; left:-34px; top:-28px; width:300px; height:104px; border-radius:58px 76px 44px 62px; background:var(--green); transform:rotate(-3deg); }
-    .home-hero::after { content:""; position:absolute; right:20px; top:18px; width:42px; height:33px; border:3px solid var(--brochure-blue); border-top:0; border-radius:0 0 22px 22px; opacity:.55; transform:rotate(8deg); }
-    .eyebrow { position:relative; z-index:1; margin-top:0; display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--paper-light); color:var(--green-dark); border:2px solid rgba(255,255,255,.7); font-size:12px; font-weight:950; flex-shrink:0; }
-    .home-hero h1 { position:relative; z-index:1; margin-top:10px; font-size:34px; line-height:1.08; font-weight:950; color:var(--brochure-blue); letter-spacing:2px; }
-    .hero-slogan { position:relative; z-index:1; margin-top:8px; color:var(--brochure-blue); font-size:21px; font-weight:950; letter-spacing:1px; }
-    .hero-pets { position:relative; z-index:1; width:160px; height:auto; display:block; margin:6px auto 0; flex:1; object-fit:contain; }
-    .service-ribbon { position:relative; z-index:2; margin:4px auto 0; width:190px; height:46px; display:grid; place-items:center; border-radius:22px 28px 20px 26px; background:var(--green); color:#111; font-size:22px; font-weight:950; letter-spacing:2px; transform:rotate(-1deg); flex-shrink:0; }
-    .hero-services { position:relative; z-index:1; display:grid; gap:6px; width:210px; margin:10px auto 0; flex-shrink:0; }
-    .hero-services a { display:grid; place-items:center; height:32px; border-radius:15px 18px 15px 17px; background:var(--paper-light); border:3px solid var(--green); color:var(--brochure-blue); font-size:14px; font-weight:950; text-decoration:none; }
-    .hero-services a:active { background:var(--green); }
-    .home-hero p { position:relative; z-index:1; margin-top:8px; color:var(--text-sub); font-size:12px; line-height:1.5; font-weight:700; text-align:center; flex-shrink:0; }
-    .brand-card span { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:11px; font-weight:950; }
-    .brand-card h2 { margin-top:10px; font-size:20px; line-height:1.32; font-weight:950; color:var(--brochure-blue-deep); }
-    .brand-card p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.65; font-weight:650; }
-    .brand-card h3 { margin-top:10px; font-size:15px; font-weight:950; color:var(--brochure-blue-deep); }
-    .brand-divider { margin:12px 0; height:1.5px; background:linear-gradient(90deg,transparent,rgba(39,97,138,.12),transparent); }
-    .stat, .team-card, .role { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .home-hero { position:relative; z-index:2; margin:18px 16px 0; border-radius:28px 22px 30px 24px; background:linear-gradient(135deg,#FFF8EE 0%,#FFFAF0 100%); border:3px solid var(--green); box-shadow:var(--shadow-paper); overflow:hidden; height:240px; }
+    .hero-slider { display:flex; transition:transform .5s ease; height:100%; }
+    .hero-slide { min-width:100%; height:100%; display:flex; flex-direction:row; align-items:center; padding:20px; box-sizing:border-box; gap:12px; }
+    .hero-slide .slide-text { flex:1; min-width:0; }
+    .hero-slide .slide-text .eyebrow { display:inline-flex; padding:5px 10px; border-radius:14px 20px 14px 18px; background:var(--green-soft); color:var(--green-dark); border:2px solid rgba(255,255,255,.7); font-size:11px; font-weight:950; }
+    .hero-slide .slide-text h1 { margin-top:8px; font-size:22px; font-weight:950; color:var(--brochure-blue); line-height:1.3; }
+    .hero-slide .slide-text .slogan { margin-top:6px; color:var(--text-sub); font-size:12px; font-weight:650; }
+    .hero-slide .slide-text .badges { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+    .hero-slide .slide-text .badges span { padding:3px 8px; border-radius:8px 12px 8px 10px; background:var(--green); color:var(--brochure-blue-deep); font-size:10px; font-weight:950; }
+    .hero-slide .slide-img { flex:0 0 130px; height:130px; border-radius:16px; overflow:hidden; background:#EAF4F7; }
+    .hero-slide .slide-img img { width:100%; height:100%; object-fit:cover; }
+    .hero-slide .slide-img svg { width:100%; height:100%; object-fit:contain; }
+    .hero-dots { display:flex; justify-content:center; gap:6px; position:absolute; bottom:12px; left:0; right:0; }
+    .hero-dots span { width:8px; height:8px; border-radius:999px; background:rgba(39,97,138,.2); transition:background .3s; cursor:pointer; }
+    .hero-dots span.active { background:var(--green); }
+    .section-title { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+    .section-title h2 { display:inline-flex; padding:6px 12px; border-radius:14px 20px 14px 18px; background:var(--green); color:var(--brochure-blue-deep); font-size:15px; font-weight:950; }
+    .section-title span { color:var(--text-sub); font-size:12px; font-weight:700; }
+    .service-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .service-grid-card { display:flex; flex-direction:column; align-items:center; padding:18px 12px 14px; border-radius:22px 16px 24px 18px; background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); text-decoration:none; color:inherit; text-align:center; }
+    .service-grid-card:active { transform:scale(.97); }
+    .service-grid-card .icon { width:50px; height:50px; display:grid; place-items:center; border-radius:16px; background:var(--green-soft); border:2px solid rgba(110,157,40,.2); overflow:hidden; }
+    .service-grid-card h3 { margin-top:10px; font-size:15px; font-weight:950; }
+    .service-grid-card p { margin-top:4px; color:var(--text-sub); font-size:11px; line-height:1.4; font-weight:650; }
+    .service-grid-card .card-btn { margin-top:10px; display:inline-flex; align-items:center; gap:4px; padding:6px 14px; border-radius:12px 16px 12px 14px; background:var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:950; border:2px solid rgba(110,157,40,.3); text-decoration:none; }
     .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
-    .stat { padding:12px 5px; border-radius:18px 14px 20px 15px; text-align:center; }
+    .stat { padding:12px 5px; border-radius:18px 14px 20px 15px; background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); text-align:center; }
     .stat strong { display:block; color:var(--brochure-blue); font-size:19px; font-weight:950; }
     .stat span { display:block; margin-top:6px; color:var(--ink); font-size:11px; font-weight:800; line-height:1.25; }
-    .team-card { padding:16px; border-radius:24px 18px 26px 20px; }
-    .team-photo { height:132px; overflow:hidden; display:grid; place-items:center; border-radius:22px 16px 22px 18px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
-    .team-photo img { width:100%; height:100%; display:block; object-fit:cover; }
-    .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px; }
-    .role { padding:12px; border-radius:18px 14px 18px 16px; background:var(--paper-light); }
-    .role h3 { font-size:13px; font-weight:950; }
-    .role p { margin-top:5px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:650; }
   </style>
 </head>
 <body>
@@ -46,44 +44,77 @@
       <div id="topbar-container"></div>
 
       <section class="home-hero">
-        <span class="eyebrow">成都本地一站式宠物照护</span>
-        <h1>福拉呼啦</h1>
-        <div class="hero-slogan">对生命的温柔守护</div>
-        <img class="hero-pets" src="assets/hero-pets.svg" alt="猫狗拥抱插画">
-        <div class="service-ribbon">一站式服务</div>
-        <div class="hero-services">
-          <a href="service.html#escort">宠物医疗陪护</a>
-          <a href="service.html#home">宠物上门服务</a>
-          <a href="service.html#boarding">宠物寄养服务</a>
-          <a href="service.html#transport">宠物托运服务</a>
-        </div>
-        <p>从公益救助经验出发，把毛孩子安排妥当。</p>
-      </section>
-
-      <section class="section">
-        <div class="section-title"><h2>品牌数据</h2></div>
-        <div class="stats">
-          <div class="stat"><strong>500+</strong><span>救助与领养</span></div>
-          <div class="stat"><strong>8年</strong><span>公益救助</span></div>
-          <div class="stat"><strong>4类</strong><span>核心服务</span></div>
-          <div class="stat"><strong>SOP</strong><span>标准流程</span></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-title"><h2>团队与标准</h2></div>
-        <div class="team-card">
-          <div class="team-photo"><img src="assets/images/brand/team-2.jpg" alt="福拉呼啦团队现场记录"></div>
-          <div class="team-grid">
-            <div class="role"><h3>服务沟通</h3><p>确认需求、服务范围与照护建议。</p></div>
-            <div class="role"><h3>照护执行</h3><p>按约定流程进行陪护、上门或寄养照护。</p></div>
-            <div class="role"><h3>过程反馈</h3><p>同步关键节点，异常情况及时沟通。</p></div>
-            <div class="role"><h3>公益协作</h3><p>持续参与救助与正确养宠传播。</p></div>
+        <div class="hero-slider" id="hero-slider">
+          <div class="hero-slide">
+            <div class="slide-text">
+              <span class="eyebrow">成都本地宠物照护</span>
+              <h1>福拉呼啦</h1>
+              <p class="slogan">对生命的温柔守护</p>
+              <div class="badges"><span>全程跟踪</span><span>专业陪护</span><span>安全可靠</span></div>
+            </div>
+            <div class="slide-img"><img src="assets/hero-pets.svg" alt="猫狗插画"></div>
+          </div>
+          <div class="hero-slide">
+            <div class="slide-text">
+              <span class="eyebrow">医疗陪护</span>
+              <h1>专业陪护 值得信赖</h1>
+              <p class="slogan">全程陪同就医，诊后及时反馈</p>
+              <div class="badges"><span>全程陪同</span><span>诊后反馈</span></div>
+            </div>
+            <div class="slide-img"><img src="assets/images/service-medical/escort-1.jpg" alt="医疗陪护"></div>
+          </div>
+          <div class="hero-slide">
+            <div class="slide-text">
+              <span class="eyebrow">上门服务</span>
+              <h1>安心上门 贴心照护</h1>
+              <p class="slogan">喂食换水、清洁陪伴、状态反馈</p>
+              <div class="badges"><span>到家照护</span><span>状态反馈</span></div>
+            </div>
+            <div class="slide-img"><img src="assets/images/service-home/cat-visit-1.jpg" alt="上门服务"></div>
+          </div>
+          <div class="hero-slide">
+            <div class="slide-text">
+              <span class="eyebrow">寄养服务</span>
+              <h1>安心寄养 每日反馈</h1>
+              <p class="slogan">日常喂养、健康观察、照片反馈</p>
+              <div class="badges"><span>安心寄养</span><span>每日反馈</span></div>
+            </div>
+            <div class="slide-img"><img src="assets/images/service-boarding/boarding-1.jpg" alt="寄养服务"></div>
           </div>
         </div>
+        <div class="hero-dots" id="hero-dots">
+          <span class="active"></span><span></span><span></span><span></span>
+        </div>
       </section>
 
-    </div>
+      <section class="section">
+        <div class="section-title"><h2>宠物服务</h2><span>选择服务类型</span></div>
+        <div class="service-grid">
+          <a class="service-grid-card" href="escort.html">
+            <div class="icon"><img src="assets/ph1.jpg" alt="医疗陪护" style="width:32px;height:32px;"></div>
+            <h3>医疗陪护</h3>
+            <p>协助就医、流程沟通、诊后反馈</p>
+            <span class="card-btn">立即预约 ›</span>
+          </a>
+          <a class="service-grid-card" href="home-visit.html">
+            <div class="icon"><img src="assets/sm1.jpg" alt="上门服务" style="width:32px;height:32px;"></div>
+            <h3>上门服务</h3>
+            <p>喂食换水、清洁陪伴、状态反馈</p>
+            <span class="card-btn">立即预约 ›</span>
+          </a>
+          <a class="service-grid-card" href="boarding.html">
+            <div class="icon"><img src="assets/sm2.jpg" alt="寄养服务" style="width:32px;height:32px;"></div>
+            <h3>寄养服务</h3>
+            <p>日常喂养、健康观察、照片反馈</p>
+            <span class="card-btn">立即预约 ›</span>
+          </a>
+          <a class="service-grid-card" href="transport.html">
+            <div class="icon"><img src="assets/ph2.jpg" alt="托运服务" style="width:32px;height:32px;"></div>
+            <h3>托运服务</h3>
+            <p>城内跨城、安全托运、全程跟踪</p>
+            <span class="card-btn">立即预约 ›</span>
+          </a>
+        </div>
       </section>
 
     </div>
@@ -92,10 +123,23 @@
     <div id="tabbar-container"></div>
   </main>
   <script src="assets/component-loader.js?v=2"></script>
-  <script src="assets/gallery-preview.js?v=2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ComponentLoader.setActiveTab('index.html');
+      const slider = document.getElementById('hero-slider');
+      const dots = document.querySelectorAll('#hero-dots span');
+      let current = 0;
+      const total = dots.length;
+      function goToSlide(n) {
+        current = n;
+        slider.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+      setInterval(() => { goToSlide((current + 1) % total); }, 3000);
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToSlide(i));
+        dot.style.cursor = 'pointer';
+      });
     });
   </script>
 </body>

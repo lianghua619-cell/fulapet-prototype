@@ -10,11 +10,11 @@
     html { scroll-behavior:smooth; }
     .page { padding-bottom:96px; padding-top:148px; }
     .page-header { padding:0 16px 8px; position:relative; z-index:2; }
-    .quick-tabs { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; gap:8px; padding:10px 16px; overflow-x:auto; scrollbar-width:none; background:var(--brochure-blue); z-index:3; }
+    .quick-tabs { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; gap:6px; padding:10px 10px; overflow-x:auto; scrollbar-width:none; background:var(--brochure-blue); z-index:3; }
     .quick-tabs::before { content:""; position:absolute; right:0; top:0; bottom:0; width:40px; background:linear-gradient(90deg,transparent,var(--brochure-blue)); pointer-events:none; z-index:1; }
     .quick-tabs::after { content:""; position:absolute; bottom:0; left:0; right:0; height:8px; background:linear-gradient(180deg,rgba(0,0,0,.08),transparent); pointer-events:none; }
     .quick-tabs::-webkit-scrollbar { display:none; }
-    .quick-tabs a { flex:0 0 auto; padding:9px 14px; border-radius:18px 24px 18px 22px; background:var(--paper); border:3px solid var(--line-green); color:var(--brochure-blue-deep); text-decoration:none; font-size:13px; font-weight:900; box-shadow:0 3px 0 rgba(39,97,138,.12); transition:background .2s,border-color .2s; }
+    .quick-tabs a { flex:0 0 auto; padding:9px 10px; border-radius:18px 24px 18px 22px; background:var(--paper); border:3px solid var(--line-green); color:var(--brochure-blue-deep); text-decoration:none; font-size:13px; font-weight:900; box-shadow:0 3px 0 rgba(39,97,138,.12); transition:background .2s,border-color .2s; white-space:nowrap; }
     .quick-tabs a.active { background:var(--green); border-color:rgba(246,243,223,.6); }
     .section { scroll-margin-top:130px; }
     .service-card,.note-card,.step { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
@@ -48,17 +48,12 @@
     .partner-card p { margin-top:10px; color:var(--text-sub); font-size:13px; line-height:1.6; font-weight:650; }
     .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
     .chip { padding:7px 10px; border-radius:16px 20px 16px 18px; background:var(--green-soft); color:var(--green-dark); border:1px solid rgba(110,157,40,.18); font-size:12px; font-weight:950; }
-    .wechat-connect { padding:20px 16px; border-radius:28px 22px 30px 24px; background:linear-gradient(135deg,var(--paper) 0%,var(--green-soft) 100%); border:3px solid var(--green); box-shadow:var(--shadow-paper); text-align:center; }
-    .wechat-connect-badge { display:inline-flex; padding:6px 12px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:12px; font-weight:950; }
-    .wechat-connect-header h2 { margin-top:10px; font-size:18px; font-weight:950; color:var(--brochure-blue-deep); }
-    .wechat-connect-header p { margin-top:6px; color:var(--text-sub); font-size:13px; font-weight:650; }
+    .wechat-connect { padding:16px; border-radius:28px 22px 30px 24px; background:linear-gradient(135deg,var(--paper) 0%,var(--green-soft) 100%); border:3px solid var(--green); box-shadow:var(--shadow-paper); text-align:center; }
     .wechat-connect-qr { margin:16px auto; }
-    .qr-placeholder { display:inline-flex; flex-direction:column; align-items:center; gap:10px; padding:20px; border-radius:20px; background:#fff; border:3px solid var(--line-green); box-shadow:0 4px 0 rgba(39,97,138,.08); }
+    .qr-placeholder { display:inline-flex; flex-direction:column; align-items:center; gap:10px; padding:16px; border-radius:16px; background:#fff; border:3px solid var(--line-green); box-shadow:0 4px 0 rgba(39,97,138,.08); }
     .qr-logo { width:60px; height:auto; }
     .qr-box-sm { width:120px; height:120px; display:grid; place-items:center; border-radius:16px; background:#EAF4F7; border:3px dashed rgba(39,97,138,.2); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
     .qr-tip { font-size:11px; color:var(--text-sub); font-weight:700; }
-    .wechat-connect-features { display:flex; justify-content:center; gap:16px; margin-top:14px; }
-    .feature-item { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:800; color:var(--brochure-blue-deep); }
     .order-modal { position:fixed; left:50%; top:50%; width:350px; max-height:85vh; transform:translate(-50%,-50%) scale(.92); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:20; background:var(--paper); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.3); border:3px solid var(--green); overflow:visible; display:none; flex-direction:column; pointer-events:none; }
     .order-modal.show { display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); pointer-events:auto; }
     .order-modal .modal-box { display:flex; flex-direction:column; height:100%; overflow:hidden; }
@@ -107,16 +102,11 @@
     <div class="page">
       <div id="topbar-container"></div>
 
-      <section class="page-header">
-        <h1>四大核心服务</h1>
-        <p>从公益救助经验出发，了解宠物情况，沟通合适的照护安排。</p>
-      </section>
-
       <nav class="quick-tabs">
-        <a class="active" href="#escort">医疗陪护</a>
+        <a class="active" href="#escort">陪护</a>
         <a href="#home">上门服务</a>
-        <a href="#boarding">寄养服务</a>
-        <a href="#transport">托运服务</a>
+        <a href="#boarding">寄养</a>
+        <a href="#transport">托运</a>
       </nav>
 
       <section class="section" id="services">
@@ -158,22 +148,11 @@
 
       <section class="section" id="contact">
         <div class="wechat-connect">
-          <div class="wechat-connect-header">
-            <span class="wechat-connect-badge">微信咨询</span>
-            <h2>扫码添加客服</h2>
-            <p>在线沟通服务时间、宠物情况与照护需求</p>
-          </div>
           <div class="wechat-connect-qr">
             <div class="qr-placeholder">
-              <img src="assets/logo-white.svg" alt="福拉呼啦" class="qr-logo">
-              <div class="qr-box-sm">客服微信</div>
+              <img src="assets/weixin.jpg" alt="企业微信二维码" style="width:180px;height:auto;border-radius:12px;">
               <span class="qr-tip">长按识别二维码</span>
             </div>
-          </div>
-          <div class="wechat-connect-features">
-            <div class="feature-item"><span>一对一沟通</span></div>
-            <div class="feature-item"><span>需求评估</span></div>
-            <div class="feature-item"><span>服务安排</span></div>
           </div>
         </div>
       </section>
