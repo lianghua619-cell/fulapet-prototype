@@ -372,17 +372,13 @@
     document.getElementById('service-form').addEventListener('submit', async e => {
       e.preventDefault();
       const form = e.target;
-      console.log('form submitted');
-      if (!form.checkValidity()) { console.log('validation failed'); form.reportValidity(); return; }
-      console.log('validation passed');
+      if (!form.checkValidity()) { form.reportValidity(); return; }
       const submitBtn = form.querySelector('.submit-btn');
       submitBtn.disabled = true;
       submitBtn.textContent = '提交中...';
       const payload = buildPayload(form);
-      console.log('payload:', JSON.stringify(payload));
       try {
         const resp = await fetch(DATA.webhook, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        console.log('fetch done, type:', resp.type, 'status:', resp.status);
       } catch (err) {
         console.warn('webhook request failed:', err);
       }

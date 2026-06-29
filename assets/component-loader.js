@@ -7,8 +7,9 @@ const ComponentLoader = {
     topbar: `
       <header class="topbar">
         <a class="brand-lockup" href="index.html" aria-label="福拉呼啦 FulaFla Pets">
-          <img class="top-logo" src="assets/logo-white.svg" alt="福拉呼啦 FulaFla Pets">
+          <img class="top-logo" src="assets/logo-white.png" alt="福拉呼啦 FulaFla Pets">
         </a>
+        <img class="top-slogan" src="assets/logo-text-white.png" alt="有爱有陪伴更安心">
       </header>
     `,
     tabbar: `

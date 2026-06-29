@@ -90,6 +90,11 @@ body {
   width: 128px;
   height: auto;
 }
+.top-slogan {
+  height: 22px;
+  margin-left: auto;
+  opacity: .6;
+}
 
 /* ==================== 页面标题区 ==================== */
 .page-header {
