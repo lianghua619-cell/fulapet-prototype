@@ -3,49 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>福拉呼啦宠物-首页</title>
+  <title>福拉呼啦-首页</title>
   <link rel="stylesheet" href="assets/common.css">
   <link rel="stylesheet" href="assets/gallery-preview.css">
   <style>
-    .page { padding-bottom: 98px; padding-top: 62px; }
-    .home-hero { position: relative; z-index: 2; margin: 18px 16px 0; padding: 18px; min-height: 430px; border-radius: 44px 26px 42px 24px; background: var(--paper); border: 5px solid var(--green); box-shadow: var(--shadow-paper); overflow: hidden; }
-    .home-hero::before { content:""; position:absolute; left: -34px; top: -28px; width: 300px; height: 104px; border-radius: 58px 76px 44px 62px; background: var(--green); transform: rotate(-3deg); }
-    .home-hero::after { content:""; position:absolute; right: 20px; top: 18px; width: 42px; height: 33px; border: 3px solid var(--brochure-blue); border-top: 0; border-radius: 0 0 22px 22px; opacity:.55; transform: rotate(8deg); }
-    .brand-mark { position: relative; z-index: 1; color: var(--brochure-blue-deep); font-size: 12px; font-weight: 950; letter-spacing: .5px; }
-    .eyebrow { position: relative; z-index: 1; margin-top: 54px; display: inline-flex; padding: 6px 10px; border-radius: 18px 24px 18px 22px; background: var(--paper-light); color: var(--green-dark); border: 2px solid rgba(255,255,255,.7); font-size: 12px; font-weight: 950; }
-    .home-hero h1 { position: relative; z-index: 1; margin-top: 10px; width: 245px; font-size: 34px; line-height: 1.08; font-weight: 950; color: var(--brochure-blue); letter-spacing: 2px; }
-    .hero-slogan { position: relative; z-index: 1; margin-top: 8px; color: var(--brochure-blue); font-size: 21px; font-weight: 950; letter-spacing: 1px; }
-    .hero-pets { position: relative; z-index: 1; width: 180px; height: auto; display: block; margin: 8px auto 0; }
-    .service-ribbon { position: relative; z-index: 2; margin: -4px auto 0; width: 190px; height: 50px; display: grid; place-items: center; border-radius: 22px 28px 20px 26px; background: var(--green); color: #111; font-size: 24px; font-weight: 950; letter-spacing: 2px; transform: rotate(-1deg); }
-    .hero-services { position: relative; z-index: 1; display: grid; gap: 8px; width: 210px; margin: 13px auto 0; }
-    .hero-services span { display: grid; place-items: center; height: 34px; border-radius: 15px 18px 15px 17px; background: var(--paper-light); border: 3px solid var(--green); color: var(--brochure-blue); font-size: 15px; font-weight: 950; }
-    .hero-plus { text-align: center; color: var(--brochure-blue); font-size: 22px; font-weight: 950; line-height: .7; }
-    .home-hero p { position: relative; z-index: 1; margin-top: 12px; color: var(--text-sub); font-size: 13px; line-height: 1.65; font-weight: 700; text-align: center; }
-    .hero-actions { position: relative; z-index: 1; display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
-    .btn { height: 42px; padding: 0 16px; display: inline-flex; }
-    .service-list { display: grid; gap: 11px; }
-    .service-entry { position: relative; display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 22px 16px 22px 18px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.12); text-decoration: none; color: inherit; }
-    .icon-word { flex: 0 0 43px; height: 43px; display: grid; place-items: center; border-radius: 18px 14px 18px 15px; background: var(--brochure-blue); color: var(--paper-light); border: 2px solid rgba(255,255,255,.55); font-size: 15px; font-weight: 950; }
-    .icon-word.green { background: var(--green); color: var(--brochure-blue-deep); }
-    .service-entry__body { flex: 1; min-width: 0; }
-    .service-entry__body h3 { font-size: 15px; font-weight: 950; color: var(--ink); }
-    .service-entry__body p { margin-top: 4px; color: var(--text-sub); font-size: 12px; line-height: 1.45; font-weight: 650; }
-    .price-tag { padding: 6px 9px; border-radius: 16px 20px 16px 18px; background: var(--green-soft); color: var(--green-dark); border: 2px solid rgba(182,220,98,.8); font-size: 11px; font-weight: 950; white-space: nowrap; }
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .stat { padding: 12px 5px; min-height: 74px; border-radius: 18px 14px 20px 15px; background: var(--paper); border: 3px solid var(--line-green); text-align: center; box-shadow: 0 4px 0 rgba(39,97,138,.1); }
-    .stat strong { display: block; color: var(--brochure-blue); font-size: 19px; font-weight: 950; line-height: 1.2; }
-    .stat span { display: block; margin-top: 6px; color: var(--ink); font-size: 11px; font-weight: 800; line-height: 1.25; }
-    .story-card { display: block; padding: 16px; border-radius: 22px 16px 24px 18px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.1); text-decoration: none; color: inherit; }
-    .story-card__top { display: flex; gap: 12px; align-items: center; }
-    .story-photo, .case-photo { position: relative; overflow: hidden; display: grid; place-items: center; background: #EAF4F7; border: 3px solid var(--green); color: var(--brochure-blue-deep); font-weight: 900; text-align: center; }
-    .story-photo img, .case-photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .story-photo { flex: 0 0 88px; height: 76px; border-radius: 18px 14px 18px 16px; font-size: 12px; }
-    .story-card h3 { font-size: 16px; font-weight: 950; }
-    .story-card p { margin-top: 8px; color: var(--text-sub); font-size: 13px; line-height: 1.6; font-weight: 650; }
-    .case-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
-    .case-card { overflow: hidden; border-radius: 18px 14px 20px 15px; background: var(--paper); border: 3px solid var(--line-green); }
-    .case-photo { height: 80px; border: 0; border-bottom: 3px solid var(--green); border-radius: 0; font-size: 11px; line-height: 1.35; }
-    .case-card p { padding: 8px; color: var(--text-sub); font-size: 11px; line-height: 1.35; font-weight: 750; }
+    .page { padding-bottom:98px; padding-top:62px; }
+    .page-header { position:relative; z-index:2; }
+    .home-hero { position:relative; z-index:2; margin:18px 16px 0; padding:18px; height:calc(100vh - 180px); border-radius:44px 26px 42px 24px; background:var(--paper); border:5px solid var(--green); box-shadow:var(--shadow-paper); overflow:hidden; display:flex; flex-direction:column; align-items:center; }
+    .home-hero::before { content:""; position:absolute; left:-34px; top:-28px; width:300px; height:104px; border-radius:58px 76px 44px 62px; background:var(--green); transform:rotate(-3deg); }
+    .home-hero::after { content:""; position:absolute; right:20px; top:18px; width:42px; height:33px; border:3px solid var(--brochure-blue); border-top:0; border-radius:0 0 22px 22px; opacity:.55; transform:rotate(8deg); }
+    .eyebrow { position:relative; z-index:1; margin-top:0; display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--paper-light); color:var(--green-dark); border:2px solid rgba(255,255,255,.7); font-size:12px; font-weight:950; flex-shrink:0; }
+    .home-hero h1 { position:relative; z-index:1; margin-top:10px; font-size:34px; line-height:1.08; font-weight:950; color:var(--brochure-blue); letter-spacing:2px; }
+    .hero-slogan { position:relative; z-index:1; margin-top:8px; color:var(--brochure-blue); font-size:21px; font-weight:950; letter-spacing:1px; }
+    .hero-pets { position:relative; z-index:1; width:160px; height:auto; display:block; margin:6px auto 0; flex:1; object-fit:contain; }
+    .service-ribbon { position:relative; z-index:2; margin:4px auto 0; width:190px; height:46px; display:grid; place-items:center; border-radius:22px 28px 20px 26px; background:var(--green); color:#111; font-size:22px; font-weight:950; letter-spacing:2px; transform:rotate(-1deg); flex-shrink:0; }
+    .hero-services { position:relative; z-index:1; display:grid; gap:6px; width:210px; margin:10px auto 0; flex-shrink:0; }
+    .hero-services a { display:grid; place-items:center; height:32px; border-radius:15px 18px 15px 17px; background:var(--paper-light); border:3px solid var(--green); color:var(--brochure-blue); font-size:14px; font-weight:950; text-decoration:none; }
+    .hero-services a:active { background:var(--green); }
+    .home-hero p { position:relative; z-index:1; margin-top:8px; color:var(--text-sub); font-size:12px; line-height:1.5; font-weight:700; text-align:center; flex-shrink:0; }
+    .brand-card span { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:11px; font-weight:950; }
+    .brand-card h2 { margin-top:10px; font-size:20px; line-height:1.32; font-weight:950; color:var(--brochure-blue-deep); }
+    .brand-card p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.65; font-weight:650; }
+    .brand-card h3 { margin-top:10px; font-size:15px; font-weight:950; color:var(--brochure-blue-deep); }
+    .brand-divider { margin:12px 0; height:1.5px; background:linear-gradient(90deg,transparent,rgba(39,97,138,.12),transparent); }
+    .stat, .team-card, .role { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+    .stat { padding:12px 5px; border-radius:18px 14px 20px 15px; text-align:center; }
+    .stat strong { display:block; color:var(--brochure-blue); font-size:19px; font-weight:950; }
+    .stat span { display:block; margin-top:6px; color:var(--ink); font-size:11px; font-weight:800; line-height:1.25; }
+    .team-card { padding:16px; border-radius:24px 18px 26px 20px; }
+    .team-photo { height:132px; overflow:hidden; display:grid; place-items:center; border-radius:22px 16px 22px 18px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .team-photo img { width:100%; height:100%; display:block; object-fit:cover; }
+    .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px; }
+    .role { padding:12px; border-radius:18px 14px 18px 16px; background:var(--paper-light); }
+    .role h3 { font-size:13px; font-weight:950; }
+    .role p { margin-top:5px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:650; }
   </style>
 </head>
 <body>
@@ -54,78 +46,45 @@
       <div id="topbar-container"></div>
 
       <section class="home-hero">
-
         <span class="eyebrow">成都本地一站式宠物照护</span>
         <h1>福拉呼啦</h1>
         <div class="hero-slogan">对生命的温柔守护</div>
         <img class="hero-pets" src="assets/hero-pets.svg" alt="猫狗拥抱插画">
         <div class="service-ribbon">一站式服务</div>
         <div class="hero-services">
-          <span>宠物医疗陪护</span>
-          <div class="hero-plus">+</div>
-          <span>宠物上门服务</span>
-          <div class="hero-plus">+</div>
-          <span>宠物寄养服务</span>
+          <a href="service.html#escort">宠物医疗陪护</a>
+          <a href="service.html#home">宠物上门服务</a>
+          <a href="service.html#boarding">宠物寄养服务</a>
+          <a href="service.html#transport">宠物托运服务</a>
         </div>
         <p>从公益救助经验出发，把毛孩子安排妥当。</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="service.html">了解服务</a>
-        </div>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>主营业务</h2><a href="service.html">了解服务</a></div>
-        <div class="service-list">
-          <a class="service-entry" href="service.html#escort">
-            <span class="icon-word">医</span>
-            <div class="service-entry__body"><h3>宠物医疗陪护</h3><p>协助就医、流程沟通、诊后反馈</p></div>
-            <span class="price-tag">流程陪护</span>
-          </a>
-          <a class="service-entry" href="service.html#home">
-            <span class="icon-word green">家</span>
-            <div class="service-entry__body"><h3>宠物上门服务</h3><p>喂食换水、清洁陪伴、状态反馈</p></div>
-            <span class="price-tag">到家照护</span>
-          </a>
-          <a class="service-entry" href="service.html#boarding">
-            <span class="icon-word">寄</span>
-            <div class="service-entry__body"><h3>宠物寄养服务</h3><p>日常喂养、健康观察、照片反馈</p></div>
-            <span class="price-tag">安心寄养</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-title"><h2>品牌背书</h2><a href="brand.html">了解品牌</a></div>
+        <div class="section-title"><h2>品牌数据</h2></div>
         <div class="stats">
           <div class="stat"><strong>500+</strong><span>救助与领养</span></div>
           <div class="stat"><strong>8年</strong><span>公益救助</span></div>
-          <div class="stat"><strong>3类</strong><span>核心服务</span></div>
-          <div class="stat"><strong>SOP</strong><span>服务流程</span></div>
+          <div class="stat"><strong>4类</strong><span>核心服务</span></div>
+          <div class="stat"><strong>SOP</strong><span>标准流程</span></div>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-title"><h2>品牌故事</h2><a href="brand.html">查看</a></div>
-        <a class="story-card" href="brand.html">
-          <div class="story-card__top">
-            <div class="story-photo"><img src="assets/images/welfare/team-welfare-1.jpg" alt="福拉呼啦公益救助记录"></div>
-            <div>
-              <h3>因为懂得，所以守护</h3>
-              <p>用标准化服务承接日常照护，也让以商养善持续发生。</p>
-            </div>
+        <div class="section-title"><h2>团队与标准</h2></div>
+        <div class="team-card">
+          <div class="team-photo"><img src="assets/images/brand/team-2.jpg" alt="福拉呼啦团队现场记录"></div>
+          <div class="team-grid">
+            <div class="role"><h3>服务沟通</h3><p>确认需求、服务范围与照护建议。</p></div>
+            <div class="role"><h3>照护执行</h3><p>按约定流程进行陪护、上门或寄养照护。</p></div>
+            <div class="role"><h3>过程反馈</h3><p>同步关键节点，异常情况及时沟通。</p></div>
+            <div class="role"><h3>公益协作</h3><p>持续参与救助与正确养宠传播。</p></div>
           </div>
-        </a>
-      </section>
-
-      <section class="section">
-        <div class="section-title"><h2>服务剪影</h2><a href="activity.html">更多</a></div>
-        <div class="case-row">
-          <article class="case-card"><div class="case-photo"><img src="assets/images/welfare/rescue-1.jpg" alt="公益行动现场"></div><p>救助与领养回访</p></article>
-          <article class="case-card"><div class="case-photo"><img src="assets/images/service-medical/escort-1.jpg" alt="医疗陪护服务现场"></div><p>陪护与上门记录</p></article>
-          <article class="case-card"><div class="case-photo"><img src="assets/images/service-boarding/boarding-1.jpg" alt="宠物寄养环境"></div><p>场地与日常照护</p></article>
         </div>
       </section>
 
+    </div>
+      </section>
 
     </div>
 
@@ -135,7 +94,6 @@
   <script src="assets/component-loader.js"></script>
   <script src="assets/gallery-preview.js"></script>
   <script>
-    // 设置当前页面active状态
     document.addEventListener('DOMContentLoaded', () => {
       ComponentLoader.setActiveTab('index.html');
     });

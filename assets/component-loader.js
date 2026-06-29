@@ -13,15 +13,13 @@ const ComponentLoader = {
     `,
     tabbar: `
       <nav class="tabbar">
-        <a href="index.html"><span class="tab-icon">首</span><span>首页</span></a>
-        <a href="brand.html"><span class="tab-icon">品</span><span>品牌</span></a>
-        <a href="service.html"><span class="tab-icon">服</span><span>服务</span></a>
-        <a href="activity.html"><span class="tab-icon">动</span><span>动态</span></a>
-        <a href="contact.html"><span class="tab-icon">联</span><span>咨询</span></a>
+        <a href="index.html"><span class="tab-icon">介</span><span>公司介绍</span></a>
+        <a href="service.html"><span class="tab-icon">服</span><span>服务内容</span></a>
+        <a href="activity.html"><span class="tab-icon">动</span><span>近期活动</span></a>
       </nav>
     `,
     'float-contact': `
-      <a class="float-contact" href="contact.html">咨询</a>
+      <a class="float-contact" href="javascript:void(0)" onclick="var c=document.getElementById('contact');if(c){c.scrollIntoView({behavior:'smooth'})}else{location.href='service.html#contact'}">咨询</a>
     `
   },
 
@@ -42,13 +40,8 @@ const ComponentLoader = {
 
   // 加载所有公共组件
   loadCommonComponents() {
-    // 加载topbar
     this.load('topbar', 'topbar-container');
-
-    // 加载tabbar
     this.load('tabbar', 'tabbar-container');
-
-    // 加载float-contact（非咨询页）
     const floatContactContainer = document.getElementById('float-contact-container');
     if (floatContactContainer) {
       this.load('float-contact', 'float-contact-container');

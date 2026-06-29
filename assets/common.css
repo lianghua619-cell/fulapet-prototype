@@ -220,7 +220,7 @@ body {
   height: 72px;
   padding: 7px 14px 8px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   background: linear-gradient(180deg, var(--brochure-blue-dark), var(--brochure-blue-deep));
   border-top: 2px solid rgba(246,243,223,.32);
   box-shadow: 0 -8px 24px rgba(17,24,39,.2);

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>福拉呼啦宠物-服务介绍</title>
+  <title>福拉呼啦-服务内容</title>
   <link rel="stylesheet" href="assets/common.css">
   <link rel="stylesheet" href="assets/gallery-preview.css">
   <style>
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior:smooth; }
     .page { padding-bottom:96px; padding-top:148px; }
     .page-header { padding:0 16px 8px; position:relative; z-index:2; }
     .quick-tabs { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; gap:8px; padding:10px 16px; overflow-x:auto; scrollbar-width:none; background:var(--brochure-blue); z-index:3; }
@@ -17,15 +17,7 @@
     .quick-tabs a { flex:0 0 auto; padding:9px 14px; border-radius:18px 24px 18px 22px; background:var(--paper); border:3px solid var(--line-green); color:var(--brochure-blue-deep); text-decoration:none; font-size:13px; font-weight:900; box-shadow:0 3px 0 rgba(39,97,138,.12); transition:background .2s,border-color .2s; }
     .quick-tabs a.active { background:var(--green); border-color:rgba(246,243,223,.6); }
     .section { scroll-margin-top:130px; }
-    .value-card, .scenario, .service-card, .note-card, .step { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
-    .value-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-    .value-card { min-height:140px; padding:14px; border-radius:22px 16px 22px 18px; }
-    .icon-word { width:38px; height:38px; display:grid; place-items:center; border-radius:17px 13px 17px 14px; background:var(--brochure-blue); color:var(--paper-light); border:2px solid rgba(255,255,255,.56); font-size:14px; font-weight:950; }
-    .icon-word.green { background:var(--green); color:var(--brochure-blue-deep); }
-    .value-card h3 { margin-top:11px; font-size:14px; font-weight:950; }
-    .value-card p { margin-top:6px; color:var(--text-sub); font-size:12px; line-height:1.5; font-weight:650; }
-    .scenario-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
-    .scenario { padding:12px 10px; border-radius:18px 14px 18px 16px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:750; }
+    .service-card,.note-card,.step { background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
     .service-list { display:grid; gap:14px; }
     .service-card { scroll-margin-top:130px; padding:16px; border-radius:30px 22px 32px 24px; box-shadow:var(--shadow-paper); }
     .service-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
@@ -33,7 +25,7 @@
     .service-head p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
     .service-tag { flex:0 0 auto; min-width:76px; padding:9px 10px; border-radius:18px 14px 18px 16px; background:var(--blue-soft); color:var(--brochure-blue-deep); border:3px solid var(--green); text-align:center; font-size:12px; font-weight:950; }
     .service-label { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:12px; font-weight:950; }
-    .photo-row { display:flex; gap:9px; overflow-x:auto; margin:16px 0 0; padding:0 2px 2px; scrollbar-width:none; overscroll-behavior-x:contain; }
+    .photo-row { display:flex; gap:9px; overflow-x:auto; margin:16px 0 0; padding:0 2px 2px; scrollbar-width:none; }
     .photo-row::-webkit-scrollbar { display:none; }
     .photo { position:relative; overflow:hidden; flex:0 0 96px; height:84px; display:grid; place-items:center; border-radius:18px 14px 18px 16px; background:#EAF4F7; border:4px solid var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:900; text-align:center; }
     .photo img { width:100%; height:100%; display:block; object-fit:cover; }
@@ -44,19 +36,67 @@
     .list-item { display:flex; gap:8px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
     .list-item:before { content:""; flex:0 0 8px; width:8px; height:8px; margin-top:7px; border-radius:999px; background:var(--green); box-shadow:0 0 0 2px rgba(110,157,40,.15); }
     .note-card { padding:13px 14px; border-radius:18px 14px 18px 16px; color:var(--text-sub); font-size:12px; line-height:1.6; font-weight:650; }
-    .process { display:grid; gap:9px; }
-    .step { display:flex; align-items:flex-start; gap:12px; padding:13px 14px; border-radius:20px 16px 20px 18px; }
-    .step b { flex:0 0 28px; height:28px; display:grid; place-items:center; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(110,157,40,.25); font-size:13px; font-weight:950; }
-    .step h3 { font-size:14px; font-weight:950; }
-    .step p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:650; }
-    .modal-mask { position:fixed; inset:0; z-index:10; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; }
-    .modal-mask.show { display:flex; }
-    .modal-box { position:relative; width:343px; max-height:80vh; background:var(--paper); border:3px solid var(--green); border-radius:28px 22px 30px 24px; box-shadow:0 20px 60px rgba(0,0,0,.3); overflow:hidden; }
-    .modal-box .process { padding:18px; max-height:70vh; overflow-y:auto; }
-    .modal-close { position:absolute; top:14px; right:14px; width:32px; height:32px; border:0; border-radius:999px; background:var(--green-soft); color:var(--green-dark); font-size:18px; font-weight:950; cursor:pointer; z-index:1; display:grid; place-items:center; }
-    .modal-title { display:flex; align-items:center; gap:10px; margin-bottom:14px; padding-right:40px; }
-    .modal-title h2 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
-    .modal-title span { color:var(--text-sub); font-size:12px; font-weight:700; }
+    .service-actions { margin-top:14px; }
+    .service-actions .btn { width:100%; height:44px; font-size:15px; }
+    .proof-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+    .proof-card { overflow:hidden; border-radius:22px 16px 24px 18px; background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .proof-photo { height:132px; overflow:hidden; background:#EAF4F7; border-bottom:3px solid var(--green); }
+    .proof-photo img { width:100%; height:100%; display:block; object-fit:cover; }
+    .proof-card p { padding:9px 10px; color:var(--text-sub); font-size:12px; line-height:1.45; font-weight:750; }
+    .partner-card { padding:16px; border-radius:24px 18px 26px 20px; background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .partner-card h3 { display:inline-flex; padding:6px 10px; border-radius:18px 22px 18px 20px; background:var(--green); color:var(--brochure-blue-deep); font-size:17px; font-weight:950; }
+    .partner-card p { margin-top:10px; color:var(--text-sub); font-size:13px; line-height:1.6; font-weight:650; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .chip { padding:7px 10px; border-radius:16px 20px 16px 18px; background:var(--green-soft); color:var(--green-dark); border:1px solid rgba(110,157,40,.18); font-size:12px; font-weight:950; }
+    .wechat-connect { padding:20px 16px; border-radius:28px 22px 30px 24px; background:linear-gradient(135deg,var(--paper) 0%,var(--green-soft) 100%); border:3px solid var(--green); box-shadow:var(--shadow-paper); text-align:center; }
+    .wechat-connect-badge { display:inline-flex; padding:6px 12px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:12px; font-weight:950; }
+    .wechat-connect-header h2 { margin-top:10px; font-size:18px; font-weight:950; color:var(--brochure-blue-deep); }
+    .wechat-connect-header p { margin-top:6px; color:var(--text-sub); font-size:13px; font-weight:650; }
+    .wechat-connect-qr { margin:16px auto; }
+    .qr-placeholder { display:inline-flex; flex-direction:column; align-items:center; gap:10px; padding:20px; border-radius:20px; background:#fff; border:3px solid var(--line-green); box-shadow:0 4px 0 rgba(39,97,138,.08); }
+    .qr-logo { width:60px; height:auto; }
+    .qr-box-sm { width:120px; height:120px; display:grid; place-items:center; border-radius:16px; background:#EAF4F7; border:3px dashed rgba(39,97,138,.2); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .qr-tip { font-size:11px; color:var(--text-sub); font-weight:700; }
+    .wechat-connect-features { display:flex; justify-content:center; gap:16px; margin-top:14px; }
+    .feature-item { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:800; color:var(--brochure-blue-deep); }
+    .order-modal { position:fixed; left:50%; top:50%; width:350px; max-height:85vh; transform:translate(-50%,-50%) scale(.92); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:20; background:var(--paper); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.3); border:3px solid var(--green); overflow:visible; display:none; flex-direction:column; pointer-events:none; }
+    .order-modal.show { display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); pointer-events:auto; }
+    .order-modal .modal-box { display:flex; flex-direction:column; height:100%; overflow:hidden; }
+    .order-modal .modal-close { position:absolute; top:10px; right:10px; width:28px; height:28px; font-size:14px; background:var(--green-soft); color:var(--green-dark); border:2px solid rgba(110,157,40,.2); border-radius:50%; cursor:pointer; z-index:1; display:grid; place-items:center; line-height:1; }
+    .order-modal .modal-close:active { background:var(--green); }
+    .order-form { padding:4px 16px 12px; overflow-y:auto; flex:1; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
+    .order-form .form-header { position:relative; text-align:center; padding:14px 16px 12px; margin:8px 10px 10px; background:linear-gradient(135deg,var(--green) 0%,rgba(182,220,98,.6) 100%); border-radius:18px; overflow:hidden; }
+    .order-form .form-header h2 { font-size:16px; font-weight:950; color:var(--brochure-blue-deep); }
+    .order-form .form-header p { font-size:11px; color:var(--brochure-blue-deep); opacity:.75; margin-top:3px; }
+    .form-group { margin-bottom:10px; }
+    .form-group label { display:block; font-size:12px; font-weight:950; color:var(--ink); margin-bottom:4px; }
+    .form-group label .req { color:#e53e3e; }
+    .form-group input,.form-group select,.form-group textarea { width:100%; padding:9px 11px; border:2px solid var(--line-green); border-radius:12px 8px 12px 10px; font-size:13px; font-weight:650; background:#fff; color:var(--ink); box-sizing:border-box; }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--green); }
+    .form-group textarea { min-height:50px; resize:vertical; line-height:1.4; }
+    .form-group select { appearance:auto; font-weight:700; }
+    .radio-group,.check-group { display:flex; flex-wrap:wrap; gap:6px; }
+    .radio-group label,.check-group label { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:950; color:var(--brochure-blue-deep); padding:5px 9px; border-radius:10px 8px 10px 9px; background:var(--green-soft); border:1.5px solid rgba(110,157,40,.2); cursor:pointer; white-space:nowrap; }
+    .radio-group label:has(input:checked),.check-group label:has(input:checked) { background:var(--green); border-color:rgba(110,157,40,.4); }
+    .radio-group input,.check-group input { accent-color:var(--brochure-blue-deep); width:14px; height:14px; }
+    .submit-btn { width:100%; height:42px; border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; cursor:pointer; margin-top:6px; margin-bottom:8px; box-shadow:0 4px 0 rgba(39,97,138,.1); }
+    .submit-btn:active { transform:translateY(2px); box-shadow:0 2px 0 rgba(39,97,138,.1); }
+    .submit-btn:disabled { opacity:.6; cursor:not-allowed; }
+    .form-success { display:none; text-align:center; padding:40px 16px; }
+    .form-success.show { display:block; }
+    .form-success .icon { font-size:44px; margin-bottom:10px; }
+    .form-success h3 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
+    .form-success p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.5; }
+    .form-success .btn { margin-top:16px; width:100%; }
+    .section-divider { display:flex; align-items:center; gap:10px; margin:14px 0 10px; }
+    .section-divider::before,.section-divider::after { content:""; flex:1; height:1.5px; background:linear-gradient(90deg,transparent,rgba(39,97,138,.12),transparent); }
+    .section-divider span { font-size:11px; font-weight:950; color:var(--brochure-blue-deep); white-space:nowrap; background:var(--green-soft); padding:3px 10px; border-radius:10px; }
+    .wechat-card { padding:16px; border-radius:28px 22px 30px 24px; text-align:center; background:var(--paper); border:3px solid var(--line-green); box-shadow:var(--shadow-paper); }
+    .wechat-logo { width:146px; height:auto; display:block; margin:0 auto 12px; }
+    .qr-box { position:relative; width:158px; height:158px; margin:0 auto; display:grid; place-items:center; border-radius:24px 18px 24px 20px; background:#EAF4F7; border:5px solid var(--green); color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
+    .qr-box::after { content:"扫码咨询"; position:absolute; bottom:-14px; left:50%; transform:translateX(-50%); padding:4px 9px; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); font-size:11px; white-space:nowrap; }
+    .wechat-card h3 { margin-top:22px; font-size:17px; font-weight:950; }
+    .wechat-card p { margin-top:7px; color:var(--text-sub); font-size:13px; line-height:1.55; font-weight:650; }
     @media (max-width:428px){ .quick-tabs{ width:100vw; } }
     @media (max-width:414px){ .quick-tabs{ width:100vw; } }
     @media (max-width:375px){ .quick-tabs{ width:100vw; } }
@@ -68,54 +108,34 @@
       <div id="topbar-container"></div>
 
       <section class="page-header">
-        <h1>宠物医疗陪护、上门服务、寄养服务</h1>
+        <h1>宠物医疗陪护、上门服务、寄养服务、托运服务</h1>
         <p>从公益救助经验出发，先了解宠物情况，再沟通合适的照护安排。</p>
       </section>
 
       <nav class="quick-tabs">
-        <a class="active" href="#value">服务价值</a>
-        <a href="#scenarios">适用场景</a>
-        <a href="#services">主营业务</a>
-        <a id="open-process" href="javascript:void(0)">服务流程</a>
+        <a class="active" href="#escort">医疗陪护</a>
+        <a href="#home">上门服务</a>
+        <a href="#boarding">寄养服务</a>
+        <a href="#transport">托运服务</a>
       </nav>
 
-      <section class="section" id="value">
-        <div class="section-title"><h2>服务价值</h2><span>展示为主</span></div>
-        <div class="value-grid">
-          <article class="value-card"><span class="icon-word">沟</span><h3>服务前充分沟通</h3><p>先了解宠物性格、健康状态、服务时间与所在区域。</p></article>
-          <article class="value-card"><span class="icon-word green">护</span><h3>照护过程有反馈</h3><p>通过照片、视频或文字同步关键节点，让主人更安心。</p></article>
-          <article class="value-card"><span class="icon-word">准</span><h3>标准流程执行</h3><p>围绕陪护、上门、寄养等场景建立清晰服务流程。</p></article>
-          <article class="value-card"><span class="icon-word green">善</span><h3>公益救助背景</h3><p>长期接触不同性格宠物，更理解照护中的细节。</p></article>
-        </div>
-      </section>
-
-      <section class="section" id="scenarios">
-        <div class="section-title"><h2>适用场景</h2><span>先判断需求</span></div>
-        <div class="scenario-grid">
-          <div class="scenario">工作日无法陪同宠物就医</div>
-          <div class="scenario">出差旅行期间需要上门照护</div>
-          <div class="scenario">节假日或短期外出需要寄养</div>
-          <div class="scenario">多宠家庭需要临时支持</div>
-          <div class="scenario">主人异地，需要过程反馈</div>
-          <div class="scenario">宠物性格特殊，需要提前沟通</div>
-        </div>
-      </section>
-
       <section class="section" id="services">
-        <div class="section-title"><h2>主营业务</h2><span>手册同款三大服务</span></div>
+        <div class="section-title"><h2>主营业务</h2><span>四大核心服务</span></div>
         <div class="service-list">
           <article class="service-card" id="escort">
             <div class="service-head"><div><span class="service-label">宠物医疗陪护</span><h2>医疗陪护与就诊协助</h2><p>主人不方便到院时，协助完成就医陪护、流程沟通和诊后反馈。</p></div><div class="service-tag">流程陪护</div></div>
             <div class="photo-row"><div class="photo"><img src="assets/images/service-medical/escort-1.jpg" alt="宠物医疗陪护现场"></div><div class="photo"><img src="assets/images/service-medical/car-1.jpg" alt="宠物专车接送"></div><div class="photo"><img src="assets/images/service-medical/escort-2.jpg" alt="陪护过程反馈记录"></div></div>
             <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">协助挂号、排队、问诊沟通与理疗陪伴</div><div class="list-item">记录检查项目、医嘱和用药注意事项</div><div class="list-item">服务过程通过照片、文字或视频反馈</div><div class="list-item">可沟通宠物专车接送需求</div></div></div>
-            <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">医疗诊断与治疗方案由医院医生提供，重大治疗决策需主人或授权人确认。急诊、夜间或特殊护理建议先联系客服说明情况。</div></div>
+            <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">医疗诊断与治疗方案由医院医生提供，重大治疗决策需主人或授权人确认。</div></div>
+            <div class="service-actions"><button class="btn btn-primary btn-glow service-order-btn" data-type="care">立即下单</button></div>
           </article>
 
           <article class="service-card" id="home">
             <div class="service-head"><div><span class="service-label">宠物上门服务</span><h2>上门照护与状态反馈</h2><p>短期外出、出差或加班期间，上门完成基础照护与状态反馈。</p></div><div class="service-tag">到家照护</div></div>
             <div class="photo-row"><div class="photo"><img src="assets/images/service-home/cat-visit-1.jpg" alt="上门喂食换水"></div><div class="photo"><img src="assets/images/service-home/cat-visit-2.jpg" alt="上门清洁整理"></div><div class="photo"><img src="assets/images/service-home/dog-walk-1.jpg" alt="上门遛狗互动"></div></div>
-            <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">喂食换水，清洗餐盆与水碗</div><div class="list-item">清理猫砂或基础环境整理，根据需求开窗通风</div><div class="list-item">简单陪伴互动，观察精神与食欲</div><div class="list-item">照片、视频或文字反馈服务情况</div></div></div>
-            <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">钥匙、门禁与入户方式需提前确认。喂药、护理、多宠或异宠家庭建议提前说明，便于判断服务安排。</div></div>
+            <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">喂食换水，清洗餐盆与水碗</div><div class="list-item">清理猫砂或基础环境整理</div><div class="list-item">简单陪伴互动，观察精神与食欲</div><div class="list-item">照片、视频或文字反馈服务情况</div></div></div>
+            <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">钥匙、门禁与入户方式需提前确认。喂药、护理、多宠或异宠家庭建议提前说明。</div></div>
+            <div class="service-actions"><button class="btn btn-primary btn-glow service-order-btn" data-type="door">立即下单</button></div>
           </article>
 
           <article class="service-card" id="boarding">
@@ -123,22 +143,145 @@
             <div class="photo-row"><div class="photo"><img src="assets/images/service-boarding/boarding-1.jpg" alt="寄养环境展示"></div><div class="photo"><img src="assets/images/service-boarding/boarding-2.jpg" alt="寄养日常喂养"></div><div class="photo"><img src="assets/images/service-boarding/boarding-3.jpg" alt="寄养户外活动"></div></div>
             <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">每日喂养、清洁消毒与状态观察</div><div class="list-item">记录精神状态、食欲、排便排尿情况</div><div class="list-item">照片或视频反馈，便于主人了解状态</div><div class="list-item">可沟通门到门接送和营养餐需求</div></div></div>
             <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">寄养前需了解疫苗、健康状态与性格情况。攻击性、传染病或特殊护理需求需提前评估。</div></div>
+            <div class="service-actions"><button class="btn btn-primary btn-glow service-order-btn" data-type="boarding">立即下单</button></div>
           </article>
+
+          <article class="service-card" id="transport">
+            <div class="service-head"><div><span class="service-label">宠物托运服务</span><h2>安全托运与全程跟踪</h2><p>跨城或长途出行时，为宠物提供安全可靠的托运服务与实时反馈。</p></div><div class="service-tag">安心托运</div></div>
+            <div class="photo-row"><div class="photo"><img src="assets/images/service-boarding/boarding-1.jpg" alt="托运环境"></div><div class="photo"><img src="assets/images/service-boarding/boarding-2.jpg" alt="托运准备"></div><div class="photo"><img src="assets/images/service-boarding/boarding-3.jpg" alt="托运反馈"></div></div>
+            <div class="detail-block"><h3>服务内容</h3><div class="list"><div class="list-item">城内、跨城、国际多种托运方式</div><div class="list-item">出发地与目的地门到门接送</div><div class="list-item">运输过程照片或视频反馈</div><div class="list-item">随行物品与特殊需求沟通</div></div></div>
+            <div class="detail-block"><h3>沟通提醒</h3><div class="note-card">托运前需提供宠物健康证明与疫苗记录。特殊品种、孕期或老年宠物需提前评估运输风险。</div></div>
+            <div class="service-actions"><button class="btn btn-primary btn-glow service-order-btn" data-type="transport">立即下单</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="wechat-connect">
+          <div class="wechat-connect-header">
+            <span class="wechat-connect-badge">微信咨询</span>
+            <h2>扫码添加客服</h2>
+            <p>在线沟通服务时间、宠物情况与照护需求</p>
+          </div>
+          <div class="wechat-connect-qr">
+            <div class="qr-placeholder">
+              <img src="assets/logo-white.svg" alt="福拉呼啦" class="qr-logo">
+              <div class="qr-box-sm">客服微信</div>
+              <span class="qr-tip">长按识别二维码</span>
+            </div>
+          </div>
+          <div class="wechat-connect-features">
+            <div class="feature-item"><span>一对一沟通</span></div>
+            <div class="feature-item"><span>需求评估</span></div>
+            <div class="feature-item"><span>服务安排</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title"><h2>客户反馈</h2><span>真实记录</span></div>
+        <div class="proof-grid">
+          <article class="proof-card"><div class="proof-photo"><img src="assets/images/reviews/survey-1.jpg" alt="客户满意度调查反馈"></div><p>满意度调查与服务反馈记录</p></article>
+          <article class="proof-card"><div class="proof-photo"><img src="assets/images/reviews/survey-2.jpg" alt="客户服务满意度反馈"></div><p>用于展示服务过程的真实反馈</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="partner-card">
+          <h3>机构合作</h3>
+          <p>面向宠物医院、宠物门店、宠物咖啡、救助组织与社区合作伙伴。</p>
+          <div class="chips"><span class="chip">宠物医院</span><span class="chip">宠物门店</span><span class="chip">宠物咖啡</span><span class="chip">救助组织</span><span class="chip">社区服务</span></div>
         </div>
       </section>
 
     </div>
 
-    <div class="modal-mask" id="process-modal">
+    <div class="order-modal" id="order-modal">
       <div class="modal-box">
-        <button class="modal-close" id="close-process">&times;</button>
-        <div class="process">
-          <div class="modal-title"><h2>服务流程</h2><span>先咨询，再安排</span></div>
-          <div class="step"><b>1</b><div><h3>添加客服微信</h3><p>通过微信说明宠物情况与服务需求。</p></div></div>
-          <div class="step"><b>2</b><div><h3>说明宠物情况</h3><p>提供服务时间、地点、宠物性格与健康状态。</p></div></div>
-          <div class="step"><b>3</b><div><h3>沟通服务方案</h3><p>客服根据宠物情况、服务时间与所在区域协助判断。</p></div></div>
-          <div class="step"><b>4</b><div><h3>确认服务安排</h3><p>服务前建立沟通群，同步注意事项与准备内容。</p></div></div>
-          <div class="step"><b>5</b><div><h3>服务开始并反馈</h3><p>服务中与服务后同步照片、视频或文字反馈。</p></div></div>
+        <button class="modal-close" id="close-order">&times;</button>
+        <div class="order-form" id="order-form-content">
+          <div class="form-header"><h2>服务需求收集</h2><p>请填写以下信息，客服将尽快与您联系</p></div>
+          <form id="service-form">
+            <div class="form-group"><label><span class="req">*</span>需求类型</label><select name="需求类型" id="demand-type" required>
+              <option value="">请选择需求类型</option><option value="door">宠物上门服务</option><option value="care">陪护需求</option><option value="transport">托运需求</option><option value="boarding">寄养需求</option>
+            </select></div>
+            <div class="form-group" id="service-options-group" style="display:none"><label><span class="req">*</span>服务项目</label><select name="服务选项" id="service-option">
+              <option value="">请先选择需求类型</option>
+            </select></div>
+            <div class="section-divider"><span>客户信息</span></div>
+            <div class="form-group"><label>客户姓名</label><input type="text" name="客户姓名" placeholder="请输入您的姓名"></div>
+            <div class="form-group"><label><span class="req">*</span>联系电话</label><input type="tel" name="联系电话" placeholder="请输入电话号码" required></div>
+            <div class="section-divider"><span>宠物信息</span></div>
+            <div class="form-group"><label><span class="req">*</span>宠物姓名</label><input type="text" name="宠物姓名" placeholder="请输入宠物名字" required></div>
+            <div class="form-group"><label><span class="req">*</span>种类</label>
+              <div class="radio-group"><label><input type="radio" name="种类" value="狗狗" required><span>狗狗</span></label><label><input type="radio" name="种类" value="猫猫"><span>猫猫</span></label><label><input type="radio" name="种类" value="其他"><span>其他</span></label></div>
+            </div>
+            <div class="form-group"><label><span class="req">*</span>品种</label><input type="text" name="品种" placeholder="如：布偶、柯基、金毛等" required></div>
+            <div class="form-group"><label>宠物年龄</label><input type="text" name="宠物年龄" placeholder="如：2岁"></div>
+            <div class="form-group"><label>性别</label>
+              <div class="radio-group"><label><input type="radio" name="性别" value="弟弟"><span>弟弟</span></label><label><input type="radio" name="性别" value="妹妹"><span>妹妹</span></label></div>
+            </div>
+            <div class="form-group"><label>宠物体重（kg）</label><input type="text" name="宠物体重" placeholder="请输入体重"></div>
+            <div class="form-group"><label>是否绝育</label>
+              <div class="radio-group"><label><input type="radio" name="是否绝育" value="是"><span>是</span></label><label><input type="radio" name="是否绝育" value="否"><span>否</span></label></div>
+            </div>
+            <div class="form-group"><label><span class="req">*</span>是否打疫苗</label>
+              <div class="radio-group"><label><input type="radio" name="是否打疫苗" value="是" required><span>是</span></label><label><input type="radio" name="是否打疫苗" value="否"><span>否</span></label></div>
+            </div>
+            <div class="form-group"><label><span class="req">*</span>是否怀孕</label>
+              <div class="radio-group"><label><input type="radio" name="是否怀孕" value="是" required><span>是</span></label><label><input type="radio" name="是否怀孕" value="否"><span>否</span></label></div>
+            </div>
+            <div class="form-group"><label><span class="req">*</span>性格特点</label>
+              <div class="check-group"><label><input type="checkbox" name="性格特点" value="E，外向"><span>外向</span></label><label><input type="checkbox" name="性格特点" value="I,内向"><span>内向</span></label><label><input type="checkbox" name="性格特点" value="爱社交"><span>爱社交</span></label><label><input type="checkbox" name="性格特点" value="不爱社交"><span>不爱社交</span></label><label><input type="checkbox" name="性格特点" value="有攻击性，要注意"><span>有攻击性</span></label><label><input type="checkbox" name="性格特点" value="无攻击性"><span>无攻击性</span></label></div>
+            </div>
+            <div class="form-group"><label><span class="req">*</span>服务时间开始</label><input type="datetime-local" name="服务时间开始" required></div>
+            <div class="form-group"><label><span class="req">*</span>服务时间结束</label><input type="datetime-local" name="服务时间结束" required></div>
+            <div class="form-group"><label>其他备注</label><textarea name="其他备注" placeholder="注意事项等，如有多只请备注，性格特别请注明"></textarea></div>
+
+            <div class="type-fields" id="fields-door" style="display:none">
+              <div class="section-divider"><span>宠物上门服务信息</span></div>
+              <div class="form-group"><label><span class="req">*</span>上门地址</label><input type="text" name="上门地址" placeholder="请输入上门地址" data-required></div>
+              <div class="form-group"><label><span class="req">*</span>具体单元门号</label><input type="text" name="具体单元门号" placeholder="如：3栋2单元1801" data-required></div>
+              <div class="form-group"><label><span class="req">*</span>电梯还是楼梯</label>
+                <div class="radio-group"><label><input type="radio" name="电梯还是楼梯" value="电梯" data-required><span>电梯</span></label><label><input type="radio" name="电梯还是楼梯" value="楼梯"><span>楼梯</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>是否有实时监控</label>
+                <div class="radio-group"><label><input type="radio" name="是否有实时监控" value="是" data-required><span>是</span></label><label><input type="radio" name="是否有实时监控" value="否"><span>否</span></label></div>
+              </div>
+            </div>
+
+            <div class="type-fields" id="fields-care" style="display:none">
+              <div class="section-divider"><span>陪护信息</span></div>
+              <div class="form-group"><label>预约就诊内容</label>
+                <div class="check-group"><label><input type="checkbox" name="预约就诊内容" value="初次就诊"><span>初次就诊</span></label><label><input type="checkbox" name="预约就诊内容" value="针灸"><span>针灸</span></label><label><input type="checkbox" name="预约就诊内容" value="输液"><span>输液</span></label><label><input type="checkbox" name="预约就诊内容" value="激光"><span>激光</span></label><label><input type="checkbox" name="预约就诊内容" value="其他"><span>其他</span></label></div>
+              </div>
+              <div class="form-group"><label><span class="req">*</span>预约预留电话</label><input type="tel" name="预约预留电话" placeholder="请输入预约电话" data-required></div>
+              <div class="form-group"><label>预约就诊医生</label><input type="text" name="预约就诊医生" placeholder="请输入医生姓名"></div>
+            </div>
+
+            <div class="type-fields" id="fields-transport" style="display:none">
+              <div class="section-divider"><span>托运信息</span></div>
+              <div class="form-group"><label><span class="req">*</span>托运出发地</label><input type="text" name="托运出发地" placeholder="请输入出发城市" data-required></div>
+              <div class="form-group"><label><span class="req">*</span>出发地具体单元门号</label><input type="text" name="出发地单元门号" placeholder="如：3栋2单元1801" data-required></div>
+              <div class="form-group"><label><span class="req">*</span>托运目的地</label><input type="text" name="托运目的地" placeholder="请输入目的城市" data-required></div>
+              <div class="form-group"><label><span class="req">*</span>目的地具体单元门号</label><input type="text" name="目的地单元门号" placeholder="如：3栋2单元1801" data-required></div>
+              <div class="form-group"><label>随行物品</label><input type="text" name="随行物品" placeholder="如：猫粮、猫砂盆、玩具等"></div>
+            </div>
+
+            <div class="type-fields" id="fields-boarding" style="display:none">
+              <div class="section-divider"><span>寄养信息</span></div>
+              <div class="form-group"><label><span class="req">*</span>出发接宠电话</label><input type="tel" name="出发接宠电话" placeholder="请输入电话号码" data-required></div>
+              <div class="form-group"><label><span class="req">*</span>到达接宠电话</label><input type="tel" name="到达接宠电话" placeholder="请输入电话号码" data-required></div>
+            </div>
+
+            <button type="submit" class="submit-btn">立即下单</button>
+          </form>
+          <div class="form-success" id="form-success">
+            <div class="icon">✅</div>
+            <h3>提交成功！</h3>
+            <p>客服已收到您的需求，将尽快与您联系确认服务安排。</p>
+            <button class="btn btn-primary" id="close-success">关闭</button>
+          </div>
         </div>
       </div>
     </div>
@@ -147,49 +290,145 @@
     <div id="tabbar-container"></div>
   </main>
   <script src="assets/component-loader.js"></script>
+  <script src="data/contact.js?v=2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ComponentLoader.setActiveTab('service.html');
     });
-    const processModal = document.getElementById('process-modal');
-    document.getElementById('open-process').addEventListener('click', () => processModal.classList.add('show'));
-    document.getElementById('close-process').addEventListener('click', () => processModal.classList.remove('show'));
-    processModal.addEventListener('click', e => { if (e.target === processModal) processModal.classList.remove('show'); });
-
-    const tabs = document.querySelectorAll('.quick-tabs a:not(#open-process)');
-    const sections = ['value','scenarios','services'].map(id => document.getElementById(id));
-    let isClickScrolling = false;
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', (e) => {
-        const href = tab.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          isClickScrolling = true;
-          setTimeout(() => { isClickScrolling = false; }, 500);
+    const DATA = contactData;
+    const DEMAND_TYPES = DATA.demandTypes;
+    const TYPE_MAP = {};
+    DEMAND_TYPES.forEach(t => TYPE_MAP[t.key] = t.code);
+    const demandTypeEl = document.getElementById('demand-type');
+    const serviceOptionGroup = document.getElementById('service-options-group');
+    const serviceOptionEl = document.getElementById('service-option');
+    const typeFieldEls = {};
+    DEMAND_TYPES.forEach(t => { typeFieldEls[t.key] = document.getElementById('fields-' + t.key); });
+    function clearTypeRequired() { document.querySelectorAll('.type-fields [required]').forEach(el => el.removeAttribute('required')); }
+    function setTypeRequired(typeKey) {
+      const cfg = DEMAND_TYPES.find(t => t.key === typeKey);
+      if (!cfg) return;
+      cfg.fields.forEach(f => { if (f.required) { const el = document.querySelector(`[name="${f.name}"]`); if (el) el.setAttribute('required', ''); } });
+    }
+    demandTypeEl.addEventListener('change', () => {
+      const type = demandTypeEl.value;
+      clearTypeRequired();
+      Object.values(typeFieldEls).forEach(el => { if (el) el.style.display = 'none'; });
+      const cfg = DEMAND_TYPES.find(t => t.key === type);
+      if (cfg) {
+        typeFieldEls[type].style.display = '';
+        setTypeRequired(type);
+        if (cfg.serviceOptions.length === 1) {
+          serviceOptionEl.innerHTML = '<option selected>' + cfg.serviceOptions[0] + '</option>';
+          serviceOptionEl.disabled = true;
+          serviceOptionGroup.style.display = '';
+        } else {
+          serviceOptionEl.innerHTML = '<option value="">请选择服务项目</option>' + cfg.serviceOptions.map(o => '<option>' + o + '</option>').join('');
+          serviceOptionEl.disabled = false;
+          serviceOptionGroup.style.display = '';
         }
+      } else {
+        serviceOptionGroup.style.display = 'none';
+        serviceOptionEl.innerHTML = '';
+        serviceOptionEl.disabled = false;
+      }
+    });
+    const orderModal = document.getElementById('order-modal');
+    const orderFormContent = document.getElementById('order-form-content');
+    const orderBackdrop = document.createElement('div');
+    orderBackdrop.style.cssText = 'position:fixed;inset:0;z-index:19;background:rgba(0,0,0,.4);display:none;';
+    document.body.appendChild(orderBackdrop);
+    function openOrderForm(prefillType) {
+      const form = orderFormContent.querySelector('form');
+      form.style.display = '';
+      form.reset();
+      clearTypeRequired();
+      document.getElementById('form-success').classList.remove('show');
+      Object.values(typeFieldEls).forEach(el => { if (el) el.style.display = 'none'; });
+      serviceOptionGroup.style.display = 'none';
+      serviceOptionEl.innerHTML = '';
+      serviceOptionEl.disabled = false;
+      if (prefillType) {
+        demandTypeEl.value = prefillType;
+        demandTypeEl.dispatchEvent(new Event('change'));
+      }
+      orderBackdrop.style.display = 'block';
+      orderModal.classList.add('show');
+    }
+    function closeOrderModal() { orderModal.classList.remove('show'); orderBackdrop.style.display = 'none'; }
+    document.getElementById('close-order').addEventListener('click', closeOrderModal);
+    orderBackdrop.addEventListener('click', closeOrderModal);
+    document.getElementById('close-success').addEventListener('click', closeOrderModal);
+    document.querySelectorAll('.service-order-btn').forEach(btn => {
+      btn.addEventListener('click', () => openOrderForm(btn.dataset.type));
+    });
+    function getTodayStr() { const d = new Date(); return d.getFullYear().toString() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0'); }
+    function buildPayload(form) {
+      const getVal = name => (form.querySelector(`[name="${name}"]`) || {}).value || '';
+      const getSelect = name => { const el = form.querySelector(`[name="${name}"]:checked`); const v = el ? el.value : ''; return v ? [{ text: v }] : []; };
+      const getCheckAll = name => Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(c => ({ text: c.value }));
+      const getNum = name => { const v = parseFloat(getVal(name)); return isNaN(v) ? 0 : v; };
+      const getDateTime = name => { const v = getVal(name); return v ? new Date(v).getTime().toString() : ''; };
+      const values = {};
+      values.f0muP1 = [{ text: DATA.orderStatus }];
+      values.fVFGi1 = TYPE_MAP[demandTypeEl.value] || '';
+      values.fuJi1Z = getTodayStr();
+      const allFields = [...DATA.customerFields, ...DATA.petFields, ...DATA.serviceFields];
+      const cfg = DEMAND_TYPES.find(t => t.key === demandTypeEl.value);
+      if (cfg) allFields.push(...cfg.fields);
+      allFields.forEach(f => {
+        if (!f.sheetId) return;
+        let val;
+        switch (f.type) {
+          case 'radio': val = getSelect(f.name); if (val.length === 0) return; break;
+          case 'checkbox': val = getCheckAll(f.name); if (val.length === 0) return; break;
+          case 'number': val = getNum(f.name); if (val === 0) return; break;
+          case 'datetime': val = getDateTime(f.name); if (!val) return; break;
+          default: val = getVal(f.name); if (!val) return;
+        }
+        values[f.sheetId] = val;
+      });
+      return { add_records: [{ values }] };
+    }
+    document.getElementById('service-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const form = e.target;
+      console.log('form submitted');
+      if (!form.checkValidity()) { console.log('validation failed'); form.reportValidity(); return; }
+      console.log('validation passed');
+      const submitBtn = form.querySelector('.submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '提交中...';
+      const payload = buildPayload(form);
+      console.log('payload:', JSON.stringify(payload));
+      try {
+        const resp = await fetch(DATA.webhook, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        console.log('fetch done, type:', resp.type, 'status:', resp.status);
+      } catch (err) {
+        console.warn('webhook request failed:', err);
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = '立即下单';
+      form.style.display = 'none';
+      document.getElementById('form-success').classList.add('show');
+    });
+    const tabs = document.querySelectorAll('.quick-tabs a');
+    const sections = ['escort','home','boarding','transport'].map(id => document.getElementById(id));
+    let isClickScrolling = false;
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        isClickScrolling = true;
+        setTimeout(() => { isClickScrolling = false; }, 500);
       });
     });
-
     function updateActiveTab() {
       if (isClickScrolling) return;
-      
       let current = '';
-      sections.forEach(sec => {
-        if (sec) {
-          const rect = sec.getBoundingClientRect();
-          if (rect.top <= 130 && rect.bottom > 130) current = sec.id;
-        }
-      });
-      
-      if (current) {
-        tabs.forEach(tab => {
-          tab.classList.toggle('active', tab.getAttribute('href') === '#' + current);
-        });
-      }
+      sections.forEach(sec => { if (sec) { const rect = sec.getBoundingClientRect(); if (rect.top <= 130 && rect.bottom > 130) current = sec.id; } });
+      if (current) tabs.forEach(tab => tab.classList.toggle('active', tab.getAttribute('href') === '#' + current));
     }
-
     window.addEventListener('scroll', updateActiveTab, { passive: true });
     updateActiveTab();
   </script>
