@@ -91,9 +91,9 @@ body {
   height: auto;
 }
 .top-slogan {
-  height: 22px;
+  height: 36px;
   margin-left: auto;
-  opacity: .6;
+  opacity: .8;
 }
 
 /* ==================== 页面标题区 ==================== */
@@ -112,10 +112,15 @@ body {
 .page-header p {
   margin-top: 8px;
   color: rgba(255,255,255,.84);
-  font-size: 13px;
-  line-height: 1.62;
-  font-weight: 650;
 }
+
+/* ==================== 详情页头部 ==================== */
+.detail-header { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; align-items:center; justify-content:center; padding:8px 16px; z-index:4; background:var(--brochure-blue); }
+.detail-header .back { position:absolute; left:5px; padding:6px 12px; background:rgba(255,255,255,.18); border-radius:20px; display:flex; align-items:center; gap:4px; cursor:pointer; flex-shrink:0; transition:background .2s; }
+.detail-header .back::before { content:"‹"; font-size:18px; color:#fff; font-weight:700; line-height:1; }
+.detail-header .back::after { content:"返回"; font-size:12px; color:rgba(255,255,255,.9); font-weight:600; }
+.detail-header .back:active { background:rgba(255,255,255,.3); }
+.detail-header .title { font-size:16px; font-weight:950; color:#fff; white-space:nowrap; }
 
 /* ==================== Section 标题 ==================== */
 .section {
@@ -299,3 +304,38 @@ body {
     right: 18px;
   }
 }
+
+/* ==================== 订单弹窗 ==================== */
+.modal-mask { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:10; display:none; justify-content:center; align-items:center; }
+.modal-mask.show { display:flex; }
+.order-modal { position:fixed; left:50%; top:50%; width:350px; transform:translate(-50%,-50%) scale(.92); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:20; background:var(--paper); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.3); border:3px solid var(--green); overflow:visible; display:none; flex-direction:column; pointer-events:none; }
+.order-modal.show { display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); pointer-events:auto; }
+.order-modal .modal-box { display:flex; flex-direction:column; height:100%; overflow:hidden; }
+.order-modal .modal-close { position:absolute; top:10px; right:10px; width:28px; height:28px; font-size:14px; background:var(--green-soft); color:var(--green-dark); border:2px solid rgba(110,157,40,.2); border-radius:50%; cursor:pointer; z-index:1; display:grid; place-items:center; line-height:1; }
+.order-form { padding:4px 16px 12px; overflow-y:auto; flex:1; -webkit-overflow-scrolling:touch; }
+.order-form .form-header { position:relative; text-align:center; padding:14px 16px 12px; margin:8px 10px 10px; background:linear-gradient(135deg,var(--green) 0%,rgba(182,220,98,.6) 100%); border-radius:18px; overflow:hidden; }
+.order-form .form-header h2 { font-size:16px; font-weight:950; color:var(--brochure-blue-deep); }
+.order-form .form-header p { font-size:11px; color:var(--brochure-blue-deep); opacity:.75; margin-top:3px; }
+.form-group { margin-bottom:10px; }
+.form-group label { display:block; font-size:12px; font-weight:950; color:var(--ink); margin-bottom:4px; }
+.form-group label .req { color:#e53e3e; }
+.form-group input,.form-group select,.form-group textarea { width:100%; padding:9px 11px; border:2px solid var(--line-green); border-radius:12px 8px 12px 10px; font-size:13px; font-weight:650; background:#fff; color:var(--ink); box-sizing:border-box; }
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--green); }
+.form-group textarea { min-height:50px; resize:vertical; line-height:1.4; }
+.form-group select { appearance:auto; font-weight:700; }
+.radio-group,.check-group { display:flex; flex-wrap:wrap; gap:6px; }
+.radio-group label,.check-group label { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:950; color:var(--brochure-blue-deep); padding:5px 9px; border-radius:10px 8px 10px 9px; background:var(--green-soft); border:1.5px solid rgba(110,157,40,.2); cursor:pointer; white-space:nowrap; }
+.radio-group label:has(input:checked),.check-group label:has(input:checked) { background:var(--green); border-color:rgba(110,157,40,.4); }
+.radio-group input,.check-group input { accent-color:var(--brochure-blue-deep); width:14px; height:14px; }
+.submit-btn { width:100%; height:42px; border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; cursor:pointer; margin-top:6px; margin-bottom:8px; box-shadow:0 4px 0 rgba(39,97,138,.1); }
+.submit-btn:active { transform:translateY(2px); box-shadow:0 2px 0 rgba(39,97,138,.1); }
+.submit-btn:disabled { opacity:.6; cursor:not-allowed; }
+.form-success { display:none; text-align:center; padding:40px 16px; }
+.form-success.show { display:block; }
+.form-success .icon { font-size:44px; margin-bottom:10px; }
+.form-success h3 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
+.form-success p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.5; }
+.form-success .btn { margin-top:16px; width:100%; }
+.section-divider { display:flex; align-items:center; gap:10px; margin:14px 0 10px; }
+.section-divider::before,.section-divider::after { content:""; flex:1; height:1.5px; background:linear-gradient(90deg,transparent,rgba(39,97,138,.12),transparent); }
+.section-divider span { font-size:11px; font-weight:950; color:var(--brochure-blue-deep); white-space:nowrap; background:var(--green-soft); padding:3px 10px; border-radius:10px; }
