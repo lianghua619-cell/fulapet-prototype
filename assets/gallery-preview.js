@@ -123,6 +123,7 @@
 
   function bindEvents() {
     document.addEventListener('click', event => {
+      if (event.target.closest('[data-no-preview]')) return;
       const albumCard = event.target.closest('.activity-card[data-preview-items]');
       if (albumCard) {
         event.preventDefault();
