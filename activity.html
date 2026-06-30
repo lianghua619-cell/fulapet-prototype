@@ -78,6 +78,8 @@
     .rescue-banner .banner-dots { display:flex; justify-content:center; gap:6px; position:absolute; bottom:8px; left:0; right:0; }
     .rescue-banner .banner-dots span { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.5); cursor:pointer; transition:all 0.3s; }
     .rescue-banner .banner-dots span.active { background:#fff; width:20px; }
+    .pet-detail-row { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid rgba(139,187,58,.12); font-size:12px; }
+    .pet-detail-label { font-weight:900; color:var(--brochure-blue-deep); }
     .rescue-text { margin-top:12px; padding:14px; border-radius:18px 14px 20px 16px; background:var(--paper); border:3px solid var(--line-green); }
     .rescue-text h3 { font-size:14px; font-weight:950; color:var(--brochure-blue-deep); }
     .rescue-text p { margin-top:8px; color:var(--text-sub); font-size:12px; line-height:1.6; font-weight:600; }
@@ -152,7 +154,7 @@
         <section class="section">
           <div class="section-title"><h2>公益信息</h2></div>
           <div class="welfare-grid">
-            <div class="featured-card" onclick="FulaPreview.open(window.petImages.map(s=>({src:s,title:s.split('/').pop().replace('.jpg','')})),petCurrent,'待领养')" style="cursor:pointer;">
+            <div class="featured-card" onclick="showPetDetail()" data-no-preview style="cursor:pointer;">
               <div class="featured-photo rescue-banner" style="height:140px;">
                 <div class="banner-slider" id="pet-slider">
                   <div class="banner-slide"><img src="assets/images/pets/1、康康.jpg" alt="康康"></div>
@@ -161,43 +163,9 @@
                   <div class="banner-slide"><img src="assets/images/pets/4、Jason.jpg" alt="Jason"></div>
                   <div class="banner-slide"><img src="assets/images/pets/5、天宝.jpg" alt="天宝"></div>
                   <div class="banner-slide"><img src="assets/images/pets/6、饼饼.jpg" alt="饼饼"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/7、小喇叭.jpg" alt="小喇叭"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/8、花妹儿.jpg" alt="花妹儿"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/9、狮心.jpg" alt="狮心"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/10、小花花.jpg" alt="小花花"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/11、茉莉.jpg" alt="茉莉"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/12、长乐.jpg" alt="长乐"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/13、汤圆.jpg" alt="汤圆"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/14、奶油.jpg" alt="奶油"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/15、圆小妹.jpg" alt="圆小妹"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/16、蓝猫&玳瑁串串.jpg" alt="蓝猫&玳瑁串串"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/17、黄土豆.jpg" alt="黄土豆"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/18、美羊羊.jpg" alt="美羊羊"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/19、奇迹.jpg" alt="奇迹"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/21、小奶牛.jpg" alt="小奶牛"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/23、蓝猫.jpg" alt="蓝猫"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/24、哈尼.jpg" alt="哈尼"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/25、小奶牛.jpg" alt="小奶牛"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/27、汤圆.jpg" alt="汤圆"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/28、小老虎.jpg" alt="小老虎"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/29、小灰灰.jpg" alt="小灰灰"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/31、小赖皮.jpg" alt="小赖皮"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/32、Jason.jpg" alt="Jason"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/33、脏脏.jpg" alt="脏脏"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/34、猫妈妈.jpg" alt="猫妈妈"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/34、小猫.jpg" alt="小猫"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/34、小猫1.jpg" alt="小猫1"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/34、小猫2.jpg" alt="小猫2"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/35、小奶牛.jpg" alt="小奶牛"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/37、小蓝.jpg" alt="小蓝"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/38、一群小猫.jpg" alt="一群小猫"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/39、布丁.jpg" alt="布丁"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/40、未取名.jpg" alt="未取名"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/41、小虎子.jpg" alt="小虎子"></div>
-                  <div class="banner-slide"><img src="assets/images/pets/42、未取名.jpg" alt="未取名"></div>
                 </div>
                 <div class="banner-dots" id="pet-dots">
-                  <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
                 </div>
               </div>
               <div class="featured-body" style="padding:10px;display:flex;align-items:center;gap:8px;">
@@ -227,6 +195,33 @@
         </section>
       </section>
 
+    </div>
+
+    <div id="pet-detail-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.55);justify-content:center;align-items:center;padding:20px 0;">
+      <div style="background:var(--paper);border-radius:22px;width:calc(100% - 32px);max-width:343px;max-height:calc(100vh - 80px);overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;">
+        <button onclick="closePetDetail()" style="position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:var(--paper);border:2px solid var(--line-green);color:var(--text-sub);font-size:14px;cursor:pointer;display:grid;place-items:center;line-height:1;z-index:2;">&times;</button>
+        <div style="position:sticky;top:0;z-index:1;background:var(--paper);border-radius:22px 22px 0 0;overflow:hidden;">
+          <img id="pet-detail-img" src="" alt="" data-no-preview style="width:100%;height:200px;object-fit:contain;background:#f5f5f5;display:block;">
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 16px;">
+          <button onclick="prevPetDetail()" id="pet-detail-prev" style="width:32px;height:32px;border-radius:50%;background:var(--green-soft);border:2px solid var(--line-green);color:var(--brochure-blue-deep);font-size:18px;cursor:pointer;display:grid;place-items:center;line-height:1;">&#8249;</button>
+          <span id="pet-detail-counter" style="font-size:12px;color:var(--text-sub);font-weight:700;"></span>
+          <button onclick="nextPetDetail()" id="pet-detail-next" style="width:32px;height:32px;border-radius:50%;background:var(--green-soft);border:2px solid var(--line-green);color:var(--brochure-blue-deep);font-size:18px;cursor:pointer;display:grid;place-items:center;line-height:1;">&#8250;</button>
+        </div>
+        <div style="padding:12px 14px 14px;">
+          <h2 id="pet-detail-name" style="font-size:17px;font-weight:950;margin-bottom:8px;"></h2>
+          <div id="pet-detail-info" style="margin-bottom:8px;"></div>
+          <div style="margin-bottom:8px;">
+            <div style="font-size:11px;font-weight:900;color:var(--brochure-blue-deep);margin-bottom:2px;">性格</div>
+            <div id="pet-detail-personality" style="font-size:12px;color:var(--ink);line-height:1.5;"></div>
+          </div>
+          <div style="margin-bottom:8px;">
+            <div style="font-size:11px;font-weight:900;color:var(--brochure-blue-deep);margin-bottom:2px;">它的故事</div>
+            <div id="pet-detail-story" style="font-size:12px;color:var(--text-sub);line-height:1.5;"></div>
+          </div>
+          <div id="pet-detail-contact" style="font-size:12px;color:var(--brochure-blue-deep);font-weight:700;padding:8px 10px;background:var(--green-soft);border-radius:10px;"></div>
+        </div>
+      </div>
     </div>
 
     <div id="float-contact-container"></div>
@@ -266,7 +261,7 @@
       const petDots = document.querySelectorAll('#pet-dots span');
       window.petCurrent = 0;
       const petTotal = petDots.length;
-      const petNames = ['康康','奶牛','小耳朵','Jason','天宝','饼饼','小喇叭','花妹儿','狮心','小花花','茉莉','长乐','汤圆','奶油','圆小妹','蓝猫&玳瑁串串','黄土豆','美羊羊','奇迹','小奶牛','蓝猫','哈尼','小奶牛','汤圆','小老虎','小灰灰','小赖皮','Jason','脏脏','猫妈妈','小猫','小猫1','小猫2','小奶牛','小蓝','一群小猫','布丁','未取名','小虎子','未取名'];
+      const petNames = ['康康','奶牛','小耳朵','Jason','天宝','饼饼'];
       function goToPetSlide(n) {
         petCurrent = n;
         petSlider.style.transform = 'translateX(-' + (petCurrent * 100) + '%)';
@@ -285,42 +280,57 @@
         'assets/images/pets/3、小耳朵.jpg',
         'assets/images/pets/4、Jason.jpg',
         'assets/images/pets/5、天宝.jpg',
-        'assets/images/pets/6、饼饼.jpg',
-        'assets/images/pets/7、小喇叭.jpg',
-        'assets/images/pets/8、花妹儿.jpg',
-        'assets/images/pets/9、狮心.jpg',
-        'assets/images/pets/10、小花花.jpg',
-        'assets/images/pets/11、茉莉.jpg',
-        'assets/images/pets/12、长乐.jpg',
-        'assets/images/pets/13、汤圆.jpg',
-        'assets/images/pets/14、奶油.jpg',
-        'assets/images/pets/15、圆小妹.jpg',
-        'assets/images/pets/16、蓝猫&玳瑁串串.jpg',
-        'assets/images/pets/17、黄土豆.jpg',
-        'assets/images/pets/18、美羊羊.jpg',
-        'assets/images/pets/19、奇迹.jpg',
-        'assets/images/pets/21、小奶牛.jpg',
-        'assets/images/pets/23、蓝猫.jpg',
-        'assets/images/pets/24、哈尼.jpg',
-        'assets/images/pets/25、小奶牛.jpg',
-        'assets/images/pets/27、汤圆.jpg',
-        'assets/images/pets/28、小老虎.jpg',
-        'assets/images/pets/29、小灰灰.jpg',
-        'assets/images/pets/31、小赖皮.jpg',
-        'assets/images/pets/32、Jason.jpg',
-        'assets/images/pets/33、脏脏.jpg',
-        'assets/images/pets/34、猫妈妈.jpg',
-        'assets/images/pets/34、小猫.jpg',
-        'assets/images/pets/34、小猫1.jpg',
-        'assets/images/pets/34、小猫2.jpg',
-        'assets/images/pets/35、小奶牛.jpg',
-        'assets/images/pets/37、小蓝.jpg',
-        'assets/images/pets/38、一群小猫.jpg',
-        'assets/images/pets/39、布丁.jpg',
-        'assets/images/pets/40、未取名.jpg',
-        'assets/images/pets/41、小虎子.jpg',
-        'assets/images/pets/42、未取名.jpg'
+        'assets/images/pets/6、饼饼.jpg'
       ];
+
+      window.petDetails = {
+        '康康': { breed:'银渐层', age:'3岁左右', gender:'弟弟', dewormed:'是', sterilized:'是', vaccine:'接种完三针妙三多', rabies:'是', personality:'亲人大方稳重，贪嘴爱吃，对猫有可能会占强', story:'流浪小猫去年被救助，从皮包骨头的纸片猫变成现在健康的小猫，虽历经磨难却对人类充满善意，除了肠胃不太好其他已经康复是个健康的小朋友，需要一个有爱的家', contact:'13198505202' },
+        '奶牛': { breed:'田园猫', age:'11个月', gender:'弟弟', dewormed:'是', sterilized:'是', vaccine:'', rabies:'是', personality:'热情亲人大方，对人对狗都友好，极其黏人！！！', story:'2026年1月10日跑到公司来的小流浪。因曾经的流浪生活留下了一些小外伤，对人类满怀信任与善意，现在全身驱虫，皮肤外伤已愈合康复，假以时日毛发浓密，一定是个英俊、健硕的潇洒猫。现为他寻一个有爱、温暖的家', contact:'13558678821，周女士' },
+        '小耳朵': { breed:'狸白', age:'7个月', gender:'弟弟', dewormed:'是', sterilized:'是', vaccine:'接种完三针妙三多', rabies:'否', personality:'非常黏人，性格非常好', story:'2026年4月在小区里遇到了它，它跟着人要吃的，翻着肚皮让人摸，因为太亲人了，怕被伤害，所以想给它找个家', contact:'13808068907' },
+        'Jason': { breed:'蓝金渐层', age:'一岁', gender:'弟弟', dewormed:'是', sterilized:'是', vaccine:'三针疫苗', rabies:'否', personality:'活泼可爱，乖巧黏人', story:'宠物店倒闭后救下来的蓝金渐层，乖巧活泼可爱。杯状无症状，因天生鼻子短有泪痕，求无宠家庭领养！', contact:'微信：Snow-Joker-Xue' },
+        '天宝': { breed:'狸花猫', age:'1岁半', gender:'妹妹', dewormed:'是', sterilized:'否', vaccine:'是', rabies:'', personality:'漂亮活泼可爱亲人，健康', story:'在下穿隧道中捡的田园猫，集狸花猫的所有优秀品质为一身，健康，聪明，会察言观色，对人友好，身体强壮。是很好的伴侣猫。', contact:'18328001448' },
+        '饼饼': { breed:'银渐层', age:'2岁', gender:'弟弟', dewormed:'是', sterilized:'是', vaccine:'接种完三针妙三多', rabies:'是', personality:'亲人大方稳重，贪嘴爱吃，对猫有可能会占强', story:'银白渐变毛发搭配绿宝石般的眼睛，自带柔光滤镜的治愈系小猫。性格极亲人，一喊就应，主动贴贴，随便 rua 都不生气。不挑食不护食，会用猫砂，省心好养。已绝育，身体倍儿棒。希望你在成都定居，有稳定收入和养猫经验，给它一辈子的偏爱。', contact:'13808056605' }
+      };
+
+      let detailIndex = 0;
+
+      function renderPetDetail(idx) {
+        detailIndex = idx;
+        const name = petNames[idx];
+        const info = petDetails[name];
+        if (!info) return;
+        document.getElementById('pet-detail-img').src = petImages[idx];
+        document.getElementById('pet-detail-name').textContent = name;
+        document.getElementById('pet-detail-info').innerHTML =
+          '<div class="pet-detail-row"><span class="pet-detail-label">品种</span><span>' + info.breed + '</span></div>' +
+          '<div class="pet-detail-row"><span class="pet-detail-label">年龄</span><span>' + info.age + '</span></div>' +
+          '<div class="pet-detail-row"><span class="pet-detail-label">性别</span><span>' + info.gender + '</span></div>' +
+          '<div class="pet-detail-row"><span class="pet-detail-label">驱虫</span><span>' + info.dewormed + '</span></div>' +
+          '<div class="pet-detail-row"><span class="pet-detail-label">绝育</span><span>' + info.sterilized + '</span></div>' +
+          (info.vaccine ? '<div class="pet-detail-row"><span class="pet-detail-label">疫苗</span><span>' + info.vaccine + '</span></div>' : '') +
+          (info.rabies ? '<div class="pet-detail-row"><span class="pet-detail-label">狂犬</span><span>' + info.rabies + '</span></div>' : '');
+        document.getElementById('pet-detail-personality').textContent = info.personality;
+        document.getElementById('pet-detail-story').textContent = info.story;
+        document.getElementById('pet-detail-contact').textContent = '联系方式：' + info.contact;
+        document.getElementById('pet-detail-counter').textContent = (idx + 1) + ' / ' + petNames.length;
+      }
+
+      window.showPetDetail = function() {
+        renderPetDetail(petCurrent);
+        document.getElementById('pet-detail-modal').style.display = 'flex';
+      };
+
+      window.prevPetDetail = function() {
+        renderPetDetail((detailIndex - 1 + petNames.length) % petNames.length);
+      };
+
+      window.nextPetDetail = function() {
+        renderPetDetail((detailIndex + 1) % petNames.length);
+      };
+
+      window.closePetDetail = function() {
+        document.getElementById('pet-detail-modal').style.display = 'none';
+      };
 
       // 走失寻主轮播
       const lostSlider = document.getElementById('lost-slider');
