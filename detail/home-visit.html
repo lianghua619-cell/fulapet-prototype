@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>福拉呼啦-上门服务</title>
+
+  <link rel="stylesheet" href="../assets/common.css?v=3">
+
+<style>
+    .page { padding-bottom:80px; padding-top:110px; }
+
+    .detail-body { margin:0 12px; padding:20px 16px 24px; background:var(--paper); border-radius:0 0 30px 30px; border:3px solid var(--green); border-top:0; position:relative; }
+
+    .detail-body::before { content:""; position:absolute; top:-12px; left:-8px; right:-8px; height:24px; background:var(--green); border-radius:0 0 20px 20px; z-index:0; }
+
+    .detail-body > * { position:relative; z-index:1; }
+
+    .page-title { font-size:28px; font-weight:950; color:var(--brochure-blue-deep); margin-bottom:16px; line-height:1.2; }
+
+    .photo-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:20px; }
+
+    .photo-item { background:#fff; padding:6px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.1); transform:rotate(var(--rot,0deg)); }
+
+    .photo-item img { width:100%; height:90px; object-fit:cover; border-radius:4px; display:block; }
+
+    .photo-item:nth-child(1) { --rot:-2deg; }
+
+    .photo-item:nth-child(2) { --rot:1deg; }
+
+    .photo-item:nth-child(3) { --rot:-1deg; }
+
+    .photo-item:nth-child(4) { --rot:2deg; }
+
+    .section-badge { display:inline-flex; padding:6px 14px; border-radius:8px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; margin-bottom:12px; }
+
+    .numbered-list { display:grid; gap:16px; margin-bottom:20px; }
+
+    .numbered-item { display:flex; gap:10px; align-items:flex-start; }
+
+    .numbered-item .num { flex:0 0 24px; height:24px; display:grid; place-items:center; border-radius:999px; background:var(--green); color:var(--brochure-blue-deep); font-size:12px; font-weight:950; }
+
+    .numbered-item .content { flex:1; }
+
+    .numbered-item .content strong { font-size:13px; font-weight:950; color:var(--ink); }
+
+    .numbered-item .content p { margin-top:4px; color:var(--text-sub); font-size:12px; line-height:1.6; font-weight:600; }
+
+    .charge-note { color:var(--brochure-blue-deep); font-size:13px; font-weight:800; margin-bottom:16px; }
+
+    .price-section { display:grid; gap:16px; margin-bottom:20px; }
+
+    .price-card { display:flex; gap:12px; align-items:flex-start; padding:12px; border-radius:16px; }
+
+    .price-icon { flex:0 0 36px; height:36px; display:grid; place-items:center; }
+
+    .price-icon img { width:36px; height:36px; }
+
+    .price-info { flex:1; }
+
+    .price-title { font-size:14px; font-weight:700; color:var(--ink); line-height:1.3; }
+
+    .price-title .amount { font-size:32px; font-weight:950; color:var(--brochure-blue); }
+
+    .price-title .unit { font-size:14px; font-weight:700; color:var(--ink); }
+
+    .price-title .extra { font-size:12px; font-weight:600; color:var(--text-sub); }
+
+    .price-info .desc { margin-top:4px; color:var(--text-sub); font-size:11px; line-height:1.5; font-weight:600; }
+
+    .deco-bottom { display:flex; justify-content:space-around; align-items:flex-end; margin-top:16px; padding:0 20px; }
+
+    .bottom-bar { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:375px; padding:10px 16px; background:linear-gradient(180deg, var(--brochure-blue-dark), var(--brochure-blue-deep)); border-top:2px solid rgba(246,243,223,.32); z-index:5; }
+
+    .bottom-bar .btn-order { width:100%; height:48px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; font-size:16px; font-weight:950; }
+
+    .order-modal { position:fixed; left:50%; top:50%; width:350px; max-height:85vh; transform:translate(-50%,-50%) scale(.92); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:20; background:var(--paper); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.3); border:3px solid var(--green); overflow:visible; display:none; flex-direction:column; pointer-events:none; }
+
+    .order-modal.show { display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); pointer-events:auto; }
+
+    .order-modal .modal-box { display:flex; flex-direction:column; height:100%; overflow:hidden; }
+
+    .order-modal .modal-close { position:absolute; top:10px; right:10px; width:28px; height:28px; font-size:14px; background:var(--green-soft); color:var(--green-dark); border:2px solid rgba(110,157,40,.2); border-radius:50%; cursor:pointer; z-index:1; display:grid; place-items:center; line-height:1; }
+
+    .order-form { padding:4px 16px 12px; overflow-y:auto; flex:1; -webkit-overflow-scrolling:touch; }
+
+    .order-form .form-header { position:relative; text-align:center; padding:14px 16px 12px; margin:8px 10px 10px; background:linear-gradient(135deg,var(--green) 0%,rgba(182,220,98,.6) 100%); border-radius:18px; overflow:hidden; }
+
+    .order-form .form-header h2 { font-size:16px; font-weight:950; color:var(--brochure-blue-deep); }
+
+    .order-form .form-header p { font-size:11px; color:var(--brochure-blue-deep); opacity:.75; margin-top:3px; }
+
+    .form-group { margin-bottom:10px; }
+
+    .form-group label { display:block; font-size:12px; font-weight:950; color:var(--ink); margin-bottom:4px; }
+
+    .form-group label .req { color:#e53e3e; }
+
+    .form-group input,.form-group select,.form-group textarea { width:100%; padding:9px 11px; border:2px solid var(--line-green); border-radius:12px 8px 12px 10px; font-size:13px; font-weight:650; background:#fff; color:var(--ink); box-sizing:border-box; }
+
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--green); }
+
+    .form-group textarea { min-height:50px; resize:vertical; line-height:1.4; }
+
+    .form-group select { appearance:auto; font-weight:700; }
+
+    .radio-group,.check-group { display:flex; flex-wrap:wrap; gap:6px; }
+
+    .radio-group label,.check-group label { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:950; color:var(--brochure-blue-deep); padding:5px 9px; border-radius:10px 8px 10px 9px; background:var(--green-soft); border:1.5px solid rgba(110,157,40,.2); cursor:pointer; white-space:nowrap; }
+
+    .radio-group label:has(input:checked),.check-group label:has(input:checked) { background:var(--green); border-color:rgba(110,157,40,.4); }
+
+    .radio-group input,.check-group input { accent-color:var(--brochure-blue-deep); width:14px; height:14px; }
+
+    .submit-btn { width:100%; height:42px; border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; cursor:pointer; margin-top:6px; margin-bottom:8px; box-shadow:0 4px 0 rgba(39,97,138,.1); }
+
+    .submit-btn:active { transform:translateY(2px); box-shadow:0 2px 0 rgba(39,97,138,.1); }
+
+    .submit-btn:disabled { opacity:.6; cursor:not-allowed; }
+
+    .form-success { display:none; text-align:center; padding:40px 16px; }
+
+    .form-success.show { display:block; }
+
+    .form-success .icon { font-size:44px; margin-bottom:10px; }
+
+    .form-success h3 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
+
+    .form-success p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.5; }
+
+    .form-success .btn { margin-top:16px; width:100%; }
+
+    .section-divider { display:flex; align-items:center; gap:10px; margin:14px 0 10px; }
+
+    .section-divider::before,.section-divider::after { content:""; flex:1; height:1.5px; background:linear-gradient(90deg,transparent,rgba(39,97,138,.12),transparent); }
+
+    .section-divider span { font-size:11px; font-weight:950; color:var(--brochure-blue-deep); white-space:nowrap; background:var(--green-soft); padding:3px 10px; border-radius:10px; }
+
+  </style>
+
+</head>
+
+<body>
+
+  <script src="../assets/component-loader.js?v=4"></script>
+
+  <script src="../assets/topbar.js"></script>
+
+  <main class="phone">
+
+    <div class="page">
+
+      <div class="detail-header">
+
+        <div class="back" onclick="history.back()"></div>
+
+        <div class="title">上门服务</div>
+
+      </div>
+
+
+
+      <div class="detail-body">
+
+        <h1 class="page-title">宠物上门喂养</h1>
+
+
+
+        <div class="photo-grid">
+
+          <div class="photo-item"><img src="../assets/images/service-home/cat-visit-1.jpg" alt="上门喂食"></div>
+
+          <div class="photo-item"><img src="../assets/images/service-home/cat-visit-2.jpg" alt="上门清洁"></div>
+
+          <div class="photo-item"><img src="../assets/images/service-home/dog-walk-1.jpg" alt="上门遛狗"></div>
+
+          <div class="photo-item"><img src="../assets/images/service-home/cat-visit-3.jpg" alt="上门反馈"></div>
+
+        </div>
+
+
+
+        <div class="section-badge">服务内容</div>
+
+        <div class="numbered-list">
+
+          <div class="numbered-item">
+
+            <span class="num">1</span>
+
+            <div class="content">
+
+              <strong>卫生保障</strong>
+
+              <p>自备手套鞋套、上门双手消毒、佩戴口罩</p>
+
+            </div>
+
+          </div>
+
+          <div class="numbered-item">
+
+            <span class="num">2</span>
+
+            <div class="content">
+
+              <strong>规范流程</strong>
+
+              <p>清洗宠物食盆、水碗，添加猫粮/狗粮、零食及饮用水，清扫就餐和如厕区域等</p>
+
+            </div>
+
+          </div>
+
+          <div class="numbered-item">
+
+            <span class="num">3</span>
+
+            <div class="content">
+
+              <strong>实时反馈</strong>
+
+              <p>照片视频反馈。支持视频通话</p>
+
+            </div>
+
+          </div>
+
+          <div class="numbered-item">
+
+            <span class="num">4</span>
+
+            <div class="content">
+
+              <strong>可协助完成力所能及的小事</strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="section-badge">服务收费</div>
+
+        <p class="charge-note">服务后收款，不满意免费赠送服务</p>
+
+
+
+        <div class="price-section">
+
+          <div class="price-card">
+
+<div class="price-icon"><img src="../assets/sm1.jpg" alt="上门喂猫" style="width:36px;height:36px;"></div>
+
+            <div class="price-info">
+
+              <div class="price-title"><span class="amount">59</span><span class="unit">元/ </span> <span class="extra">（多一只增加10元）</span></div>
+
+              <p class="desc">全程30分钟，照料清理约20分钟，陪玩5-10分钟</p>
+            </div>
+
+          </div>
+
+          <div class="price-card">
+
+<div class="price-icon"><img src="../assets/sm2.jpg" alt="上门遛狗" style="width:36px;height:36px;"></div>
+
+            <div class="price-info">
+
+              <div class="price-title"><span class="amount">69</span><span class="unit">元/ </span> <span class="extra">（多一只增加10元）</span></div>
+
+              <p class="desc">全程30分钟，照料约20分钟，外出遛弯排便10-15分钟</p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="deco-bottom">
+
+          <svg class="paw" width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="8" cy="8" r="4" fill="var(--green)" opacity=".3"/><circle cx="20" cy="8" r="4" fill="var(--green)" opacity=".3"/><circle cx="5" cy="18" r="3.5" fill="var(--green)" opacity=".3"/><circle cx="23" cy="18" r="3.5" fill="var(--green)" opacity=".3"/><ellipse cx="14" cy="22" rx="7" ry="5" fill="var(--green)" opacity=".3"/></svg>
+
+          <svg class="medical" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="4" width="16" height="24" rx="3" stroke="var(--green)" stroke-width="2.5" fill="none" opacity=".3"/><path d="M16 10v12M10 16h12" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" opacity=".3"/></svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="bottom-bar">
+
+      <button class="btn-order service-order-btn" data-type="door">立即下单</button>
+
+    </div>
+
+  </main>
+
+  <script src="../data/contact.js?v=3"></script>
+
+  <script src="../assets/order-modal.js"></script>
+
+</body>
+
+</html>
+

@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>福拉呼啦-首页</title>
-  <link rel="stylesheet" href="assets/common.css?v=2">
+  <link rel="stylesheet" href="assets/common.css?v=3">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
     * { box-sizing:border-box; }
     .page { padding-bottom:98px; padding-top:62px; background:var(--brochure-blue); font-family:'Noto Sans SC',sans-serif; }
-
-    /* Hero 轮播 */
     .home-hero { position:relative; z-index:2; margin:16px 14px 0; border-radius:32px 28px 34px 26px; background:linear-gradient(145deg,#FFF8EE 0%,#FFFDF5 50%,#F8F4E8 100%); box-shadow:0 8px 32px rgba(39,97,138,.12),inset 0 1px 0 rgba(255,255,255,.8); overflow:hidden; height:190px; border:none; }
     .hero-slider { display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); height:100%; }
     .hero-slide { min-width:100%; height:100%; display:flex; flex-direction:row; align-items:stretch; padding:16px 14px; box-sizing:border-box; gap:8px; }
@@ -20,18 +18,15 @@
     .hero-slide .slide-text .slogan { margin-top:4px; color:var(--text-sub); font-size:11px; font-weight:500; line-height:1.4; }
     .hero-slide .slide-text .badges { display:flex; gap:4px; flex-wrap:wrap; margin-top:6px; }
     .hero-slide .slide-text .badges span { padding:3px 8px; border-radius:16px; background:var(--green); color:var(--brochure-blue-deep); font-size:9px; font-weight:700; }
-    .hero-slide .slide-img { flex:0 0 120px; border-radius:16px; overflow:hidden; background:linear-gradient(135deg,#E8F5E9,#F1F8E9); display:flex; align-items:center; justify-content:center; }
+    .hero-slide .slide-img { flex:0 0 120px; border-radius:20px; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative; }
+    .hero-slide .slide-img::after { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center,transparent 50%,rgba(255,253,245,.6) 100%); pointer-events:none; }
     .hero-slide .slide-img img { width:100%; height:100%; object-fit:contain; }
     .hero-dots { display:flex; justify-content:center; gap:6px; position:absolute; bottom:8px; left:0; right:0; }
     .hero-dots span { width:8px; height:8px; border-radius:999px; background:rgba(39,97,138,.15); transition:all .3s; cursor:pointer; }
     .hero-dots span.active { background:var(--green); width:20px; }
-
-    /* Section Title */
     .section-title { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
     .section-title h2 { display:inline-flex; padding:6px 14px; border-radius:20px; background:var(--green); color:var(--brochure-blue-deep); font-size:15px; font-weight:900; }
     .section-title span { color:rgba(255,255,255,.7); font-size:11px; font-weight:500; }
-
-    /* 四宫格服务卡片 - 错落布局 */
     .service-grid { display:grid; gap:14px; padding:0 4px; }
     .service-grid-card { display:flex; align-items:center; gap:12px; padding:16px; border-radius:24px; background:linear-gradient(145deg,rgba(255,255,255,.95) 0%,rgba(255,253,245,.9) 100%); box-shadow:0 6px 20px rgba(39,97,138,.08),0 2px 8px rgba(39,97,138,.06); text-decoration:none; color:inherit; transition:transform .2s,box-shadow .2s; border:1.5px solid rgba(182,220,98,.2); }
     .service-grid-card:active { transform:scale(.97); box-shadow:0 2px 8px rgba(39,97,138,.06); }
@@ -44,16 +39,12 @@
     .service-grid-card .card-body p { margin-top:3px; color:var(--text-sub); font-size:11px; line-height:1.4; font-weight:500; }
     .service-grid-card .card-btn { flex:0 0 auto; padding:6px 14px; border-radius:20px; background:var(--green); color:var(--brochure-blue-deep); font-size:11px; font-weight:700; border:none; text-decoration:none; box-shadow:0 3px 12px rgba(182,220,98,.3); transition:transform .2s; white-space:nowrap; }
     .service-grid-card .card-btn:active { transform:scale(.95); }
-
-    /* 装饰元素 */
-    .deco-cat { position:absolute; right:8px; top:-12px; width:50px; height:50px; opacity:.15; }
-    .deco-paw { position:absolute; right:12px; bottom:8px; font-size:20px; opacity:.12; }
   </style>
 </head>
 <body>
+  <script src="assets/topbar.js"></script>
   <main class="phone">
     <div class="page">
-      <div id="topbar-container"></div>
 
       <section class="home-hero">
         <div class="hero-slider" id="hero-slider">
@@ -91,7 +82,7 @@
               <p class="slogan">日常喂养、健康观察、照片反馈</p>
               <div class="badges"><span>安心寄养</span><span>每日反馈</span></div>
             </div>
-            <div class="slide-img"><img src="assets/images/brand/team-2.jpg" alt="寄养服务"></div>
+            <div class="slide-img"><img src="assets/images/service-boarding/boarding-7.png" alt="寄养服务"></div>
           </div>
         </div>
         <div class="hero-dots" id="hero-dots">
@@ -102,15 +93,15 @@
       <section class="section">
         <div class="section-title"><h2>宠物服务</h2><span>选择服务类型</span></div>
         <div class="service-grid">
-          <a class="service-grid-card" href="home-visit.html">
+          <a class="service-grid-card" href="detail/home-visit.html">
             <div class="icon"><img src="assets/icon-visit.jpg" alt="上门服务"></div>
             <div class="card-body">
               <h3>上门服务</h3>
-              <p>喂食换水、清洁陪伴、状态反馈</p>
+              <p>定制服务、贴心照护、完整反馈</p>
             </div>
             <span class="card-btn">立即预约 ›</span>
           </a>
-          <a class="service-grid-card" href="escort.html">
+          <a class="service-grid-card" href="detail/escort.html">
             <div class="icon"><img src="assets/icon-medical.jpg" alt="医疗陪护"></div>
             <div class="card-body">
               <h3>医疗陪护</h3>
@@ -118,19 +109,19 @@
             </div>
             <span class="card-btn">立即预约 ›</span>
           </a>
-          <a class="service-grid-card" href="boarding.html">
+          <a class="service-grid-card" href="detail/boarding.html">
             <div class="icon"><img src="assets/icon-boarding.jpg" alt="寄养服务"></div>
             <div class="card-body">
               <h3>寄养服务</h3>
-              <p>日常喂养、健康观察、照片反馈</p>
+              <p>公园环境、专业照护、健康监测、营养餐</p>
             </div>
             <span class="card-btn">立即预约 ›</span>
           </a>
-          <a class="service-grid-card" href="transport.html">
-            <div class="icon"><img src="assets/icon-transport.jpg" alt="托运服务"></div>
+          <a class="service-grid-card" href="detail/transport.html">
+            <div class="icon"><img src="assets/icon-transport.jpg" alt="其他服务"></div>
             <div class="card-body">
-              <h3>托运服务</h3>
-              <p>城内跨城、安全托运、全程跟踪</p>
+              <h3>其他服务</h3>
+              <p>宠物国内国际托运，宠物殡葬</p>
             </div>
             <span class="card-btn">立即预约 ›</span>
           </a>
@@ -142,7 +133,7 @@
     <div id="float-contact-container"></div>
     <div id="tabbar-container"></div>
   </main>
-  <script src="assets/component-loader.js?v=2"></script>
+  <script src="assets/component-loader.js?v=4"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ComponentLoader.setActiveTab('index.html');

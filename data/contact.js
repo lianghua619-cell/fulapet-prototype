@@ -28,7 +28,7 @@ const contactData = {
       serviceOptions: ['上门喂猫', '上门喂狗', '上门逗狗'],
       typeSection: '宠物上门服务信息',
       fields: [
-        { name: '上门地址', type: 'text', placeholder: '请输入上门地址', required: true, sheetId: 'fVFGi1' },
+        { name: '上门地址', type: 'text', placeholder: '请输入上门地址', required: true },
         { name: '具体单元门号', type: 'text', placeholder: '如：3栋2单元1801', required: true, sheetId: 'f3YTGu' },
         { name: '电梯还是楼梯', type: 'radio', options: ['电梯', '楼梯'], required: true, sheetId: 'fmK0Nj' },
         { name: '是否有实时监控', type: 'radio', options: ['是', '否'], required: true, sheetId: 'fz7elL' }
@@ -44,20 +44,6 @@ const contactData = {
         { name: '预约就诊内容', type: 'checkbox', options: ['初次就诊', '针灸', '输液', '激光', '其他'], required: false, sheetId: 'fGnrtq' },
         { name: '预约预留电话', type: 'tel', placeholder: '请输入预约电话', required: true, sheetId: 'fM5S4w' },
         { name: '预约就诊医生', type: 'text', placeholder: '请输入医生姓名', required: false, sheetId: 'fthG70' }
-      ]
-    },
-    {
-      key: 'transport',
-      label: '托运需求',
-      code: 'TY',
-      serviceOptions: ['城内托运', '跨城托运', '国际托运'],
-      typeSection: '托运信息',
-      fields: [
-        { name: '托运出发地', type: 'text', placeholder: '请输入出发城市', required: true, sheetId: 'fo9zHf' },
-        { name: '出发地具体单元门号', type: 'text', placeholder: '如：3栋2单元1801', required: true, sheetId: 'f7zgDB' },
-        { name: '托运目的地', type: 'text', placeholder: '请输入目的城市', required: true, sheetId: 'flszyp' },
-        { name: '目的地具体单元门号', type: 'text', placeholder: '如：3栋2单元1801', required: true, sheetId: 'f3YTGu' },
-        { name: '随行物品', type: 'text', placeholder: '如：猫粮、猫砂盆、玩具等', required: false, sheetId: 'ftZOa1' }
       ]
     },
     {
@@ -97,7 +83,6 @@ const contactData = {
   serviceFields: [
     { name: '服务时间开始', type: 'datetime', required: true, sheetId: 'fiTHZL' },
     { name: '服务时间结束', type: 'datetime', required: true, sheetId: 'fihycQ' },
-    { name: '其他服务内容', type: 'textarea', placeholder: '请补充除了基础服务项的其他需求', required: false, sheetId: 'fQE8LR' },
     { name: '其他备注', type: 'textarea', placeholder: '注意事项等，如有多只请备注，性格特别请注明', required: false, sheetId: 'fz1CpN' }
   ],
 

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>福拉呼啦-医疗陪护</title>
+
+  <link rel="stylesheet" href="../assets/common.css?v=3">
+
+<style>
+    .page { padding-bottom:80px; padding-top:110px; }
+
+    .detail-body { margin:0 12px; padding:20px 16px 24px; background:var(--paper); border-radius:0 0 30px 30px; border:3px solid var(--green); border-top:0; position:relative; }
+
+    .detail-body::before { content:""; position:absolute; top:-12px; left:-8px; right:-8px; height:24px; background:var(--green); border-radius:0 0 20px 20px; z-index:0; }
+
+    .detail-body > * { position:relative; z-index:1; }
+
+    .page-title { font-size:28px; font-weight:950; color:var(--brochure-blue-deep); margin-bottom:16px; line-height:1.2; }
+
+    .page-title .deco { display:inline-block; }
+
+    .photo-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-bottom:20px; }
+
+    .photo-item { background:#fff; padding:6px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.1); transform:rotate(var(--rot,0deg)); }
+
+    .photo-item img { width:100%; height:90px; object-fit:cover; border-radius:4px; display:block; }
+
+    .photo-item:nth-child(1) { --rot:-2deg; }
+
+    .photo-item:nth-child(2) { --rot:1deg; }
+
+    .photo-item:nth-child(3) { --rot:-1deg; }
+
+    .photo-item:nth-child(4) { --rot:2deg; }
+
+    .section-badge { display:inline-flex; padding:6px 14px; border-radius:8px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; margin-bottom:12px; }
+
+    .numbered-list { display:grid; gap:16px; margin-bottom:20px; }
+
+    .numbered-item { display:flex; gap:12px; align-items:flex-start; }
+
+    .numbered-item .num { flex:0 0 32px; height:32px; display:grid; place-items:center; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; border-radius:10px; }
+
+    .numbered-item .content { flex:1; }
+
+    .numbered-item .content strong { display:block; font-size:14px; font-weight:950; color:var(--brochure-blue-deep); margin-bottom:4px; }
+
+    .numbered-item .content p { font-size:12px; color:var(--text-sub); line-height:1.5; }
+
+    .section-badge-sm { display:inline-flex; padding:4px 10px; border-radius:6px; background:var(--green-soft); color:var(--brochure-blue-deep); font-size:12px; font-weight:950; margin-bottom:8px; }
+
+    .charge-note { font-size:11px; color:var(--text-sub); margin-bottom:12px; padding:8px 12px; background:var(--green-soft); border-radius:8px; border-left:3px solid var(--green); }
+
+    .price-section { display:grid; gap:12px; margin-bottom:16px; }
+
+    .price-card { display:flex; align-items:center; gap:12px; padding:14px; background:#fff; border-radius:16px; box-shadow:0 2px 8px rgba(0,0,0,.06); border:1.5px solid rgba(182,220,98,.2); }
+
+    .price-icon { flex-shrink:0; }
+
+    .price-icon img { width:36px; height:36px; border-radius:8px; object-fit:cover; }
+
+    .price-info { flex:1; }
+
+    .price-title { display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; }
+
+    .price-title .name { font-size:13px; font-weight:950; color:var(--brochure-blue-deep); }
+
+    .price-title .amount { font-size:22px; font-weight:950; color:var(--brochure-blue-deep); }
+
+    .price-title .unit { font-size:11px; color:var(--text-sub); font-weight:700; }
+
+    .price-title .extra { font-size:10px; color:var(--green-dark); font-weight:700; }
+
+    .price-info .desc { font-size:11px; color:var(--text-sub); margin-top:4px; line-height:1.4; }
+
+    .deco-bottom { display:flex; justify-content:center; gap:16px; padding:16px 0 8px; opacity:.6; }
+
+    .bottom-bar { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:375px; padding:12px 16px; background:var(--brochure-blue); z-index:5; }
+
+    .bottom-bar .btn-order { width:100%; height:48px; border:none; border-radius:14px; background:var(--green); color:var(--brochure-blue-deep); font-size:16px; font-weight:950; cursor:pointer; box-shadow:0 4px 0 rgba(39,97,138,.15); }
+
+    .bottom-bar .btn-order:active { transform:translateY(2px); box-shadow:0 2px 0 rgba(39,97,138,.15); }
+
+    .modal-mask { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:10; display:none; justify-content:center; align-items:center; }
+
+    .modal-mask.show { display:flex; }
+
+    .order-modal { position:fixed; left:50%; top:50%; width:350px; max-height:85vh; transform:translate(-50%,-50%) scale(.92); opacity:0; transition:transform .3s ease,opacity .3s ease; z-index:20; background:var(--paper); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.3); border:3px solid var(--green); overflow:visible; display:none; flex-direction:column; pointer-events:none; }
+
+    .order-modal.show { display:flex; opacity:1; transform:translate(-50%,-50%) scale(1); pointer-events:auto; }
+
+    .order-modal .modal-box { display:flex; flex-direction:column; height:100%; overflow:hidden; }
+
+    .order-modal .modal-close { position:absolute; top:10px; right:10px; width:28px; height:28px; font-size:14px; background:var(--green-soft); color:var(--green-dark); border:2px solid rgba(110,157,40,.2); border-radius:50%; cursor:pointer; z-index:1; display:grid; place-items:center; line-height:1; }
+
+    .order-form { padding:4px 16px 12px; overflow-y:auto; flex:1; -webkit-overflow-scrolling:touch; }
+
+    .order-form .form-header { position:relative; text-align:center; padding:14px 16px 12px; margin:8px 10px 10px; background:linear-gradient(135deg,var(--green) 0%,rgba(182,220,98,.6) 100%); border-radius:18px; overflow:hidden; }
+
+    .order-form .form-header h2 { font-size:16px; font-weight:950; color:var(--brochure-blue-deep); }
+
+    .order-form .form-header p { font-size:11px; color:var(--brochure-blue-deep); opacity:.75; margin-top:3px; }
+
+    .form-group { margin-bottom:10px; }
+
+    .form-group label { display:block; font-size:12px; font-weight:950; color:var(--ink); margin-bottom:4px; }
+
+    .form-group label .req { color:#e53e3e; }
+
+    .form-group input,.form-group select,.form-group textarea { width:100%; padding:9px 11px; border:2px solid var(--line-green); border-radius:12px 8px 12px 10px; font-size:13px; font-weight:650; background:#fff; color:var(--ink); box-sizing:border-box; }
+
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--green); }
+
+    .form-group textarea { min-height:50px; resize:vertical; line-height:1.4; }
+
+    .form-group select { appearance:auto; font-weight:700; }
+
+    .radio-group,.check-group { display:flex; flex-wrap:wrap; gap:6px; }
+
+    .radio-group label,.check-group label { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:950; color:var(--brochure-blue-deep); padding:5px 9px; border-radius:10px 8px 10px 9px; background:var(--green-soft); border:1.5px solid rgba(110,157,40,.2); cursor:pointer; white-space:nowrap; }
+
+    .radio-group label:has(input:checked),.check-group label:has(input:checked) { background:var(--green); border-color:rgba(110,157,40,.4); }
+
+    .radio-group input,.check-group input { accent-color:var(--brochure-blue-deep); width:14px; height:14px; }
+
+    .submit-btn { width:100%; height:42px; border:2px solid rgba(110,157,40,.3); border-radius:14px 18px 14px 16px; background:var(--green); color:var(--brochure-blue-deep); font-size:14px; font-weight:950; cursor:pointer; margin-top:6px; margin-bottom:8px; box-shadow:0 4px 0 rgba(39,97,138,.1); }
+
+    .submit-btn:active { transform:translateY(2px); box-shadow:0 2px 0 rgba(39,97,138,.1); }
+
+    .submit-btn:disabled { opacity:.6; cursor:not-allowed; }
+
+    .form-success { display:none; text-align:center; padding:40px 16px; }
+
+    .form-success.show { display:block; }
+
+    .form-success .icon { font-size:44px; margin-bottom:10px; }
+
+    .form-success h3 { font-size:17px; font-weight:950; color:var(--brochure-blue-deep); }
+
+    .form-success p { margin-top:8px; color:var(--text-sub); font-size:13px; line-height:1.5; }
+
+    .form-success .btn { margin-top:16px; width:100%; }
+
+    .section-divider { display:flex; align-items:center; gap:10px; margin:14px 0 10px; }
+
+    .section-divider::before,.section-divider::after { content:""; flex:1; height:1.5px; background:linear-gradient(90deg,transparent,rgba(39,97,138,.12),transparent); }
+
+    .section-divider span { font-size:11px; font-weight:950; color:var(--brochure-blue-deep); white-space:nowrap; background:var(--green-soft); padding:3px 10px; border-radius:10px; }
+
+  </style>
+
+</head>
+
+<body>
+
+  <script src="../assets/topbar.js"></script>
+
+  <main class="phone">
+
+    <div class="page">
+
+      <div class="detail-header">
+
+        <div class="back" onclick="history.back()"></div>
+
+        <div class="title">宠物医疗陪护</div>
+
+      </div>
+
+
+
+      <div class="detail-body">
+
+        <h1 class="page-title">宠物医疗陪护</h1>
+
+
+
+        <div class="photo-grid">
+
+          <div class="photo-item"><img src="../assets/images/service-medical/escort-1.jpg" alt="陪护现场1"></div>
+
+          <div class="photo-item"><img src="../assets/images/service-medical/escort-2.jpg" alt="陪护现场2"></div>
+
+          <div class="photo-item"><img src="../assets/images/service-medical/car-1.jpg" alt="专车接送"></div>
+
+          <div class="photo-item"><img src="../assets/images/service-medical/escort-3.jpg" alt="陪护反馈"></div>
+
+        </div>
+
+
+
+        <div class="section-badge">服务内容</div>
+
+        <div class="numbered-list">
+
+          <div class="numbered-item">
+            <span class="num">1</span>
+            <div class="content">
+              <strong>全程陪诊</strong>
+              <p>涵盖医院所有流程（除了需要主人签字决策的内容），如挂号、排队、沟通、理疗陪伴、中途遛喂、记录等，也可按指定任务执行（如安抚、遛喂）</p>
+            </div>
+          </div>
+
+          <div class="numbered-item">
+            <span class="num">2</span>
+            <div class="content">
+              <strong>宠物专车接送：</strong>
+              <p>可预定福拉呼啦专属宠物专车上门接送，可协助抱宠上下车，专车恒温智能、每日紫外线杀菌、实时监控、一次性用品</p>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <div class="section-badge">服务收费</div>
+        <p class="charge-note">服务后收款，不满意免费赠送服务</p>
+
+        <div class="price-section">
+          <div class="price-card">
+            <div class="price-icon"><img src="../assets/ph1.jpg" alt="陪诊" style="width:36px;height:36px;"></div>
+            <div class="price-info">
+              <div class="price-title"><span class="name">陪诊</span> <span class="amount">109</span><span class="unit">元/ 2小时</span></div>
+              <p class="desc">到达医院后正式开始算时间，至送离医院后服务结束。超1小时后，按每小时49元收费</p>
+            </div>
+          </div>
+          <div class="price-card">
+            <div class="price-icon"><img src="../assets/ph2.jpg" alt="接送" style="width:36px;height:36px;"></div>
+            <div class="price-info">
+              <div class="price-title"><span class="name">接送</span> <span class="amount">30</span><span class="unit">元/5公里</span></div>
+              <p class="desc">5公里后，每公里增加</p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="deco-bottom">
+          <svg class="paw" width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="8" cy="8" r="4" fill="var(--green)" opacity=".3"/><circle cx="20" cy="8" r="4" fill="var(--green)" opacity=".3"/><circle cx="5" cy="18" r="3.5" fill="var(--green)" opacity=".3"/><circle cx="23" cy="18" r="3.5" fill="var(--green)" opacity=".3"/><ellipse cx="14" cy="22" rx="7" ry="5" fill="var(--green)" opacity=".3"/></svg>
+          <svg class="medical" width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="8" y="4" width="16" height="24" rx="3" stroke="var(--green)" stroke-width="2.5" fill="none" opacity=".3"/><path d="M16 10v12M10 16h12" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" opacity=".3"/></svg>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="bottom-bar">
+      <button class="btn-order service-order-btn" data-type="escort">立即下单</button>
+    </div>
+
+  </main>
+
+  <script src="../data/contact.js?v=3"></script>
+
+  <script src="../assets/order-modal.js"></script>
+
+</body>
+
+</html>

@@ -4,19 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>福拉呼啦-近期活动</title>
-  <link rel="stylesheet" href="assets/common.css?v=2">
-  <link rel="stylesheet" href="assets/gallery-preview.css?v=2">
+  <link rel="stylesheet" href="assets/common.css?v=3">
+  <link rel="stylesheet" href="assets/gallery-preview.css?v=3">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
     .page { padding-bottom:96px; padding-top:120px; }
-    .filter-tabs { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; gap:8px; padding:10px 16px; overflow-x:auto; scrollbar-width:none; background:var(--brochure-blue); z-index:3; }
+    .filter-tabs { position:fixed; top:62px; left:50%; transform:translateX(-50%); width:375px; display:flex; gap:8px; padding:10px 16px; background:var(--brochure-blue); z-index:3; }
     .filter-tabs::after { content:""; position:absolute; bottom:0; left:0; right:0; height:8px; background:linear-gradient(180deg,rgba(0,0,0,.08),transparent); pointer-events:none; }
     .filter-tabs::-webkit-scrollbar { display:none; }
-    .filter-tab { flex:0 0 auto; padding:9px 14px; border:3px solid var(--line-green); border-radius:18px 24px 18px 22px; background:var(--paper); color:var(--brochure-blue-deep); font-size:13px; font-weight:900; box-shadow:0 3px 0 rgba(39,97,138,.12); }
+    .filter-tab { flex:1; padding:9px 14px; border:3px solid var(--line-green); border-radius:18px 24px 18px 22px; background:var(--paper); color:var(--brochure-blue-deep); font-size:13px; font-weight:900; box-shadow:0 3px 0 rgba(39,97,138,.12); text-align:center; }
     .filter-tab.active { background:var(--green); color:var(--brochure-blue-deep); border-color:rgba(246,243,223,.6); }
     .featured-card { overflow:hidden; border-radius:30px 22px 32px 24px; background:var(--paper); border:5px solid var(--green); box-shadow:var(--shadow-paper); }
     .featured-photo { position:relative; overflow:hidden; height:166px; display:grid; place-items:center; background:#EAF4F7; color:var(--brochure-blue-deep); font-size:13px; font-weight:950; }
     .featured-photo img { width:100%; height:100%; display:block; object-fit:cover; }
     .featured-photo::before { content:""; position:absolute; top:14px; left:50%; width:58px; height:14px; border-radius:999px; background:rgba(255,251,234,.78); transform:translateX(-50%) rotate(-5deg); z-index:2; }
+    .featured-photo.rescue-banner { display:block; border:none; border-radius:0; }
+    .featured-photo.rescue-banner::before { display:none; }
+    .featured-photo.rescue-banner .banner-slider { display:flex; transition:transform 0.6s ease; height:100%; }
+    .featured-photo.rescue-banner .banner-slide { min-width:100%; }
+    .featured-photo.rescue-banner .banner-slide img { width:100%; height:100%; object-fit:contain; background:#f5f5f5; }
+    .featured-photo.rescue-banner .banner-dots { display:flex; justify-content:center; gap:6px; position:absolute; bottom:8px; left:0; right:0; z-index:3; }
+    .featured-photo.rescue-banner .banner-dots span { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.5); cursor:pointer; transition:all 0.3s; }
+    .featured-photo.rescue-banner .banner-dots span.active { background:#fff; width:20px; }
     .featured-body { padding:14px; }
     .tag { display:inline-flex; padding:6px 10px; border-radius:18px 24px 18px 22px; background:var(--green); color:var(--brochure-blue-deep); border:2px solid rgba(255,255,255,.48); font-size:11px; font-weight:950; }
     .featured-body h2 { margin-top:10px; font-size:17px; font-weight:950; color:var(--ink); }
@@ -39,15 +48,51 @@
     .modal-card h3 { margin-top:12px; font-size:17px; font-weight:950; }
     .modal-card p { margin-top:6px; color:var(--text-sub); font-size:13px; font-weight:650; }
     .modal-card button { margin-top:14px; width:100%; height:40px; border:0; border-radius:16px 22px 16px 20px; background:var(--brochure-blue); color:#fff; font-size:14px; font-weight:950; }
+    .tab-content { scroll-margin-top:120px; }
+    .photo-scroll { display:flex; gap:10px; overflow-x:auto; scrollbar-width:none; padding-bottom:8px; }
+    .photo-scroll::-webkit-scrollbar { display:none; }
+    .scroll-item { flex:0 0 140px; border-radius:16px; overflow:hidden; border:3px solid var(--green); }
+    .scroll-item img { width:100%; height:100px; object-fit:cover; display:block; }
+    .welfare-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+    .welfare-grid .featured-card { margin:0; }
+    .welfare-card { border-radius:18px 14px 20px 16px; background:var(--paper); border:3px solid var(--line-green); overflow:hidden; }
+    .welfare-photo { height:100px; overflow:hidden; }
+    .welfare-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .welfare-info { padding:10px; }
+    .tag-sm { display:inline-flex; padding:3px 6px; border-radius:10px; background:var(--green-soft); color:var(--green-dark); font-size:9px; font-weight:900; }
+    .welfare-info h3 { margin-top:6px; font-size:12px; font-weight:950; }
+    .welfare-info p { margin-top:4px; color:var(--text-sub); font-size:10px; line-height:1.4; font-weight:600; }
+    .section-title h2 { display:inline-block; }
+    .welfare-section-card { padding:16px; border-radius:24px 18px 26px 20px; background:var(--paper); border:3px solid var(--line-green); box-shadow:0 5px 0 rgba(39,97,138,.1); }
+    .welfare-section-title { font-size:13px; font-weight:950; color:var(--brochure-blue-deep); margin-bottom:10px; }
+    .pet-scroll { display:flex; gap:10px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; padding:8px 0; -webkit-overflow-scrolling:touch; margin:0 -16px; padding-left:16px; padding-right:16px; }
+    .pet-scroll::-webkit-scrollbar { display:none; }
+    .pet-item { flex:0 0 100px; text-align:center; }
+    .pet-item .pet-photo { width:100px; height:100px; border-radius:16px; overflow:hidden; border:3px solid var(--green); }
+    .pet-item .pet-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .pet-item .pet-name { margin-top:6px; font-size:11px; font-weight:900; color:var(--brochure-blue-deep); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .rescue-banner { position:relative; border-radius:22px 16px 24px 18px; overflow:hidden; background:#EAF4F7; border:4px solid var(--green); }
+    .rescue-banner .banner-slider { display:flex; transition:transform 0.6s ease; }
+    .rescue-banner .banner-slide { min-width:100%; }
+    .rescue-banner .banner-slide img { width:100%; height:180px; object-fit:cover; display:block; }
+    .rescue-banner .banner-dots { display:flex; justify-content:center; gap:6px; position:absolute; bottom:8px; left:0; right:0; }
+    .rescue-banner .banner-dots span { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.5); cursor:pointer; transition:all 0.3s; }
+    .rescue-banner .banner-dots span.active { background:#fff; width:20px; }
+    .rescue-text { margin-top:12px; padding:14px; border-radius:18px 14px 20px 16px; background:var(--paper); border:3px solid var(--line-green); }
+    .rescue-text h3 { font-size:14px; font-weight:950; color:var(--brochure-blue-deep); }
+    .rescue-text p { margin-top:8px; color:var(--text-sub); font-size:12px; line-height:1.6; font-weight:600; }
+    .pet-item .pet-photo { width:100px; height:100px; border-radius:16px; overflow:hidden; border:3px solid var(--green); }
+    .pet-item .pet-photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .pet-item .pet-name { margin-top:6px; font-size:11px; font-weight:900; color:var(--brochure-blue-deep); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     @media (max-width:428px){ .filter-tabs{ width:100vw; } }
     @media (max-width:414px){ .filter-tabs{ width:100vw; } }
     @media (max-width:375px){ .filter-tabs{ width:100vw; } }
   </style>
 </head>
 <body>
+  <script src="assets/topbar.js"></script>
   <main class="phone">
     <div class="page">
-      <div id="topbar-container"></div>
 
       <section class="page-header">
         <h1>近期活动</h1>
@@ -55,74 +100,261 @@
       </section>
 
       <nav class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">全部</button>
-        <button class="filter-tab" data-filter="welfare">公益救助</button>
-        <button class="filter-tab" data-filter="service">服务现场</button>
-        <button class="filter-tab" data-filter="cooperation">合作交流</button>
+        <button class="filter-tab active" data-filter="online">线上活动</button>
+        <button class="filter-tab" data-filter="rescue">救助经历</button>
+        <button class="filter-tab" data-filter="welfare">公益信息</button>
       </nav>
 
-      <section class="section">
-        <div class="section-title"><h2>活动预告</h2><span>即将上线</span></div>
-        <div class="note-card" style="text-align:center;">
-          <p style="margin:0;color:var(--brochure-blue-deep);font-weight:950;">更多精彩活动即将上线</p>
-          <p style="margin-top:6px;">敬请期待，预约通道即将开放</p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="featured-card">
-          <div class="featured-photo"><img src="assets/images/welfare/team-welfare-2.jpg" alt="福拉呼啦公益行动记录"></div>
-          <div class="featured-body">
-            <span class="tag">8年公益救助背景</span>
-            <h2>救助，从来不是口号</h2>
-            <p>坚持救助与领养回访 500+ 毛孩子，把对生命的爱护延伸到日常照护服务中。</p>
+      <!-- 线上活动 -->
+      <section class="tab-content active" id="tab-online">
+        <section class="section">
+          <div class="section-title"><h2>最新活动</h2></div>
+          <div class="featured-card">
+            <div class="featured-photo"><img src="assets/images/welfare/event-2.jpg" alt="最新活动"></div>
+            <div class="featured-body">
+              <span class="tag">活动预告</span>
+              <h2>更多精彩活动即将上线</h2>
+              <p>敬请期待，预约通道即将开放。</p>
+            </div>
           </div>
-        </div>
+        </section>
       </section>
 
-      <section class="section">
-        <div class="section-title"><h2>动态相册</h2></div>
-        <div class="activity-grid" id="grid">
-          <article class="activity-card" data-kind="welfare" data-title="公益救助记录" data-preview-title="公益救助记录" data-preview-items="assets/images/welfare/rescue-1.jpg|assets/images/welfare/rescue-2.jpg|assets/images/welfare/volunteer-1.jpg|assets/images/welfare/volunteer-2.jpg|assets/images/welfare/team-welfare-1.jpg|assets/images/welfare/team-welfare-2.jpg|assets/images/welfare/event-1.jpg|assets/images/welfare/event-2.jpg"><div class="activity-photo"><img src="assets/images/welfare/rescue-1.jpg" alt="公益救助记录"></div><div class="activity-info"><span>公益救助</span><h3>公益救助记录</h3><p>记录救助、安置与回访过程。</p></div></article>
-          <article class="activity-card" data-kind="service" data-title="医疗陪护现场" data-preview-title="医疗陪护现场" data-preview-items="assets/images/service-medical/escort-1.jpg|assets/images/service-medical/escort-2.jpg|assets/images/service-medical/escort-3.jpg|assets/images/service-medical/car-1.jpg|assets/images/service-medical/car-2.jpg"><div class="activity-photo"><img src="assets/images/service-medical/escort-3.jpg" alt="医疗陪护现场"></div><div class="activity-info"><span>服务现场</span><h3>医疗陪护现场</h3><p>陪同就医与诊后反馈记录。</p></div></article>
-          <article class="activity-card" data-kind="service" data-title="上门照护反馈" data-preview-title="上门照护反馈" data-preview-items="assets/images/service-home/cat-visit-1.jpg|assets/images/service-home/cat-visit-2.jpg|assets/images/service-home/cat-visit-3.jpg|assets/images/service-home/dog-walk-1.jpg|assets/images/service-home/dog-walk-2.jpg"><div class="activity-photo"><img src="assets/images/service-home/cat-visit-3.jpg" alt="上门照护反馈"></div><div class="activity-info"><span>服务现场</span><h3>上门照护反馈</h3><p>喂食、清洁、陪伴与状态观察。</p></div></article>
-          <article class="activity-card" data-kind="service" data-title="寄养环境展示" data-preview-title="寄养环境展示" data-preview-items="assets/images/service-boarding/boarding-1.jpg|assets/images/service-boarding/boarding-2.jpg|assets/images/service-boarding/boarding-3.jpg"><div class="activity-photo"><img src="assets/images/service-boarding/boarding-2.jpg" alt="寄养环境展示"></div><div class="activity-info"><span>服务现场</span><h3>寄养环境展示</h3><p>寄养场地与日常照护展示。</p></div></article>
-          <article class="activity-card" data-kind="cooperation" data-title="合作交流记录" data-preview-title="合作交流记录" data-preview-items="assets/images/brand/team-partner.jpg|assets/images/brand/team-1.jpg|assets/images/brand/team-2.jpg"><div class="activity-photo"><img src="assets/images/brand/team-partner.jpg" alt="合作交流记录"></div><div class="activity-info"><span>合作交流</span><h3>合作交流记录</h3><p>宠物医院、门店与组织合作。</p></div></article>
-          <article class="activity-card" data-kind="welfare" data-title="领养回访记录" data-preview-title="领养回访记录" data-preview-items="assets/images/welfare/event-1.jpg|assets/images/welfare/event-2.jpg|assets/images/welfare/rescue-1.jpg|assets/images/welfare/rescue-2.jpg"><div class="activity-photo"><img src="assets/images/welfare/event-1.jpg" alt="领养回访记录"></div><div class="activity-info"><span>公益救助</span><h3>领养回访记录</h3><p>关注领养后的生活状态。</p></div></article>
-        </div>
+      <!-- 救助经历 -->
+      <section class="tab-content" id="tab-rescue">
+        <section class="section">
+          <div class="section-title"><h2>救助经历</h2></div>
+          <div class="featured-card">
+            <div class="featured-photo rescue-banner">
+              <div class="banner-slider" id="rescue-slider">
+                <div class="banner-slide"><img src="assets/images/welfare/team-welfare-1.jpg" alt="公益行动记录"></div>
+                <div class="banner-slide"><img src="assets/images/welfare/team-welfare-2.jpg" alt="公益行动记录"></div>
+                <div class="banner-slide"><img src="assets/images/welfare/rescue-1.jpg" alt="公益行动记录"></div>
+                <div class="banner-slide"><img src="assets/images/welfare/rescue-2.jpg" alt="公益行动记录"></div>
+                <div class="banner-slide"><img src="assets/images/welfare/volunteer-1.jpg" alt="公益行动记录"></div>
+                <div class="banner-slide"><img src="assets/images/welfare/volunteer-2.jpg" alt="公益行动记录"></div>
+                <div class="banner-slide"><img src="assets/images/welfare/event-1.jpg" alt="公益行动记录"></div>
+              </div>
+              <div class="banner-dots" id="rescue-dots">
+                <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="featured-body">
+              <span class="tag">8年公益救助背景</span>
+              <h2>救助，从来不是口号</h2>
+              <p>坚持救助与领养回访500+毛孩子，把对生命的爱护延伸到日常照护服务中。</p>
+            </div>
+          </div>
+        </section>
       </section>
 
-      <section class="section">
-        <div class="note-card">更多服务记录、救助回访、寄养环境与合作案例将持续更新。</div>
+      <!-- 公益信息 -->
+      <section class="tab-content" id="tab-welfare">
+        <section class="section">
+          <div class="section-title"><h2>公益信息</h2></div>
+          <div class="welfare-grid">
+            <div class="featured-card" onclick="FulaPreview.open(window.petImages.map(s=>({src:s,title:s.split('/').pop().replace('.jpg','')})),petCurrent,'待领养')" style="cursor:pointer;">
+              <div class="featured-photo rescue-banner" style="height:140px;">
+                <div class="banner-slider" id="pet-slider">
+                  <div class="banner-slide"><img src="assets/images/pets/1、康康.jpg" alt="康康"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/2、奶牛.jpg" alt="奶牛"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/3、小耳朵.jpg" alt="小耳朵"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/4、Jason.jpg" alt="Jason"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/5、天宝.jpg" alt="天宝"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/6、饼饼.jpg" alt="饼饼"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/7、小喇叭.jpg" alt="小喇叭"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/8、花妹儿.jpg" alt="花妹儿"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/9、狮心.jpg" alt="狮心"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/10、小花花.jpg" alt="小花花"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/11、茉莉.jpg" alt="茉莉"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/12、长乐.jpg" alt="长乐"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/13、汤圆.jpg" alt="汤圆"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/14、奶油.jpg" alt="奶油"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/15、圆小妹.jpg" alt="圆小妹"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/16、蓝猫&玳瑁串串.jpg" alt="蓝猫&玳瑁串串"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/17、黄土豆.jpg" alt="黄土豆"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/18、美羊羊.jpg" alt="美羊羊"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/19、奇迹.jpg" alt="奇迹"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/21、小奶牛.jpg" alt="小奶牛"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/23、蓝猫.jpg" alt="蓝猫"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/24、哈尼.jpg" alt="哈尼"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/25、小奶牛.jpg" alt="小奶牛"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/27、汤圆.jpg" alt="汤圆"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/28、小老虎.jpg" alt="小老虎"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/29、小灰灰.jpg" alt="小灰灰"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/31、小赖皮.jpg" alt="小赖皮"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/32、Jason.jpg" alt="Jason"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/33、脏脏.jpg" alt="脏脏"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/34、猫妈妈.jpg" alt="猫妈妈"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/34、小猫.jpg" alt="小猫"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/34、小猫1.jpg" alt="小猫1"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/34、小猫2.jpg" alt="小猫2"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/35、小奶牛.jpg" alt="小奶牛"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/37、小蓝.jpg" alt="小蓝"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/38、一群小猫.jpg" alt="一群小猫"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/39、布丁.jpg" alt="布丁"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/40、未取名.jpg" alt="未取名"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/41、小虎子.jpg" alt="小虎子"></div>
+                  <div class="banner-slide"><img src="assets/images/pets/42、未取名.jpg" alt="未取名"></div>
+                </div>
+                <div class="banner-dots" id="pet-dots">
+                  <span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="featured-body" style="padding:10px;display:flex;align-items:center;gap:8px;">
+                <span class="tag" style="font-size:10px;padding:4px 8px;">待领养</span>
+                <h2 style="font-size:14px;margin:0;">康康</h2>
+              </div>
+            </div>
+            <div class="featured-card">
+              <div class="featured-photo rescue-banner" style="height:140px;">
+                <div class="banner-slider" id="lost-slider">
+                  <div class="banner-slide"><img src="assets/images/welfare/rescue-1.jpg" alt="走失宠物1"></div>
+                  <div class="banner-slide"><img src="assets/images/welfare/rescue-2.jpg" alt="走失宠物2"></div>
+                  <div class="banner-slide"><img src="assets/images/welfare/volunteer-1.jpg" alt="志愿者"></div>
+                  <div class="banner-slide"><img src="assets/images/welfare/volunteer-2.jpg" alt="救助"></div>
+                  <div class="banner-slide"><img src="assets/images/welfare/event-1.jpg" alt="公益活动"></div>
+                </div>
+                <div class="banner-dots" id="lost-dots">
+                  <span class="active"></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="featured-body" style="padding:10px;display:flex;align-items:center;gap:8px;">
+                <span class="tag" style="font-size:10px;padding:4px 8px;">走失寻主</span>
+                <h2 style="font-size:14px;margin:0;">寻找主人</h2>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
-
 
     </div>
 
     <div id="float-contact-container"></div>
     <div id="tabbar-container"></div>
+
+    <div class="wechat-modal-mask" id="wechat-modal-mask" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);justify-content:center;align-items:center;">
+      <div style="background:#fff;border-radius:16px;padding:20px;text-align:center;max-width:300px;position:relative;">
+        <button onclick="document.getElementById('wechat-modal-mask').style.display='none'" style="position:absolute;top:8px;right:12px;border:none;background:none;font-size:20px;cursor:pointer;color:#999;">&times;</button>
+        <img src="assets/weixin.jpg" alt="企业微信二维码" style="width:200px;border-radius:12px;">
+        <p style="margin-top:10px;font-size:12px;color:#666;">长按识别二维码添加客服</p>
+      </div>
+    </div>
   </main>
 
-  <script src="assets/component-loader.js?v=2"></script>
+  <script src="assets/component-loader.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ComponentLoader.setActiveTab('activity.html');
+
+      // 救助经历轮播
+      const slider = document.getElementById('rescue-slider');
+      const dots = document.querySelectorAll('#rescue-dots span');
+      let current = 0;
+      const total = dots.length;
+      function goToSlide(n) {
+        current = n;
+        slider.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+      setInterval(() => { goToSlide((current + 1) % total); }, 3000);
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToSlide(i));
+      });
+
+      // 待领养轮播
+      const petSlider = document.getElementById('pet-slider');
+      const petDots = document.querySelectorAll('#pet-dots span');
+      window.petCurrent = 0;
+      const petTotal = petDots.length;
+      const petNames = ['康康','奶牛','小耳朵','Jason','天宝','饼饼','小喇叭','花妹儿','狮心','小花花','茉莉','长乐','汤圆','奶油','圆小妹','蓝猫&玳瑁串串','黄土豆','美羊羊','奇迹','小奶牛','蓝猫','哈尼','小奶牛','汤圆','小老虎','小灰灰','小赖皮','Jason','脏脏','猫妈妈','小猫','小猫1','小猫2','小奶牛','小蓝','一群小猫','布丁','未取名','小虎子','未取名'];
+      function goToPetSlide(n) {
+        petCurrent = n;
+        petSlider.style.transform = 'translateX(-' + (petCurrent * 100) + '%)';
+        petDots.forEach((d, i) => d.classList.toggle('active', i === petCurrent));
+        document.querySelector('#tab-welfare .featured-card:first-child .featured-body h2').textContent = petNames[petCurrent];
+      }
+      setInterval(() => { goToPetSlide((petCurrent + 1) % petTotal); }, 2500);
+      petDots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToPetSlide(i));
+      });
+
+      // 待领养图片列表
+      window.petImages = [
+        'assets/images/pets/1、康康.jpg',
+        'assets/images/pets/2、奶牛.jpg',
+        'assets/images/pets/3、小耳朵.jpg',
+        'assets/images/pets/4、Jason.jpg',
+        'assets/images/pets/5、天宝.jpg',
+        'assets/images/pets/6、饼饼.jpg',
+        'assets/images/pets/7、小喇叭.jpg',
+        'assets/images/pets/8、花妹儿.jpg',
+        'assets/images/pets/9、狮心.jpg',
+        'assets/images/pets/10、小花花.jpg',
+        'assets/images/pets/11、茉莉.jpg',
+        'assets/images/pets/12、长乐.jpg',
+        'assets/images/pets/13、汤圆.jpg',
+        'assets/images/pets/14、奶油.jpg',
+        'assets/images/pets/15、圆小妹.jpg',
+        'assets/images/pets/16、蓝猫&玳瑁串串.jpg',
+        'assets/images/pets/17、黄土豆.jpg',
+        'assets/images/pets/18、美羊羊.jpg',
+        'assets/images/pets/19、奇迹.jpg',
+        'assets/images/pets/21、小奶牛.jpg',
+        'assets/images/pets/23、蓝猫.jpg',
+        'assets/images/pets/24、哈尼.jpg',
+        'assets/images/pets/25、小奶牛.jpg',
+        'assets/images/pets/27、汤圆.jpg',
+        'assets/images/pets/28、小老虎.jpg',
+        'assets/images/pets/29、小灰灰.jpg',
+        'assets/images/pets/31、小赖皮.jpg',
+        'assets/images/pets/32、Jason.jpg',
+        'assets/images/pets/33、脏脏.jpg',
+        'assets/images/pets/34、猫妈妈.jpg',
+        'assets/images/pets/34、小猫.jpg',
+        'assets/images/pets/34、小猫1.jpg',
+        'assets/images/pets/34、小猫2.jpg',
+        'assets/images/pets/35、小奶牛.jpg',
+        'assets/images/pets/37、小蓝.jpg',
+        'assets/images/pets/38、一群小猫.jpg',
+        'assets/images/pets/39、布丁.jpg',
+        'assets/images/pets/40、未取名.jpg',
+        'assets/images/pets/41、小虎子.jpg',
+        'assets/images/pets/42、未取名.jpg'
+      ];
+
+      // 走失寻主轮播
+      const lostSlider = document.getElementById('lost-slider');
+      const lostDots = document.querySelectorAll('#lost-dots span');
+      let lostCurrent = 0;
+      const lostTotal = lostDots.length;
+      function goToLostSlide(n) {
+        lostCurrent = n;
+        lostSlider.style.transform = 'translateX(-' + (lostCurrent * 100) + '%)';
+        lostDots.forEach((d, i) => d.classList.toggle('active', i === lostCurrent));
+      }
+      setInterval(() => { goToLostSlide((lostCurrent + 1) % lostTotal); }, 3000);
+      lostDots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToLostSlide(i));
+      });
     });
   </script>
   <script>
     const tabs = document.querySelectorAll('.filter-tab');
-    const cards = document.querySelectorAll('.activity-card');
+    const tabContents = document.querySelectorAll('.tab-content');
+    // 默认显示第一个标签
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(item => item.classList.remove('active'));
         tab.classList.add('active');
         const filter = tab.dataset.filter;
-        cards.forEach(card => {
-          card.style.display = filter === 'all' || card.dataset.kind === filter ? 'block' : 'none';
-        });
+        const target = document.getElementById('tab-' + filter);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
   </script>
-  <script src="assets/gallery-preview.js?v=2"></script>
+  <script src="assets/gallery-preview.js?v=3"></script>
 </body>
 </html>

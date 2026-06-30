@@ -3,42 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>福拉呼啦宠物-首页</title>
-  <link rel="stylesheet" href="assets/common.css">
-  <link rel="stylesheet" href="assets/gallery-preview.css">
+  <title>福拉呼啦-公司介绍</title>
+  <link rel="stylesheet" href="assets/common.css?v=3">
+  <link rel="stylesheet" href="assets/gallery-preview.css?v=3">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
     .page { padding-bottom: 98px; padding-top: 62px; }
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
     .stat { padding: 12px 5px; min-height: 74px; border-radius: 18px 14px 20px 15px; background: var(--paper); border: 3px solid var(--line-green); text-align: center; box-shadow: 0 4px 0 rgba(39,97,138,.1); }
     .stat strong { display: block; color: var(--brochure-blue); font-size: 19px; font-weight: 950; line-height: 1.2; }
     .stat span { display: block; margin-top: 6px; color: var(--ink); font-size: 11px; font-weight: 800; line-height: 1.25; }
     .team-card { padding: 16px; border-radius: 24px 18px 26px 20px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.1); }
-    .team-photo { height: 160px; overflow: hidden; display: grid; place-items: center; border-radius: 22px 16px 22px 18px; background: #EAF4F7; border: 4px solid var(--green); color: var(--brochure-blue-deep); font-size: 13px; font-weight: 950; }
-    .team-photo img { width: 100%; height: 100%; display: block; object-fit: contain; }
+    .team-banner { position: relative; border-radius: 22px 16px 22px 18px; overflow: hidden; background: #EAF4F7; border: 4px solid var(--green); }
+    .banner-slider { display: flex; transition: transform 0.6s ease; }
+    .banner-slide { min-width: 100%; }
+    .banner-slide img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .banner-dots { display: flex; justify-content: center; gap: 6px; position: absolute; bottom: 8px; left: 0; right: 0; }
+    .banner-dots span { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.5); cursor: pointer; transition: all 0.3s; }
+    .banner-dots span.active { background: #fff; width: 20px; }
     .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 12px; }
     .role { padding: 12px; border-radius: 18px 14px 18px 16px; background: var(--paper-light); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.1); }
     .role h3 { font-size: 13px; font-weight: 950; }
     .role p { margin-top: 5px; color: var(--text-sub); font-size: 12px; line-height: 1.45; font-weight: 650; }
     .section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .section-title h2 { display: inline-flex; padding: 6px 12px; border-radius: 14px 20px 14px 18px; background: var(--green); color: var(--brochure-blue-deep); font-size: 15px; font-weight: 950; }
-    .section-title a { color: var(--text-sub); font-size: 12px; font-weight: 700; text-decoration: none; }
-    .story-photo, .case-photo { position: relative; overflow: hidden; display: grid; place-items: center; background: #EAF4F7; border: 3px solid var(--green); color: var(--brochure-blue-deep); font-weight: 900; text-align: center; }
-    .story-photo img, .case-photo img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .story-photo { flex: 0 0 88px; height: 76px; border-radius: 18px 14px 18px 16px; font-size: 12px; }
-    .story-card h3 { font-size: 16px; font-weight: 950; }
-    .story-card p { margin-top: 8px; color: var(--text-sub); font-size: 13px; line-height: 1.6; font-weight: 650; }
-    .case-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
-    .case-card { overflow: hidden; border-radius: 18px 14px 20px 15px; background: var(--paper); border: 3px solid var(--line-green); }
-    .case-photo { height: 80px; border: 0; border-bottom: 3px solid var(--green); border-radius: 0; font-size: 11px; line-height: 1.35; }
-    .case-card p { padding: 8px; color: var(--text-sub); font-size: 11px; line-height: 1.35; font-weight: 750; }
-    .review-grid { display: grid; gap: 10px; }
-    .review-card { padding: 14px; border-radius: 18px 14px 20px 15px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 4px 0 rgba(39,97,138,.1); }
-    .review-card p { color: var(--ink); font-size: 13px; line-height: 1.5; font-weight: 650; font-style: italic; }
-    .review-card span { display: block; margin-top: 8px; color: var(--text-sub); font-size: 11px; font-weight: 700; }
     .compare-card { padding: 14px; border-radius: 20px 16px 22px 18px; background: var(--paper); border: 3px solid var(--line-green); box-shadow: 0 5px 0 rgba(39,97,138,.1); }
     .compare-desc { color: var(--text-sub); font-size: 12px; line-height: 1.6; font-weight: 650; margin-bottom: 12px; }
     .compare-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    .compare-table th { padding: 8px 6px; background: var(--green); color: var(--brochure-blue-deep); font-weight: 950; text-align: left; border: 1px solid var(--line-green); }
+    .compare-table th { padding: 8px 6px; background: var(--green); color: var(--brochure-blue-deep); font-weight: 950; text-align: center; border: 1px solid var(--line-green); }
     .compare-table td { padding: 7px 6px; border: 1px solid var(--line-green); font-weight: 600; color: var(--ink); }
     .compare-table td:first-child { background: var(--green-soft); font-weight: 800; }
     .compare-table td:nth-child(2) { color: var(--brochure-blue-deep); font-weight: 700; }
@@ -50,9 +42,9 @@
   </style>
 </head>
 <body>
+  <script src="assets/topbar.js"></script>
   <main class="phone">
     <div class="page">
-      <div id="topbar-container"></div>
 
       <section class="section">
         <div class="section-title"><h2>品牌数据</h2></div>
@@ -85,11 +77,22 @@
       <section class="section">
         <div class="section-title"><h2>团队与标准</h2></div>
         <div class="team-card">
-          <div class="team-photo"><img src="assets/images/brand/team-2.jpg" alt="福拉呼啦团队现场记录"></div>
+          <div class="team-banner">
+            <div class="banner-slider" id="team-slider">
+              <div class="banner-slide"><img src="assets/images/brand/team-partner.jpg" alt="团队合作"></div>
+              <div class="banner-slide"><img src="assets/images/brand/team-1.jpg" alt="团队现场"></div>
+              <div class="banner-slide"><img src="assets/images/brand/team-2.jpg" alt="团队服务"></div>
+              <div class="banner-slide"><img src="assets/images/brand/team-3.jpg" alt="团队活动"></div>
+              <div class="banner-slide"><img src="assets/images/brand/team-4.jpg" alt="团队合影"></div>
+            </div>
+            <div class="banner-dots" id="team-dots">
+              <span class="active"></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
           <div class="team-grid">
-            <div class="role"><h3>服务后收款</h3><p>服务完成后及时结算，保障双方权益。</p></div>
-            <div class="role"><h3>服务监管</h3><p>全程监督服务质量，确保标准执行到位。</p></div>
-            <div class="role"><h3>专业指导</h3><p>提供专业养宠建议与照护指导支持。</p></div>
+            <div class="role"><h3>服务后收款</h3><p>不满意赠送服务</p></div>
+            <div class="role"><h3>全程监管</h3><p>全程监督服务质量，确保标准执行到位。</p></div>
+            <div class="role"><h3>专业指导</h3><p>川农教授、博士专业指导</p></div>
             <div class="role"><h3>风险保障</h3><p>完善风险管控体系，保障服务安全可靠。</p></div>
           </div>
         </div>
@@ -105,18 +108,31 @@
         </div>
       </section>
 
-
     </div>
 
     <div id="float-contact-container"></div>
     <div id="tabbar-container"></div>
   </main>
-  <script src="assets/component-loader.js"></script>
-  <script src="assets/gallery-preview.js"></script>
+  <script src="assets/component-loader.js?v=3"></script>
+  <script src="assets/gallery-preview.js?v=3"></script>
   <script>
-    // 设置当前页面active状态
     document.addEventListener('DOMContentLoaded', () => {
       ComponentLoader.setActiveTab('company.html');
+
+      // 团队照片轮播
+      const slider = document.getElementById('team-slider');
+      const dots = document.querySelectorAll('#team-dots span');
+      let current = 0;
+      const total = dots.length;
+      function goToSlide(n) {
+        current = n;
+        slider.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+      setInterval(() => { goToSlide((current + 1) % total); }, 3000);
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToSlide(i));
+      });
     });
   </script>
 </body>
